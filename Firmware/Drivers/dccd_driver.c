@@ -6,6 +6,7 @@ Author: Andis Jargans
 
 Revision history:
 2021-09-16: Initial version
+2021-10-21: Modified to fit new outputs HAL, added descriptions
 */
 
 /**** Hardware configuration ****
@@ -13,9 +14,9 @@ Revision history:
 */
 
 /**** Includes ****/
-#include <avr/io.h>
-#include "dccd_hw_driver.h"
-#include "outputs_driver.h"
+#include "dccd_driver.h"
+#include "hal_outputs.h"
+#include "hw_config.h"
 
 /**** Private definitions ****/
 
@@ -53,6 +54,8 @@ static volatile uint8_t fault_loss = 0;
 static volatile uint8_t fault_output_cnt = 0;
 
 /**** Private function declarations ****/
+void SatAdd(uint8_t *base, uint8_t delta);
+void SatSub(uint8_t *base, uint8_t delta);
 
 /**** Public function definitions ****/
 /**
@@ -62,10 +65,13 @@ void COILDRV_Init(void)
 {
 	OUTHAL_Init();
 	OUTHAL_DisableDCCDch();
-	OUTHAL_SetPWM(OUTHAL_CH_DCCD,0);
+	OUTHAL_SetPWM(OUTHAL_CH_DCCD,(uint8_t)0);
 }
 
-
+/**
+ * @brief Set target force (convert to target volatge)
+ * @param [in] Force to set, 0 to 100
+ */
 void COILDRV_SetFroce(uint8_t force)
 {
 	if(coil_resistance)
@@ -87,30 +93,39 @@ void COILDRV_SetFroce(uint8_t force)
 }
 
 /**
- * @brief Calculate necessary PWM duty cycle for target voltage
- * @param [in] u_out Desired output voltage
- * @return PWM value in permille [0..1000]
+ * @brief Reads fault flag of chosen type
+ * @param [in] type Type of fault to read
+ * @returns fault flag, 0-inactive, 1-active
  */
-uint16_t OutputVoltageToPWM(uint16_t u_out, uint16_t u_sup)
+uint8_t COILDRV_GetFaultFlag(uint8_t type)
 {
-	if((u_sup)&&(u_out))
+	switch(type)
 	{
-		//Compensate for supply voltage changes
-		uint32_t temp = ((uint32_t)u_out*1000)/u_sup;
-		if(temp>0x0000FFFF) return 0xFFFF;
-		else return (uint16_t)temp;
+		case FAULT_SUPPLY:
+			return fault_supply;
+			
+		case FAULT_OUTPUT:
+			return fault_output;
+			
+		case FAULT_LOAD_LOSS:
+			return fault_loss;
+			
+		default:
+			return 0;
 	}
-	else return 0;
 }
 
-
+/**
+ * @brief Does actual controll of DCCD driver
+ * @param [in] u_supply Supply voltage, in mV
+ */
 void COILDRV_ProcessLogic(uint16_t u_supply)
 {
 	if((fault_output)||(fault_supply))
 	{
 		//Turn off output
 		OUTHAL_DisableDCCDch();
-		OUTHAL_SetPWM(OUTHAL_CH_DCCD,0);
+		OUTHAL_SetPWM(OUTHAL_CH_DCCD,(uint8_t)0);
 		set_output_voltage = 0;
 	}
 	else
@@ -126,9 +141,15 @@ void COILDRV_ProcessLogic(uint16_t u_supply)
 	else protection_disable_zcheck = 1;
 	
 	uint16_t pwm = OutputVoltageToPWM(set_output_voltage,u_supply);
-	OUTHAL_SetPWMPrecise(OUTHAL_CH_DCCD,pwm);
+	OUTHAL_SetPWM(OUTHAL_CH_DCCD,pwm);
 }
 
+/**
+ * @brief Determines fault state
+ * @param [in] i_dccd DCCD current, in mA
+ * @param [in] u_dccd DCCD voltage, in mV
+ * @param [in] u_supply Supply voltage, in mV
+ */
 void COILDRV_ProcessProtection(uint16_t i_dccd, uint16_t u_dccd, uint16_t u_supply)
 {
 	uint32_t temp = 0;
@@ -181,29 +202,29 @@ void COILDRV_ProcessProtection(uint16_t i_dccd, uint16_t u_dccd, uint16_t u_supp
 	else warning_load_loss = 0;
 	
 	//Fault counters -------------------	
-	if(warning_uvlo){ if(counter_uvlo<255)counter_uvlo++;}
-	else counter_uvlo--;
+	if(warning_uvlo){SatAdd(&counter_uvlo,1);}
+	else SatSub(&counter_uvlo,1);
 	
-	if(warning_ovlo){ if(counter_ovlo<255)counter_ovlo++;}
-	else counter_ovlo--;
+	if(warning_ovlo){SatAdd(&counter_ovlo,1);}
+	else SatSub(&counter_ovlo,1);
 	
-	if(warning_ocp){ if(counter_ocp<255)counter_ocp++;}
-	else counter_ocp--;
+	if(warning_ocp){SatAdd(&counter_ocp,1);}
+	else SatSub(&counter_ocp,1);
 	
-	if(warning_opp){ if(counter_opp<255)counter_opp++;}
-	else counter_opp--;
+	if(warning_opp){SatAdd(&counter_opp,1);}
+	else SatSub(&counter_opp,1);
 	
 	if((warning_short)&&(!protection_deadtime)&&(!protection_disable_zcheck))
 	{
-		if(counter_short<255)counter_short++;
+		SatAdd(&counter_short,1);
 	}
-	else counter_short--;
+	else SatSub(&counter_short,1);
 	
 	if((warning_load_loss)&&(!protection_deadtime)&&(!protection_disable_zcheck))
 	{
-		if(counter_load_loss<255)counter_load_loss++;
+		SatAdd(&counter_load_loss,1);
 	}
-	else counter_load_loss--;
+	else SatSub(&counter_load_loss,1);
 	
 	//Check fault counters
 	if((counter_uvlo>FAULT_SUPPLY_DELAY)||(counter_ovlo>FAULT_SUPPLY_DELAY))
@@ -249,5 +270,45 @@ void COILDRV_ProcessProtection(uint16_t i_dccd, uint16_t u_dccd, uint16_t u_supp
 	if(protection_deadtime) protection_deadtime--;
 	
 	//Act on faults - disable output
-	
+	//Just set flags, acting on faults takes place in logic processing
+}
+
+/**** Private function definitions ****/
+/**
+ * @brief Calculate necessary PWM duty cycle for target voltage
+ * @param [in] u_out Desired output voltage
+ * @return PWM value in 1/10k [0..10000]
+ */
+uint16_t OutputVoltageToPWM(uint16_t u_out, uint16_t u_sup)
+{
+	if((u_sup)&&(u_out))
+	{
+		//Compensate for supply voltage changes
+		uint32_t temp = ((uint32_t)u_out*10000)/u_sup;
+		if(temp>0x0000FFFF) return 0xFFFF;
+		else return (uint16_t)temp;
+	}
+	else return 0;
+}
+
+/**
+ * @brief Does saturated add
+ * @param [in/out] base Starting value
+ * @param [in] delta Value to add
+ */
+void SatAdd(uint8_t *base, uint8_t delta)
+{
+	if((255-*base)>delta) *base += add;
+	else *base=255;
+}
+
+/**
+ * @brief Does saturated subtraction
+ * @param [in/out] base Starting value
+ * @param [in] delta Value to subtract
+ */
+void SatSub(uint8_t *base, uint8_t delta)
+{
+	if(delta>*base) *base -= delta;
+	else *base = 0;
 }

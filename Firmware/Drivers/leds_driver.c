@@ -6,6 +6,7 @@ Author: Andis Jargans
 
 Revision history:
 2021-09-16: Initial version
+2021-10-21: Changed includes to fit new outputs HAL
 */
 
 /**** Hardware configuration ****
@@ -13,9 +14,8 @@ Revision history:
 */
 
 /**** Includes ****/
-#include <avr/io.h>
 #include "leds_driver.h"
-#include "outputs_driver.h"
+#include "hal_outputs.h"
 
 /**** Private definitions ****/
 

@@ -5,7 +5,7 @@ Outputs Hardware abstraction layer
 Author: Andis Jargans
 
 Revision history:
-2021-09-17: Initial version
+2021-10-21: Initial version
 */
 
 /**** Hardware configuration ****
@@ -24,26 +24,25 @@ Ftim = Fcpu/(2*TOP*DIV)
 
 /**** Includes ****/
 #include <avr/io.h>
-#include "outputs_driver.h"
+#include "hal_outputs.h"
+#include "hw_config.h"
 
 /**** Private definitions ****/
 
 /**** Private variables ****/
-static volatile uint8_t init_done = 0;
-static volatile uint8_t dccd_en = 0;
+static volatile int8_t dccd_en = 0;
 
 /**** Private function declarations ****/
+static void SetOutputCompare(uint8_t ch, uint16_t oc_val);
 
 /**** Public function definitions ****/
-
-/**** Private function definitions ****/
 /**
- * @brief Initializes outputs hardware
- * @param [in] presc Prescaler for timer [1/8/64/256/1024]
- * @param [in] top Overflow value for timer [1..65535]
+ * @brief Initializes hardware
  */
 void OUTHAL_Init(void)
 {
+	static uint8_t init_done = 0;
+	
 	if(init_done) return;
 	
 	//GPIO configuration
@@ -60,9 +59,9 @@ void OUTHAL_Init(void)
 	TCNT1 = 0x0000;
 	OCR1A = 0x0000;
 	OCR1B = 0x0000;
-	ICR1 = OUTHAL_TIM_TOP; //TOP
+	ICR1 = PWM_TIMER_TOP; //TOP
 	
-	TCCR1B |= OUTHAL_CLK_PRESCALER;  //Enable timer
+	TCCR1B |= PWM_TIMER_PRESCALER;  //Enable timer
 	
 	dccd_en = 0;
 	init_done = 1;
@@ -77,55 +76,48 @@ void OUTHAL_SetPWM(uint8_t ch, uint8_t dc)
 {
 	//Map PWM Duty cycle to TIM TOP range
 	uint16_t temp = 0;
-	if(dc>100) temp = OUTHAL_TIM_TOP;
+	if(dc>100) temp = PWM_TIMER_TOP;
 	else if(dc==0) temp = 0;
-	else temp = (uint16_t)(((uint32_t)dc*OUTHAL_TIM_TOP)/100);
+	else temp = (uint16_t)(((uint32_t)dc*PWM_TIMER_TOP)/100);
 	
-	switch(ch)
-	{
-		case OUTHAL_CH_DCCD:
-			if(temp>OUTHAL_MAX_DCCD_OC) temp = OUTHAL_MAX_DCCD_OC;
-			if(dccd_en) OCR1A = temp;
-			else OCR1A = 0x0000;
-			break;
-			
-		case OUTHAL_CH_LED:
-			OCR1B = temp;
-			break;
-			
-		default:
-			break;
-	}
+	SetOutputCompare(ch,temp);
 }
 
 /**
- * @brief Set PWM duty cycle
+ * @brief Set PWM duty cycle, but with more resolution
  * @param [in] ch Timer output compare channel
- * @param [in] dc PWM Duty cycle in permille [0..1000]
+ * @param [in] dc PWM Duty cycle in 1/10k's [0..10000]
  */
-void OUTHAL_SetPWMPrecise(uint8_t ch, uint16_t dc)
+void OUTHAL_SetPWM(uint8_t ch, uint16_t dc)
 {
 	//Map PWM Duty cycle to TIM TOP range
 	uint16_t temp = 0;
-	if(dc>1000) temp = OUTHAL_TIM_TOP;
+	if(dc>10000) temp = OUTHAL_TIM_TOP;
 	else if(dc==0) temp = 0;
-	else temp = (uint16_t)(((uint32_t)dc*OUTHAL_TIM_TOP)/1000);
+	else temp = (uint16_t)(((uint32_t)dc*OUTHAL_TIM_TOP)/10000);
 	
-	switch(ch)
+	SetOutputCompare(ch,temp);
+}
+
+/**
+ * @brief Set LED image
+ * @param [in] image bitwise output states to set
+ */
+void OUTHAL_SetLEDs(uint8_t image)
+{
+	//Capture current display image
+	uint8_t temp = PORTD;
+	temp &= 0x3F;
+	
+	//To reduce unnecessary flashing, change outputs only if there is change
+	if(image!=temp)
 	{
-		case OUTHAL_CH_DCCD:
-			if(temp>OUTHAL_MAX_DCCD_OC) temp = OUTHAL_MAX_DCCD_OC;
-			if(dccd_en) OCR1A = temp;
-			else OCR1A = 0x0000;
-			break;
-			
-		case OUTHAL_CH_LED:
-			OCR1B = temp;
-			break;
-			
-		default:
-			break;
-	}
+		//clear display
+		PORTD &= ~0x3F;
+		
+		//set display
+		PORTD |= (image&0x3F);
+	};
 }
 
 /**
@@ -145,22 +137,27 @@ void OUTHAL_DisableDCCDch(void)
 	dccd_en = 0;
 }
 
+/**** Private function definitions ****/
 /**
- * @brief Set LED image
- * @param [in] image bitwise output states to set
+ * @brief Set output compare register, also makes sure DCCD duty cycle is cliped.
+ * @param [in] ch channel to set
+ * @param [in] oc_val register value to set
  */
-void OUTHAL_SetLEDs(uint8_t image)
+void SetOutputCompare(uint8_t ch, uint16_t oc_val)
 {
-	uint8_t temp = PORTD;
-	temp &= 0x3F;
-	
-	//To reduce unnecessary flashing, change outputs only if there is change
-	if(image!=temp)
+	switch(ch)
 	{
-		//clear display
-		PORTD &= ~0x3F;
-		
-		//set display
-		PORTD |= (image&0x3F);
-	};
+		case OUTHAL_CH_DCCD:
+			if(oc_val>PWM_TIMER_DCCD_MAX) oc_val = PWM_TIMER_DCCD_MAX;
+			if(dccd_en) OCR1A = oc_val;
+			else OCR1A = 0x0000;
+			break;
+			
+		case OUTHAL_CH_LED:
+			OCR1B = oc_val;
+			break;
+			
+		default:
+			break;
+	}
 }
