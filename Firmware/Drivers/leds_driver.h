@@ -18,8 +18,6 @@ Revision history:
 #define LED_DSP_DOT10	1
 #define LED_DSP_DOT20	2
 
-/**** Aplciation specific configuration ****/
-
 /**** Public function declarations ****/
 //Control functions
 void LEDRV_Init(void);

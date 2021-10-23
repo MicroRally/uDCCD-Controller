@@ -53,21 +53,20 @@ One conversion = 13.5 Fadc cycles
 #define HW_CFG_FILE
 
 /**** Public definitions ****/
-
 /**** Aplciation specific configuration ****/
 //DCCD and LED timer static configuration
-#define PWM_TIMER_PRESCALER	0x01
-#define PWM_TIMER_TOP		256	
-#define PWM_TIMER_DCCD_MAX	250
+#define PWM_TIMER_PRESCALER		0x01
+#define PWM_TIMER_TOP			256	
+#define PWM_TIMER_DCCD_MAX		250
 
 //ADC static configuartion
-#define ADC_CLK_PRESCALER	0x06
+#define ADC_CLK_PRESCALER		0x06
 
 //DCCD Driver configuartion
-#define LOCK_CURRENT		4500
-#define MAX_OUTPUT_VOLTAGE	10000
+#define LOCK_CURRENT			4500
+#define MAX_OUTPUT_VOLTAGE		10000
 
-#define COIL_LAG_TIME		10
+#define COIL_LAG_TIME			10
 
 #define MAX_OUTPUT_CURRENT		8000
 #define MAX_SUPPLY_VOLTAGE		18000
@@ -77,15 +76,20 @@ One conversion = 13.5 Fadc cycles
 #define MIN_OUTPUT_IMPEDANCE	900
 #define MAX_OUTPUT_IMPEDANCE	2200
 
-#define FAULT_SUPPLY_DELAY	20
-#define FAULT_OCP_DELAY		10
-#define FAULT_OPP_DELAY		10
-#define FAULT_SHORT_DELAY	10
-#define FAULT_LOSS_DELAY	20
+#define FAULT_SUPPLY_DELAY		20
+#define FAULT_OCP_DELAY			10
+#define FAULT_OPP_DELAY			10
+#define FAULT_SHORT_DELAY		10
+#define FAULT_LOSS_DELAY		20
 
 #define FAULT_OUTPUT_COOLDOWN	1000
 
 //Inputs Driver configuartion
-
-
+#define DEBOUNCE_TIME_DIMM		10
+#define DEBOUNCE_TIME_BRKAE		10
+#define DEBOUNCE_TIME_HBRAKE	10
+#define DEBOUNCE_TIME_UPSW		10
+#define DEBOUNCE_TIME_DNSW		10
+#define DEBOUNCE_TIME_MODESW	10
+	
 #endif

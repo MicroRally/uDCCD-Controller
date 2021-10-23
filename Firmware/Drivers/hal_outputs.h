@@ -17,8 +17,6 @@ Revision history:
 #define OUTHAL_CH_DCCD	1
 #define OUTHAL_CH_LED	2
 
-/**** Aplciation specific configuration ****/
-
 /**** Public function declarations ****/
 //Control functions
 void OUTHAL_Init(void);

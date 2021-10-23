@@ -25,8 +25,6 @@ static volatile uint8_t set_image = 0;
 /**** Private function declarations ****/
 
 /**** Public function definitions ****/
-
-/**** Private function definitions ****/
 /**
  * @brief Initializes LED Driver
  */
@@ -116,3 +114,6 @@ void LEDDRV_SetDisplayBrightness(uint8_t lvl)
 {
 	OUTHAL_SetPWM(OUTHAL_CH_LED,lvl);
 }
+
+/**** Private function definitions ****/
+//end of file
