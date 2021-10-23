@@ -59,10 +59,10 @@ One conversion = 13.5 Fadc cycles
 #define PWM_TIMER_TOP			256	
 #define PWM_TIMER_DCCD_MAX		250
 
-//ADC static configuartion
+//ADC static configuration
 #define ADC_CLK_PRESCALER		0x06
 
-//DCCD Driver configuartion
+//DCCD Driver configuration
 #define LOCK_CURRENT			4500
 #define MAX_OUTPUT_VOLTAGE		10000
 
@@ -84,7 +84,7 @@ One conversion = 13.5 Fadc cycles
 
 #define FAULT_OUTPUT_COOLDOWN	1000
 
-//Inputs Driver configuartion
+//Inputs Driver configuration
 #define DEBOUNCE_TIME_DIMM		10
 #define DEBOUNCE_TIME_BRKAE		10
 #define DEBOUNCE_TIME_HBRAKE	10

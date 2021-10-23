@@ -88,13 +88,13 @@ void OUTHAL_SetPWM(uint8_t ch, uint8_t dc)
  * @param [in] ch Timer output compare channel
  * @param [in] dc PWM Duty cycle in 1/10k's [0..10000]
  */
-void OUTHAL_SetPWM(uint8_t ch, uint16_t dc)
+void OUTHAL_SetPrecisePWM(uint8_t ch, uint16_t dc)
 {
 	//Map PWM Duty cycle to TIM TOP range
 	uint16_t temp = 0;
-	if(dc>10000) temp = OUTHAL_TIM_TOP;
+	if(dc>10000) temp = PWM_TIMER_TOP;
 	else if(dc==0) temp = 0;
-	else temp = (uint16_t)(((uint32_t)dc*OUTHAL_TIM_TOP)/10000);
+	else temp = (uint16_t)(((uint32_t)dc*PWM_TIMER_TOP)/10000);
 	
 	SetOutputCompare(ch,temp);
 }

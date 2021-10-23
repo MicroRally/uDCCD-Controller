@@ -13,12 +13,14 @@ Revision history:
 */
 
 /**** Includes ****/
+#include <avr/io.h>
 #include "inputs_driver.h"
 #include "hal_inputs.h"
+#include "hw_config.h"
 
 /**** Private definitions ****/
 typedef struct inStateStruct {
-	uint8_t mode;
+	uint8_t type;
 	uint8_t act_lvl;
 	uint8_t dbnc_timer;
 	uint8_t state;
@@ -35,16 +37,16 @@ typedef struct AnalogStruct {
 }analogDef;
 
 /**** Private variables ****/
-static volatile inStateDef dimm;
-static volatile inStateDef brake;
-static volatile inStateDef hbrake;
-static volatile inStateDef upsw;
-static volatile inStateDef dnsw;
-static volatile inStateDef mode;
+static inStateDef dimm;
+static inStateDef brake;
+static inStateDef hbrake;
+static inStateDef upsw;
+static inStateDef dnsw;
+static inStateDef modesw;
 
-static volatile analogDef measurments;
+static analogDef measurments;
 
-static volatile uint8_t bootstraps;
+static uint8_t bootstraps;
 
 /**** Private function declarations ****/
 void ReadAllAnalog(void);
@@ -113,54 +115,54 @@ uint8_t INDRV_GetBootstrap(uint8_t ch)
 void INDRV_Init(inInitDef* initCfg)
 {
 	//HV input configuration
-	dimm.mode = INPUT_MODE_DIGITAL;
-	dimm.act_lvl = initCfg.act_lvl_dimm;
+	dimm.type = INPUT_MODE_DIGITAL;
+	dimm.act_lvl = initCfg->act_lvl_dimm;
 	dimm.dbnc_timer = 0;
 	dimm.state = 0;
 	dimm.changed = 0;
 	
-	brake.mode = INPUT_MODE_DIGITAL;
-	brake.act_lvl = initCfg.act_lvl_brake;
+	brake.type = INPUT_MODE_DIGITAL;
+	brake.act_lvl = initCfg->act_lvl_brake;
 	brake.dbnc_timer = 0;
 	brake.state = 0;
 	brake.changed = 0;
 	
-	hbrake.mode = INPUT_MODE_DIGITAL;
-	hbrake.act_lvl = initCfg.act_lvl_hbrake;
+	hbrake.type = INPUT_MODE_DIGITAL;
+	hbrake.act_lvl = initCfg->act_lvl_hbrake;
 	hbrake.dbnc_timer = 0;
 	hbrake.state = 0;
 	hbrake.changed = 0;
 	
 	//Low voltage input configuration	
-	upsw.mode = initCfg.mode_upsw;
-	upsw.act_lvl = initCfg.act_lvl_upsw;
+	upsw.type = initCfg->mode_upsw;
+	upsw.act_lvl = initCfg->act_lvl_upsw;
 	upsw.dbnc_timer = 0;
 	upsw.state = 0;
 	upsw.changed = 0;
 	
-	dnsw.mode = initCfg.mode_dnsw;
-	dnsw.act_lvl = initCfg.act_lvl_dnsw;
+	dnsw.type = initCfg->mode_dnsw;
+	dnsw.act_lvl = initCfg->act_lvl_dnsw;
 	dnsw.dbnc_timer = 0;
 	dnsw.state = 0;
 	dnsw.changed = 0;
 	
-	mode.mode = INPUT_MODE_DIGITAL;
-	mode.act_lvl = initCfg.act_lvl_mode;
-	mode.dbnc_timer = 0;
-	mode.state = 0;
-	mode.changed = 0;
+	modesw.type = INPUT_MODE_DIGITAL;
+	modesw.act_lvl = initCfg->act_lvl_mode;
+	modesw.dbnc_timer = 0;
+	modesw.state = 0;
+	modesw.changed = 0;
 	
-	//HAL init preperation -------------
+	//HAL init preparation -------------
 	inHalConfigDef halCfg;
 	
 	halCfg.adc_wake = 1;
 
 	//UP switch input HAL config
-	if(upsw.mode==INPUT_MODE_ANALOG) halCfg.upsw_mode = INHAL_MODE_AIN;
+	if(upsw.type==INPUT_MODE_ANALOG) halCfg.upsw_mode = INHAL_MODE_AIN;
 	else halCfg.upsw_mode = INHAL_MODE_DIN;
 	
 	//DOWN switch input HAL config
-	if(dnsw.mode==INPUT_MODE_ANALOG) halCfg.dnsw_mode = INHAL_MODE_AIN;
+	if(dnsw.type==INPUT_MODE_ANALOG) halCfg.dnsw_mode = INHAL_MODE_AIN;
 	else halCfg.dnsw_mode = INHAL_MODE_DIN;
 	
 	INHAL_Init(&halCfg);
@@ -210,7 +212,7 @@ uint16_t INDRV_GetAnalog(uint8_t ch)
 /**
  * @brief Read activity state for chosen channel
  * @param [in] ch Channel to read
- * @return Acitivity status, 0-off, 1-on
+ * @return Activity status, 0-off, 1-on
  */
 uint8_t INDRV_GetInputState(uint8_t ch)
 {
@@ -232,7 +234,7 @@ uint8_t INDRV_GetInputState(uint8_t ch)
 			return dnsw.state;
 			
 		case INPUT_CH_MODE:
-			return mode.state;
+			return modesw.state;
 			
 		default:
 			return 0;
@@ -264,7 +266,7 @@ uint8_t INDRV_GetInputChange(uint8_t ch)
 			return dnsw.changed;
 			
 		case INPUT_CH_MODE:
-			return mode.changed;
+			return modesw.changed;
 			
 		default:
 			return 0;
@@ -300,7 +302,7 @@ void INDRV_ResetChangeFlag(uint8_t ch)
 			break;
 			
 		case INPUT_CH_MODE:
-			mode.changed = 0;
+			modesw.changed = 0;
 			break;
 			
 		default:
@@ -352,15 +354,15 @@ void ReadAllDigital(void)
 	DoDebounce(&hbrake, hwlvl, DEBOUNCE_TIME_HBRAKE);
 	
 	hwlvl = INHAL_GPIORead(INHAL_DIN_MODE);
-	DoDebounce(&mode, hwlvl, DEBOUNCE_TIME_MODESW);
+	DoDebounce(&modesw, hwlvl, DEBOUNCE_TIME_MODESW);
 	
-	if(upsw.mode!=INPUT_MODE_ANALOG)
+	if(upsw.type!=INPUT_MODE_ANALOG)
 	{
 		hwlvl = INHAL_GPIORead(INHAL_DIN_UPSW);
 		DoDebounce(&upsw, hwlvl, DEBOUNCE_TIME_UPSW);
 	};
 	
-	if(dnsw.mode!=INPUT_MODE_ANALOG)
+	if(dnsw.type!=INPUT_MODE_ANALOG)
 	{
 		hwlvl = INHAL_GPIORead(INHAL_DIN_DNSW);
 		DoDebounce(&dnsw, hwlvl, DEBOUNCE_TIME_DNSW);
@@ -377,21 +379,21 @@ void DoDebounce(inStateDef* input, uint8_t level, uint8_t dbnc_limit)
 {	
 	uint8_t s = 0;
 	//Determine state
-	if(level==(*input.act_lvl)) s=1;
+	if(level==(input->act_lvl)) s=1;
 	else s=0;
 	
 	//Do debounce logic
-	if(s=!(*input.state))
+	if(s!=(input->state))
 	{
-		if(*input.dbnc_timer>=dbnc_limit)
+		if(input->dbnc_timer>=dbnc_limit)
 		{
-			*input.state = s;
-			*input.changed = 1;
-			*input.dbnc_timer = 0;
+			input->state = s;
+			input->changed = 1;
+			input->dbnc_timer = 0;
 		}
-		else *input.dbnc_timer++;
+		else input->dbnc_timer++;
 	}
-	else *input.dbnc_timer = 0;
+	else input->dbnc_timer = 0;
 }
 
 

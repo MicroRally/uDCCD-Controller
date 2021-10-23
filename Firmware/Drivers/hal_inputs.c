@@ -53,9 +53,9 @@ void INHAL_Init(inHalConfigDef* extCfg)
 	static uint8_t init_done = 0;
 	if(init_done) return;
 	
-	//Copy neccesery configuration
-	upsw_mode = *extCfg.upsw_mode;
-	dnsw_mode = *extCfg.dnsw_mode;
+	//Copy necessary configuration
+	upsw_mode = extCfg->upsw_mode;
+	dnsw_mode = extCfg->dnsw_mode;
 	
 	//Analog inputs configuration
 	PRR &= ~0x01; //Enable ADC power
@@ -70,7 +70,7 @@ void INHAL_Init(inHalConfigDef* extCfg)
 	ADCSRA |= ADC_CLK_PRESCALER;
 	ADCSRB = 0x00; //no trigger input
 	
-	if(*extCfg.adc_wake) ADCSRA |= 0x80;  //Enable ADC
+	if(extCfg->adc_wake) ADCSRA |= 0x80;  //Enable ADC
 	else PRR |= 0x01;
 	
 	//Digital inputs configuration

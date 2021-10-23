@@ -1,4 +1,5 @@
-Drivers/adc_driver.d Drivers/adc_driver.o: ../Drivers/adc_driver.c \
+Drivers/inputs_driver.d Drivers/inputs_driver.o: \
+ ../Drivers/inputs_driver.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,7 +11,8 @@ Drivers/adc_driver.d Drivers/adc_driver.o: ../Drivers/adc_driver.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../Drivers/adc_driver.h
+ ../Drivers/inputs_driver.h ../Drivers/hal_inputs.h \
+ ../Drivers/hw_config.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -34,4 +36,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../Drivers/adc_driver.h:
+../Drivers/inputs_driver.h:
+
+../Drivers/hal_inputs.h:
+
+../Drivers/hw_config.h:

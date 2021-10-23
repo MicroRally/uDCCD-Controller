@@ -14,6 +14,7 @@ Revision history:
 */
 
 /**** Includes ****/
+#include <avr/io.h>
 #include "dccd_driver.h"
 #include "hal_outputs.h"
 #include "hw_config.h"
@@ -54,6 +55,7 @@ static volatile uint8_t fault_loss = 0;
 static volatile uint8_t fault_output_cnt = 0;
 
 /**** Private function declarations ****/
+uint16_t OutputVoltageToPWM(uint16_t u_out, uint16_t u_sup);
 void SatAdd(uint8_t *base, uint8_t delta);
 void SatSub(uint8_t *base, uint8_t delta);
 
@@ -65,11 +67,11 @@ void COILDRV_Init(void)
 {
 	OUTHAL_Init();
 	OUTHAL_DisableDCCDch();
-	OUTHAL_SetPWM(OUTHAL_CH_DCCD,(uint8_t)0);
+	OUTHAL_SetPWM(OUTHAL_CH_DCCD,0);
 }
 
 /**
- * @brief Set target force (convert to target volatge)
+ * @brief Set target force (convert to target voltage)
  * @param [in] Force to set, 0 to 100
  */
 void COILDRV_SetFroce(uint8_t force)
@@ -116,7 +118,7 @@ uint8_t COILDRV_GetFaultFlag(uint8_t type)
 }
 
 /**
- * @brief Does actual controll of DCCD driver
+ * @brief Does actual control of DCCD driver
  * @param [in] u_supply Supply voltage, in mV
  */
 void COILDRV_ProcessLogic(uint16_t u_supply)
@@ -125,7 +127,7 @@ void COILDRV_ProcessLogic(uint16_t u_supply)
 	{
 		//Turn off output
 		OUTHAL_DisableDCCDch();
-		OUTHAL_SetPWM(OUTHAL_CH_DCCD,(uint8_t)0);
+		OUTHAL_SetPWM(OUTHAL_CH_DCCD,0);
 		set_output_voltage = 0;
 	}
 	else
@@ -141,7 +143,7 @@ void COILDRV_ProcessLogic(uint16_t u_supply)
 	else protection_disable_zcheck = 1;
 	
 	uint16_t pwm = OutputVoltageToPWM(set_output_voltage,u_supply);
-	OUTHAL_SetPWM(OUTHAL_CH_DCCD,pwm);
+	OUTHAL_SetPrecisePWM(OUTHAL_CH_DCCD,pwm);
 }
 
 /**
@@ -298,7 +300,7 @@ uint16_t OutputVoltageToPWM(uint16_t u_out, uint16_t u_sup)
  */
 void SatAdd(uint8_t *base, uint8_t delta)
 {
-	if((255-*base)>delta) *base += add;
+	if((255-*base)>delta) *base += delta;
 	else *base=255;
 }
 

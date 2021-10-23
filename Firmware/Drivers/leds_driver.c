@@ -14,8 +14,10 @@ Revision history:
 */
 
 /**** Includes ****/
+#include <avr/io.h>
 #include "leds_driver.h"
 #include "hal_outputs.h"
+#include "hw_config.h"
 
 /**** Private definitions ****/
 
