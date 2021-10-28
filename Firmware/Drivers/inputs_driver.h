@@ -20,9 +20,6 @@ Revision history:
 #define INPUT_MODE_DIGITAL	0
 #define INPUT_MODE_ANALOG	1
 
-#define INPUT_PULLUP_OFF	0
-#define INPUT_PULLUP_ON		1
-
 #define	ANALOG_CH_BATTERY	1
 #define	ANALOG_CH_DCCD_U	2
 #define	ANALOG_CH_DCCD_I	3
@@ -30,17 +27,13 @@ Revision history:
 #define	ANALOG_CH_UPSW		5
 #define	ANALOG_CH_DNSW		6
 
+#define	INPUT_CH_ALL		0
 #define	INPUT_CH_DIMM		1
 #define	INPUT_CH_BRAKE		2
 #define	INPUT_CH_HBRAKE		3
 #define	INPUT_CH_UPSW		4
 #define	INPUT_CH_DNSW		5
 #define	INPUT_CH_MODE		6
-
-#define	INPUT_BOOTALL		0
-#define	INPUT_BOOT0			1
-#define	INPUT_BOOT1			2
-#define	INPUT_BOOT2			3
 
 typedef struct inInitStruct {
 	uint8_t act_lvl_dimm;
@@ -56,13 +49,11 @@ typedef struct inInitStruct {
 /**** Public function declarations ****/
 //Control functions
 void INDRV_Init(inInitDef* initCfg);
-uint8_t INDRV_InitBootstraps(void);
 
 //Interrupt and loop functions
 void INDRV_ReadAll(void);
 
 //Data retrieve functions
-uint8_t INDRV_GetBootstrap(uint8_t ch);
 uint16_t INDRV_GetAnalog(uint8_t ch);
 uint8_t INDRV_GetInputState(uint8_t ch);
 uint8_t INDRV_GetInputChange(uint8_t ch);

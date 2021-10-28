@@ -88,30 +88,6 @@ void INHAL_Init(inHalConfigDef* extCfg)
 }
 
 /**
- * @brief Initializes bootstraps hardware
- */
-void INHAL_InitBootstraps(void)
-{
-	static uint8_t init_done = 0;
-	if(init_done) return;
-	
-	//Digital inputs configuration
-	//Bootstraps
-	DDRA &= ~0x0E; //Set as inputs
-	PORTA |= 0x0E; //Enable MCU pull-up
-	
-	init_done = 1;
-}
-
-/**
- * @brief Turn off bootstrap pull-up's, to save power
- */
-void INHAL_DeInitBootstraps(void)
-{
-	PORTA &= ~0x0E;
-}
-
-/**
  * @brief Wake up ADC
  */
 void INHAL_WakeADC(void)

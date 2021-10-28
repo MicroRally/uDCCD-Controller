@@ -52,8 +52,6 @@ typedef struct inHalConfigStruct {
 void INHAL_Init(inHalConfigDef* extCfg);
 void INHAL_WakeADC(void);
 void INHAL_SleepADC(void);
-void INHAL_InitBootstraps(void);
-void INHAL_DeInitBootstraps(void);
 
 //Interrupt and loop functions
 

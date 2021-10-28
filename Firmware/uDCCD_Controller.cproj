@@ -138,6 +138,12 @@
     <Compile Include="Drivers\hal_outputs.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Drivers\hal_system.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\hal_system.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Drivers\hw_config.h">
       <SubType>compile</SubType>
     </Compile>

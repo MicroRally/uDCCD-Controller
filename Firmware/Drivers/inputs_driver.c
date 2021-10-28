@@ -55,60 +55,6 @@ void DoDebounce(inStateDef* input, uint8_t level, uint8_t dbnc_limit);
 
 /**** Public function definitions ****/
 /**
- * @brief Read and latch bootstraps
- */
-uint8_t INDRV_InitBootstraps(void)
-{
-	//Init HW
-	bootstraps = 0x00;
-	INHAL_InitBootstraps();
-	
-	//Read value
-	uint8_t i = 0;
-	i = INHAL_GPIORead(INHAL_DIN_BOOT0);
-	bootstraps |= i;
-	i = INHAL_GPIORead(INHAL_DIN_BOOT1);
-	bootstraps |= (i<<1);
-	i = INHAL_GPIORead(INHAL_DIN_BOOT2);
-	bootstraps |= (i<<2);
-	
-	INHAL_DeInitBootstraps();
-	
-	return bootstraps;
-}
-
-/**
- * @brief Read chosen bootstrap
- * @param [in] ch Channel to read
- * @return Properly converted analog value as mV or mA
- */
-uint8_t INDRV_GetBootstrap(uint8_t ch)
-{
-	uint8_t i=0;
-	
-	switch(ch)
-	{
-		case INPUT_BOOT0:
-			i = bootstraps&0x01;
-			break;
-			
-		case INPUT_BOOT1:
-			i = bootstraps&0x02;
-			break;
-			
-		case INPUT_BOOT2:
-			i = bootstraps&0x04;
-			break;
-			
-		default:
-			return bootstraps;
-	}
-	
-	if(i) return 1;
-	else return 0;
-}
-
-/**
  * @brief Initializes Inputs Driver
  * @param [in] initCfg Inputs configuration
  */
@@ -281,6 +227,15 @@ void INDRV_ResetChangeFlag(uint8_t ch)
 {
 	switch(ch)
 	{
+		case INPUT_CH_ALL:
+			dimm.changed = 0;
+			brake.changed = 0;
+			hbrake.changed = 0;
+			upsw.changed = 0;
+			dnsw.changed = 0;
+			modesw.changed = 0;
+			break;
+			
 		case INPUT_CH_DIMM:
 			dimm.changed = 0;
 			break;
