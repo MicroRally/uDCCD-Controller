@@ -5,7 +5,7 @@ Global Hardware configuartion
 Author: Andis Jargans
 
 Revision history:
-v0.0 - YYYY-MM-DD: Initial version
+2021-MM-DD: Initial version
 */
 
 /**** Hardware configuration ****
@@ -53,34 +53,19 @@ One conversion = 13.5 Fadc cycles
 #define HW_CFG_FILE
 
 /**** Public definitions ****/
+/**** Aplciation specific configuration ****/
+//DCCD and LED timer static configuration
+#define PWM_TIMER_PRESCALER		0x01
+#define PWM_TIMER_TOP			256	
+#define PWM_TIMER_DCCD_MAX		250
 
-//Hardware specific configuration
-#define CFG_ADC_CLK_PRESCALER		0x06
-#define CFG_PWM_TIMER_PRESCALER		0x01
-#define CFG_PWM_TIMER_TOP			256	
-#define CFG_PWM_TIMER_DCCD_MAX		250
+//ADC static configuration
+#define ADC_CLK_PRESCALER		0x06
 
 //Coil Driver configuration
-#define COIL_MAX_OUT_CURRENT		6000
-#define COIL_MAX_SET_CURRENT		4500
-#define COIL_MAX_OUT_VOLTAGE		10000
-#define COIL_MIN_OUT_VOLTAGE		200
-#define COIL_FAULT_COOLDOWN_TIME	1000
-#define COIL_OCP_LIMIT_PERCENT		160
-#define COIL_OUT_OVP_LIMIT_DEFAULT	6000
-#define COIL_OUT_OVP_LIMIT_PERCENT	120
-#define COIL_OUT_UVP_LIMIT_PERCENT	80
-#define COIL_SUPPLY_MIN				6000
-#define COIL_SUPPLY_MAX				18000
-
-//PID unsigned 8bit coeficients
-//Kp=3, Ki = 1, Kd = 0.1
-#define COIL_PID_KP_MUL		3
-#define COIL_PID_KP_DIV		1
-#define COIL_PID_KI_MUL		1
-#define COIL_PID_KI_DIV		1
-#define COIL_PID_KD_MUL		1
-#define COIL_PID_KD_DIV		10
+#define COIL_MAX_CURRENT		4500
+#define COIL_MAX_OUT_VOLTAGE	10000
+#define COIL_MIN_OUT_VOLTAGE	200
 
 
 //Inputs Driver configuration

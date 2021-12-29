@@ -33,8 +33,8 @@ int main(void)
 	//System setup
 	SYSHAL_InitBootstraps();
 	LEDRV_Init();
-	LEDDRV_SetDisplayVal(100,LED_DSP_BAR);
 	LEDDRV_SetDisplayBrightness(5);
+	LEDDRV_SetDisplayVal(100,LED_DSP_BAR);
 	LEDDRV_RefreshDisplay();
 	COILDRV_Init();
 	SYSHAL_LatchBootstraps();
@@ -64,7 +64,7 @@ int main(void)
 		
 		//Determine next target output
 		//Apply next target output
-		//Set dispaly
+		//Set display
 	}
 } 
 

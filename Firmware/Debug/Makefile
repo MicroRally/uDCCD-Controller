@@ -41,6 +41,7 @@ C_SRCS +=  \
 ../Drivers/dccd_driver.c \
 ../Drivers/hal_inputs.c \
 ../Drivers/hal_outputs.c \
+../Drivers/hal_system.c \
 ../Drivers/inputs_driver.c \
 ../Drivers/leds_driver.c \
 ../main.c
@@ -56,6 +57,7 @@ OBJS +=  \
 Drivers/dccd_driver.o \
 Drivers/hal_inputs.o \
 Drivers/hal_outputs.o \
+Drivers/hal_system.o \
 Drivers/inputs_driver.o \
 Drivers/leds_driver.o \
 main.o
@@ -64,6 +66,7 @@ OBJS_AS_ARGS +=  \
 Drivers/dccd_driver.o \
 Drivers/hal_inputs.o \
 Drivers/hal_outputs.o \
+Drivers/hal_system.o \
 Drivers/inputs_driver.o \
 Drivers/leds_driver.o \
 main.o
@@ -72,6 +75,7 @@ C_DEPS +=  \
 Drivers/dccd_driver.d \
 Drivers/hal_inputs.d \
 Drivers/hal_outputs.d \
+Drivers/hal_system.d \
 Drivers/inputs_driver.d \
 Drivers/leds_driver.d \
 main.d
@@ -80,6 +84,7 @@ C_DEPS_AS_ARGS +=  \
 Drivers/dccd_driver.d \
 Drivers/hal_inputs.d \
 Drivers/hal_outputs.d \
+Drivers/hal_system.d \
 Drivers/inputs_driver.d \
 Drivers/leds_driver.d \
 main.d
@@ -113,6 +118,13 @@ Drivers/hal_inputs.o: ../Drivers/hal_inputs.c
 	
 
 Drivers/hal_outputs.o: ../Drivers/hal_outputs.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=attiny88 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\gcc\dev\attiny88" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Drivers/hal_system.o: ../Drivers/hal_system.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=attiny88 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\gcc\dev\attiny88" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

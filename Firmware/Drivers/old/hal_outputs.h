@@ -20,8 +20,8 @@ Revision history:
 /**** Public function declarations ****/
 //Control functions
 void OUTHAL_Init(void);
-void OUTHAL_SetPWM(uint8_t ch, uint8_t dc);
-void OUTHAL_SetPrecisePWM(uint8_t ch, uint16_t dc);
+void OUTHAL_SetPWMPercent(uint8_t ch, uint8_t dc);
+void OUTHAL_SetPWM10k(uint8_t ch, uint16_t dc);
 void OUTHAL_SetLEDs(uint8_t image);
 void OUTHAL_EnableDCCDch(void);
 void OUTHAL_DisableDCCDch(void);
