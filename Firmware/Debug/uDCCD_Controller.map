@@ -1,174 +1,99 @@
 Archive member included to satisfy reference by file (symbol)
 
-c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
-                              Drivers/dccd_driver.o (__mulhi3)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulsi3.o)
-                              Drivers/dccd_driver.o (__mulsi3)
+                              Drivers/coil_driver.o (__mulsi3)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_udivmodhi4.o)
                               Drivers/inputs_driver.o (__udivmodhi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_udivmodsi4.o)
-                              Drivers/dccd_driver.o (__udivmodsi4)
+                              Drivers/coil_driver.o (__udivmodsi4)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+                              Drivers/coil_driver.o (__divmodsi4)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o) (__negsi2)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_clear_bss.o)
-                              Drivers/dccd_driver.o (__do_clear_bss)
+                              Drivers/coil_driver.o (__do_clear_bss)
 
 Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o
- .text          0x00000000        0x0 Drivers/dccd_driver.o
- .data          0x00000000        0x0 Drivers/dccd_driver.o
- .bss           0x00000000        0x0 Drivers/dccd_driver.o
+ .text          0x00000000        0x0 Drivers/coil_driver.o
+ .data          0x00000000        0x0 Drivers/coil_driver.o
+ .bss           0x00000000        0x0 Drivers/coil_driver.o
  .text.COILDRV_Init
-                0x00000000        0xc Drivers/dccd_driver.o
- .text.COILDRV_SetFroce
-                0x00000000      0x1d6 Drivers/dccd_driver.o
- .text.COILDRV_GetFaultFlag
-                0x00000000       0x22 Drivers/dccd_driver.o
+                0x00000000       0x5e Drivers/coil_driver.o
+ .text.COILDRV_SetTarget
+                0x00000000       0x34 Drivers/coil_driver.o
+ .text.COILDRV_UpdateMeasurments
+                0x00000000       0x12 Drivers/coil_driver.o
+ .text.Process_Faults
+                0x00000000       0x42 Drivers/coil_driver.o
+ .text.PID_Reset
+                0x00000000       0x14 Drivers/coil_driver.o
  .text.OutputVoltageToPWM
-                0x00000000       0xe2 Drivers/dccd_driver.o
- .text.COILDRV_ProcessLogic
-                0x00000000       0x84 Drivers/dccd_driver.o
- .text.SatAdd   0x00000000       0x26 Drivers/dccd_driver.o
- .text.SatSub   0x00000000       0x12 Drivers/dccd_driver.o
- .text.COILDRV_ProcessProtection
-                0x00000000      0x342 Drivers/dccd_driver.o
- .bss.fault_output_cnt
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.fault_loss
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.fault_output
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.fault_supply
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.counter_load_loss
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.counter_short
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.counter_opp
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.counter_ocp
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.counter_ovlo
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.counter_uvlo
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.warning_load_loss
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.warning_short
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.warning_opp
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.warning_ocp
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.warning_ovlo
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.warning_uvlo
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.out_pwr   0x00000000        0x2 Drivers/dccd_driver.o
- .bss.out_z     0x00000000        0x2 Drivers/dccd_driver.o
- .bss.cooldown_output
-                0x00000000        0x2 Drivers/dccd_driver.o
- .bss.protection_disable_zcheck
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.protection_deadtime
-                0x00000000        0x1 Drivers/dccd_driver.o
- .bss.coil_resistance
-                0x00000000        0x2 Drivers/dccd_driver.o
- .bss.set_output_voltage
-                0x00000000        0x2 Drivers/dccd_driver.o
- .bss.target_voltage
-                0x00000000        0x2 Drivers/dccd_driver.o
- .debug_info    0x00000000      0x64d Drivers/dccd_driver.o
- .debug_abbrev  0x00000000      0x1a3 Drivers/dccd_driver.o
- .debug_loc     0x00000000      0x4a0 Drivers/dccd_driver.o
+                0x00000000      0x10e Drivers/coil_driver.o
+ .text.SaturatedAdd_s32
+                0x00000000       0x78 Drivers/coil_driver.o
+ .text.SaturatedSub_s32
+                0x00000000       0x80 Drivers/coil_driver.o
+ .text.PID_Controller
+                0x00000000      0x128 Drivers/coil_driver.o
+ .text.PercentOfValue_u16
+                0x00000000       0x2e Drivers/coil_driver.o
+ .text.Get_Warnings
+                0x00000000       0xd4 Drivers/coil_driver.o
+ .text.COILDRV_Process
+                0x00000000       0x98 Drivers/coil_driver.o
+ .bss.fault_timer.1732
+                0x00000000        0x2 Drivers/coil_driver.o
+ .bss.warnings  0x00000000        0x5 Drivers/coil_driver.o
+ .bss.measurements
+                0x00000000        0x6 Drivers/coil_driver.o
+ .bss.pidData   0x00000000       0x16 Drivers/coil_driver.o
+ .bss.target_current
+                0x00000000        0x2 Drivers/coil_driver.o
+ .bss.set_voltage
+                0x00000000        0x2 Drivers/coil_driver.o
+ .debug_info    0x00000000      0x84d Drivers/coil_driver.o
+ .debug_abbrev  0x00000000      0x230 Drivers/coil_driver.o
+ .debug_loc     0x00000000      0x9fe Drivers/coil_driver.o
  .debug_aranges
-                0x00000000       0x58 Drivers/dccd_driver.o
- .debug_ranges  0x00000000       0x60 Drivers/dccd_driver.o
- .debug_line    0x00000000      0x4d3 Drivers/dccd_driver.o
- .debug_str     0x00000000      0x3cd Drivers/dccd_driver.o
- .comment       0x00000000       0x31 Drivers/dccd_driver.o
- .debug_frame   0x00000000      0x100 Drivers/dccd_driver.o
- .text          0x00000000        0x0 Drivers/hal_inputs.o
- .data          0x00000000        0x0 Drivers/hal_inputs.o
- .bss           0x00000000        0x0 Drivers/hal_inputs.o
- .text.InvertDIN
-                0x00000000        0xc Drivers/hal_inputs.o
- .text.INHAL_Init
-                0x00000000       0xa4 Drivers/hal_inputs.o
- .text.INHAL_InitBootstraps
-                0x00000000       0x1c Drivers/hal_inputs.o
- .text.INHAL_DeInitBootstraps
-                0x00000000        0x8 Drivers/hal_inputs.o
- .text.INHAL_WakeADC
-                0x00000000       0x16 Drivers/hal_inputs.o
- .text.INHAL_SleepADC
-                0x00000000       0x1e Drivers/hal_inputs.o
- .text.INHAL_ADCRead
-                0x00000000       0x78 Drivers/hal_inputs.o
- .progmem.gcc_sw_table.INHAL_ADCRead
-                0x00000000       0x12 Drivers/hal_inputs.o
- .text.INHAL_GPIORead
-                0x00000000       0x7c Drivers/hal_inputs.o
- .progmem.gcc_sw_table.INHAL_GPIORead
-                0x00000000       0x12 Drivers/hal_inputs.o
- .bss.init_done.1631
-                0x00000000        0x1 Drivers/hal_inputs.o
- .bss.init_done.1627
-                0x00000000        0x1 Drivers/hal_inputs.o
- .bss.dnsw_mode
-                0x00000000        0x1 Drivers/hal_inputs.o
- .bss.upsw_mode
-                0x00000000        0x1 Drivers/hal_inputs.o
- .debug_info    0x00000000      0x252 Drivers/hal_inputs.o
- .debug_abbrev  0x00000000      0x125 Drivers/hal_inputs.o
- .debug_loc     0x00000000      0x37a Drivers/hal_inputs.o
+                0x00000000       0x78 Drivers/coil_driver.o
+ .debug_ranges  0x00000000       0xe0 Drivers/coil_driver.o
+ .debug_line    0x00000000      0x4d3 Drivers/coil_driver.o
+ .debug_str     0x00000000      0x41b Drivers/coil_driver.o
+ .comment       0x00000000       0x31 Drivers/coil_driver.o
+ .debug_frame   0x00000000      0x190 Drivers/coil_driver.o
+ .text          0x00000000        0x0 Drivers/display_driver.o
+ .data          0x00000000        0x0 Drivers/display_driver.o
+ .bss           0x00000000        0x0 Drivers/display_driver.o
+ .text.DSPDRV_Init
+                0x00000000       0x12 Drivers/display_driver.o
+ .text.DSPDRV_SetDisplayBW
+                0x00000000        0x8 Drivers/display_driver.o
+ .text.DSPDRV_SetDisplayVal
+                0x00000000       0xb8 Drivers/display_driver.o
+ .text.DSPDRV_RefreshDisplay
+                0x00000000        0x8 Drivers/display_driver.o
+ .text.DSPDRV_SetDisplayBrightness
+                0x00000000        0x8 Drivers/display_driver.o
+ .bss.set_image
+                0x00000000        0x1 Drivers/display_driver.o
+ .debug_info    0x00000000      0x1c4 Drivers/display_driver.o
+ .debug_abbrev  0x00000000       0xdf Drivers/display_driver.o
+ .debug_loc     0x00000000      0x2b0 Drivers/display_driver.o
  .debug_aranges
-                0x00000000       0x58 Drivers/hal_inputs.o
- .debug_ranges  0x00000000       0x48 Drivers/hal_inputs.o
- .debug_line    0x00000000      0x364 Drivers/hal_inputs.o
- .debug_str     0x00000000      0x230 Drivers/hal_inputs.o
- .comment       0x00000000       0x31 Drivers/hal_inputs.o
- .debug_frame   0x00000000       0x94 Drivers/hal_inputs.o
- .avr.prop      0x00000000       0x28 Drivers/hal_inputs.o
- .text          0x00000000        0x0 Drivers/hal_outputs.o
- .data          0x00000000        0x0 Drivers/hal_outputs.o
- .bss           0x00000000        0x0 Drivers/hal_outputs.o
- .text.SetOutputCompare
-                0x00000000       0x3a Drivers/hal_outputs.o
- .text.OUTHAL_Init
-                0x00000000       0x68 Drivers/hal_outputs.o
- .text.OUTHAL_SetPWM
-                0x00000000       0x3c Drivers/hal_outputs.o
- .text.OUTHAL_SetPrecisePWM
-                0x00000000       0x40 Drivers/hal_outputs.o
- .text.OUTHAL_SetLEDs
-                0x00000000       0x18 Drivers/hal_outputs.o
- .text.OUTHAL_EnableDCCDch
-                0x00000000        0x8 Drivers/hal_outputs.o
- .text.OUTHAL_DisableDCCDch
-                0x00000000        0xe Drivers/hal_outputs.o
- .bss.init_done.1622
-                0x00000000        0x1 Drivers/hal_outputs.o
- .bss.dccd_en   0x00000000        0x1 Drivers/hal_outputs.o
- .debug_info    0x00000000      0x218 Drivers/hal_outputs.o
- .debug_abbrev  0x00000000       0xf7 Drivers/hal_outputs.o
- .debug_loc     0x00000000      0x24e Drivers/hal_outputs.o
- .debug_aranges
-                0x00000000       0x50 Drivers/hal_outputs.o
- .debug_ranges  0x00000000       0x40 Drivers/hal_outputs.o
- .debug_line    0x00000000      0x216 Drivers/hal_outputs.o
- .debug_str     0x00000000      0x213 Drivers/hal_outputs.o
- .comment       0x00000000       0x31 Drivers/hal_outputs.o
- .debug_frame   0x00000000       0x94 Drivers/hal_outputs.o
+                0x00000000       0x40 Drivers/display_driver.o
+ .debug_ranges  0x00000000       0x30 Drivers/display_driver.o
+ .debug_line    0x00000000      0x228 Drivers/display_driver.o
+ .debug_str     0x00000000      0x20b Drivers/display_driver.o
+ .comment       0x00000000       0x31 Drivers/display_driver.o
+ .debug_frame   0x00000000       0x64 Drivers/display_driver.o
  .text          0x00000000        0x0 Drivers/inputs_driver.o
  .data          0x00000000        0x0 Drivers/inputs_driver.o
  .bss           0x00000000        0x0 Drivers/inputs_driver.o
- .text.INDRV_InitBootstraps
-                0x00000000       0x48 Drivers/inputs_driver.o
- .text.INDRV_GetBootstrap
-                0x00000000       0x36 Drivers/inputs_driver.o
  .text.INDRV_Init
                 0x00000000       0xf0 Drivers/inputs_driver.o
  .text.INDRV_GetAnalog
@@ -178,7 +103,9 @@ Discarded input sections
  .text.INDRV_GetInputChange
                 0x00000000       0x44 Drivers/inputs_driver.o
  .text.INDRV_ResetChangeFlag
-                0x00000000       0x40 Drivers/inputs_driver.o
+                0x00000000       0x4e Drivers/inputs_driver.o
+ .progmem.gcc_sw_table.INDRV_ResetChangeFlag
+                0x00000000        0xe Drivers/inputs_driver.o
  .text.ReadAllAnalog
                 0x00000000       0xca Drivers/inputs_driver.o
  .text.DoDebounce
@@ -187,8 +114,6 @@ Discarded input sections
                 0x00000000       0x66 Drivers/inputs_driver.o
  .text.INDRV_ReadAll
                 0x00000000        0x6 Drivers/inputs_driver.o
- .bss.bootstraps
-                0x00000000        0x1 Drivers/inputs_driver.o
  .bss.measurments
                 0x00000000        0xc Drivers/inputs_driver.o
  .bss.modesw    0x00000000        0x5 Drivers/inputs_driver.o
@@ -197,66 +122,91 @@ Discarded input sections
  .bss.hbrake    0x00000000        0x5 Drivers/inputs_driver.o
  .bss.brake     0x00000000        0x5 Drivers/inputs_driver.o
  .bss.dimm      0x00000000        0x5 Drivers/inputs_driver.o
- .debug_info    0x00000000      0x70c Drivers/inputs_driver.o
- .debug_abbrev  0x00000000      0x1bb Drivers/inputs_driver.o
- .debug_loc     0x00000000      0x54f Drivers/inputs_driver.o
+ .debug_info    0x00000000      0x62e Drivers/inputs_driver.o
+ .debug_abbrev  0x00000000      0x1ac Drivers/inputs_driver.o
+ .debug_loc     0x00000000      0x43f Drivers/inputs_driver.o
  .debug_aranges
-                0x00000000       0x70 Drivers/inputs_driver.o
- .debug_ranges  0x00000000       0x60 Drivers/inputs_driver.o
- .debug_line    0x00000000      0x4b9 Drivers/inputs_driver.o
- .debug_str     0x00000000      0x401 Drivers/inputs_driver.o
+                0x00000000       0x60 Drivers/inputs_driver.o
+ .debug_ranges  0x00000000       0x50 Drivers/inputs_driver.o
+ .debug_line    0x00000000      0x442 Drivers/inputs_driver.o
+ .debug_str     0x00000000      0x3a4 Drivers/inputs_driver.o
  .comment       0x00000000       0x31 Drivers/inputs_driver.o
- .debug_frame   0x00000000       0xe8 Drivers/inputs_driver.o
- .text          0x00000000        0x0 Drivers/leds_driver.o
- .data          0x00000000        0x0 Drivers/leds_driver.o
- .bss           0x00000000        0x0 Drivers/leds_driver.o
- .text.LEDRV_Init
-                0x00000000       0x12 Drivers/leds_driver.o
- .text.LEDDRV_RefreshDisplay
-                0x00000000        0x8 Drivers/leds_driver.o
- .text.LEDDRV_SetDisplayBW
-                0x00000000        0x8 Drivers/leds_driver.o
- .text.LEDDRV_SetDisplayVal
-                0x00000000       0xb8 Drivers/leds_driver.o
- .text.LEDDRV_SetDisplayBrightness
-                0x00000000        0x8 Drivers/leds_driver.o
- .bss.set_image
-                0x00000000        0x1 Drivers/leds_driver.o
- .debug_info    0x00000000      0x1c9 Drivers/leds_driver.o
- .debug_abbrev  0x00000000       0xe6 Drivers/leds_driver.o
- .debug_loc     0x00000000      0x2b0 Drivers/leds_driver.o
+ .debug_frame   0x00000000       0xc8 Drivers/inputs_driver.o
+ .avr.prop      0x00000000       0x16 Drivers/inputs_driver.o
+ .text          0x00000000        0x0 Drivers/udccd_hal.o
+ .data          0x00000000        0x0 Drivers/udccd_hal.o
+ .bss           0x00000000        0x0 Drivers/udccd_hal.o
+ .text.InvertDIN
+                0x00000000        0xc Drivers/udccd_hal.o
+ .text.SetOutputCompare
+                0x00000000       0x3a Drivers/udccd_hal.o
+ .text.HAL_InitInputs
+                0x00000000       0xa4 Drivers/udccd_hal.o
+ .text.HAL_InitOutputs
+                0x00000000       0x68 Drivers/udccd_hal.o
+ .text.HAL_InitSystick
+                0x00000000       0x16 Drivers/udccd_hal.o
+ .text.HAL_InitWatchdog
+                0x00000000       0x12 Drivers/udccd_hal.o
+ .text.HAL_InitBootstraps
+                0x00000000       0x12 Drivers/udccd_hal.o
+ .text.HAL_DeInitBootstraps
+                0x00000000        0x8 Drivers/udccd_hal.o
+ .text.HAL_WakeADC
+                0x00000000       0x16 Drivers/udccd_hal.o
+ .text.HAL_SleepADC
+                0x00000000       0x1e Drivers/udccd_hal.o
+ .text.HAL_ADCRead
+                0x00000000       0x78 Drivers/udccd_hal.o
+ .progmem.gcc_sw_table.HAL_ADCRead
+                0x00000000       0x12 Drivers/udccd_hal.o
+ .text.HAL_GPIORead
+                0x00000000       0x7c Drivers/udccd_hal.o
+ .progmem.gcc_sw_table.HAL_GPIORead
+                0x00000000       0x12 Drivers/udccd_hal.o
+ .text.HAL_SetPWM
+                0x00000000       0x3c Drivers/udccd_hal.o
+ .text.HAL_SetPWM16b
+                0x00000000       0x40 Drivers/udccd_hal.o
+ .text.HAL_SetLEDs
+                0x00000000       0x18 Drivers/udccd_hal.o
+ .text.HAL_EnableDCCDch
+                0x00000000        0x8 Drivers/udccd_hal.o
+ .text.HAL_DisableDCCDch
+                0x00000000        0xe Drivers/udccd_hal.o
+ .text.HAL_ReducePower
+                0x00000000        0x8 Drivers/udccd_hal.o
+ .text.HAL_ResetWatchdog
+                0x00000000        0x2 Drivers/udccd_hal.o
+ .text.HAL_LatchBootstraps
+                0x00000000       0x48 Drivers/udccd_hal.o
+ .text.HAL_GetBootstrap
+                0x00000000       0x36 Drivers/udccd_hal.o
+ .bss.init_done.1670
+                0x00000000        0x1 Drivers/udccd_hal.o
+ .bss.init_done.1666
+                0x00000000        0x1 Drivers/udccd_hal.o
+ .bss.dccd_en   0x00000000        0x1 Drivers/udccd_hal.o
+ .bss.dnsw_mode
+                0x00000000        0x1 Drivers/udccd_hal.o
+ .bss.upsw_mode
+                0x00000000        0x1 Drivers/udccd_hal.o
+ .bss.bootstraps
+                0x00000000        0x1 Drivers/udccd_hal.o
+ .debug_info    0x00000000      0x4fb Drivers/udccd_hal.o
+ .debug_abbrev  0x00000000      0x1ef Drivers/udccd_hal.o
+ .debug_loc     0x00000000      0x6d8 Drivers/udccd_hal.o
  .debug_aranges
-                0x00000000       0x40 Drivers/leds_driver.o
- .debug_ranges  0x00000000       0x30 Drivers/leds_driver.o
- .debug_line    0x00000000      0x227 Drivers/leds_driver.o
- .debug_str     0x00000000      0x209 Drivers/leds_driver.o
- .comment       0x00000000       0x31 Drivers/leds_driver.o
- .debug_frame   0x00000000       0x64 Drivers/leds_driver.o
+                0x00000000       0xc0 Drivers/udccd_hal.o
+ .debug_ranges  0x00000000       0xb0 Drivers/udccd_hal.o
+ .debug_line    0x00000000      0x5f6 Drivers/udccd_hal.o
+ .debug_str     0x00000000      0x328 Drivers/udccd_hal.o
+ .comment       0x00000000       0x31 Drivers/udccd_hal.o
+ .debug_frame   0x00000000      0x174 Drivers/udccd_hal.o
+ .avr.prop      0x00000000       0x28 Drivers/udccd_hal.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text.Init_systick
-                0x00000000       0x16 main.o
- .text.Init_watchdog
-                0x00000000       0x12 main.o
- .text.Init_ReducePower
-                0x00000000        0x8 main.o
- .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .text.libgcc.mul
-                0x00000000       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulhi3.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulsi3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulsi3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_mulsi3.o)
@@ -305,6 +255,38 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_udivmodsi4.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_udivmodsi4.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text.libgcc.div
+                0x00000000       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_divmodsi4.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .text.libgcc.div
+                0x00000000       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_negsi2.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25\libgcc.a(_exit.o)
@@ -354,11 +336,10 @@ Linker script and memory map
 
 Address of section .data set to 0x800100
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o
-LOAD Drivers/dccd_driver.o
-LOAD Drivers/hal_inputs.o
-LOAD Drivers/hal_outputs.o
+LOAD Drivers/coil_driver.o
+LOAD Drivers/display_driver.o
 LOAD Drivers/inputs_driver.o
-LOAD Drivers/leds_driver.o
+LOAD Drivers/udccd_hal.o
 LOAD main.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr25\libm.a
@@ -667,38 +648,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x38
+.debug_aranges  0x00000000       0x20
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x38 main.o
+                0x00000000       0x20 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x640
+.debug_info     0x00000000      0x5f3
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x576 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o
- .debug_info    0x00000576       0xca main.o
+ .debug_info    0x00000576       0x7d main.o
 
-.debug_abbrev   0x00000000      0x599
+.debug_abbrev   0x00000000      0x574
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x52b C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o
- .debug_abbrev  0x0000052b       0x6e main.o
+ .debug_abbrev  0x0000052b       0x49 main.o
 
-.debug_line     0x00000000      0x214
+.debug_line     0x00000000      0x149
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x110 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o
- .debug_line    0x00000110      0x104 main.o
+ .debug_line    0x00000110       0x39 main.o
 
-.debug_frame    0x00000000       0x54
+.debug_frame    0x00000000       0x24
  *(.debug_frame)
- .debug_frame   0x00000000       0x54 main.o
+ .debug_frame   0x00000000       0x24 main.o
 
-.debug_str      0x00000000      0x327
+.debug_str      0x00000000      0x2f3
  *(.debug_str)
  .debug_str     0x00000000      0x1d9 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.8.332/gcc/dev/attiny88/avr25/crtattiny88.o
- .debug_str     0x000001d9      0x14e main.o
-                                0x182 (size before relaxing)
+ .debug_str     0x000001d9      0x11a main.o
+                                0x14e (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
@@ -721,9 +702,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x28
+.debug_ranges   0x00000000       0x10
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x28 main.o
+ .debug_ranges  0x00000000       0x10 main.o
 
 .debug_macro
  *(.debug_macro)

@@ -13,42 +13,50 @@ v0.0 - YYYY-MM-DD: Initial version
 
 /***** Private definitions *****/
 typedef struct pidStruct{
-	uint8_t kp_mul = 0;
-	uint8_t kp_div = 0;
-	uint8_t ki_mul = 0;
-	uint8_t ki_div = 0;
-	uint8_t kd_mul = 0;
-	uint8_t kd_div = 0;
-	int32_t prev_error = 0;
-	int32_t integral = 0;
-	int32_t integral_min = 0;
-	int32_t integral_max = 0;
+	uint8_t kp_mul;
+	uint8_t kp_div;
+	uint8_t ki_mul;
+	uint8_t ki_div;
+	uint8_t kd_mul;
+	uint8_t kd_div;
+	int32_t prev_error;
+	int32_t integral;
+	int32_t integral_min;
+	int32_t integral_max;
 }pidDef;
 
 typedef struct measStruct{
-	uint16_t supply = 0;
-	uint16_t currnet = 0;
-	uint16_t voltage = 0;
+	uint16_t supply;
+	uint16_t current;
+	uint16_t voltage;
 }measDef;
 
 typedef struct warnStruct{
-	uint8_t load_loss = 0;
-	uint8_t overcurrnet = 0;
-	uint8_t uout_high = 0;
-	uint8_t uout_low = 0;
-	uint8_t supply = 0;
+	uint8_t load_loss;
+	uint8_t overcurrnet;
+	uint8_t uout_high;
+	uint8_t uout_low;
+	uint8_t supply;
 }warnDef;
 
 
 /***** Private variables *****/
-static volatile uint16_t set_voltage = 0;
-static volatile uint16_t target_current = 0;
+static uint16_t set_voltage = 0;
+static uint16_t target_current = 0;
 
-static volatile pidDef pidData;
-static volatile measDef measurments;
-static volatile warnDef warnings;
+static pidDef pidData;
+static measDef measurements;
+static warnDef warnings;
 
 /***** Private function declarations *****/
+uint8_t Process_Faults(warnDef* warn );
+void Get_Warnings(uint16_t set_i, uint16_t set_u, measDef* meas, warnDef* warn );
+int32_t PID_Controller(uint16_t target, uint16_t feedback, pidDef* pidCtrler, uint8_t zeroInt);
+void PID_Reset(pidDef* pidCtrler);
+uint16_t OutputVoltageToPWM(uint16_t out, uint16_t supply);
+int32_t SaturatedAdd_s32(int32_t a,int32_t b);
+int32_t SaturatedSub_s32(int32_t a,int32_t b);
+uint16_t PercentOfValue_u16(uint16_t value, uint8_t percent);
 
 /***** Public function definitions *****/
 /**
@@ -71,9 +79,9 @@ void COILDRV_Init(void)
 	pidData.integral_min = 0;
 	pidData.integral_max = COIL_MAX_OUT_VOLTAGE;
 	
-	measurments.supply = 12000;
-	measurments.currnet = 0;
-	measurments.voltage = 0;
+	measurements.supply = 12000;
+	measurements.current = 0;
+	measurements.voltage = 0;
 }
 
 /**
@@ -87,14 +95,14 @@ void COILDRV_SetTarget(uint16_t current)
 }
 
 /**
- * @brief Main coil driver procesing loop
+ * @brief Main coil driver processing loop
  */
 void COILDRV_Process(void)
 {
 	uint16_t new_output_voltage = 0;
 	
 	//Protections
-	Get_Warnings(target_current,set_voltage,&measurments,&warnings);
+	Get_Warnings(target_current,set_voltage,&measurements,&warnings);
 	uint8_t fault = Process_Faults(&warnings);
 	
 	if(fault)
@@ -106,7 +114,7 @@ void COILDRV_Process(void)
 	else
 	{
 		//Get PID controller output
-		int32_t pidout = PID_Controller(target_current,measurments.current,&pidData,warnings.load_loss);
+		int32_t pidout = PID_Controller(target_current,measurements.current,&pidData,warnings.load_loss);
 			
 		//Do limiting and casting
 		if(pidout>COIL_MAX_OUT_VOLTAGE) new_output_voltage = COIL_MAX_OUT_VOLTAGE;
@@ -114,7 +122,7 @@ void COILDRV_Process(void)
 		else new_output_voltage = (uint16_t) pidout;
 		
 		//Convert set voltage to PWM value, to get set with current supply voltage
-		uint16_t pwm = OutputVoltageToPWM(new_output_voltage,measurments.supply);
+		uint16_t pwm = OutputVoltageToPWM(new_output_voltage,measurements.supply);
 		HAL_SetPWM16b(HAL_PWM_CH_DCCD,pwm);
 	}
 
@@ -122,13 +130,13 @@ void COILDRV_Process(void)
 }
 
 /**
- * @brief Update output measurment values
+ * @brief Update output measurement values
  */
 void COILDRV_UpdateMeasurments(uint16_t current, uint16_t voltage, uint16_t supply)
 {
-	measurments.supply = supply;
-	measurments.currnet = current;
-	measurments.voltage = voltage;
+	measurements.supply = supply;
+	measurements.current = current;
+	measurements.voltage = voltage;
 }
 
 /***** Private function definitions *****/
@@ -165,18 +173,18 @@ uint8_t Process_Faults(warnDef* warn )
 void Get_Warnings(uint16_t set_i, uint16_t set_u, measDef* meas, warnDef* warn )
 {
 	//Check load loss condition
-	if((set_u!=0)&&(meas->currnet==0)) warn->load_loss = 1;
+	if((set_u!=0)&&(meas->current==0)) warn->load_loss = 1;
 	else warn->load_loss = 0;
 	
-	//Determine overcurrent treshold
+	//Determine overcurrent threshold
 	uint16_t ocp_limit = COIL_MAX_OUT_CURRENT;
 	if(set_u!=0) ocp_limit = PercentOfValue_u16(set_i,COIL_OCP_LIMIT_PERCENT);
 	
 	//Check overcurrent condition
-	if((meas->currnet)>ocp_limit) warn->overcurrnet = 1;
+	if((meas->current)>ocp_limit) warn->overcurrnet = 1;
 	else warn->overcurrnet = 0;
 	
-	//Determine over/under voltage treshold
+	//Determine over/under voltage threshold
 	uint16_t ovp_limit = COIL_OUT_OVP_LIMIT_DEFAULT;
 	uint16_t uvp_limit = 0;
 	

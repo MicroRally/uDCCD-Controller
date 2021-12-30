@@ -1,4 +1,5 @@
-Drivers/leds_driver.d Drivers/leds_driver.o: ../Drivers/leds_driver.c \
+Drivers/coil_driver.d Drivers/coil_driver.o: ../Drivers/coil_driver.c \
+ ../Drivers/coil_driver.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,7 +11,9 @@ Drivers/leds_driver.d Drivers/leds_driver.o: ../Drivers/leds_driver.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../Drivers/leds_driver.h ../Drivers/hal_outputs.h ../Drivers/hw_config.h
+ ../Drivers/udccd_hal.h ../Drivers/hw_config.h
+
+../Drivers/coil_driver.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -34,8 +37,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../Drivers/leds_driver.h:
-
-../Drivers/hal_outputs.h:
+../Drivers/udccd_hal.h:
 
 ../Drivers/hw_config.h:

@@ -120,28 +120,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Drivers\dccd_driver.c">
+    <Compile Include="Drivers\coil_driver.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Drivers\dccd_driver.h">
+    <Compile Include="Drivers\coil_driver.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Drivers\hal_inputs.c">
+    <Compile Include="Drivers\display_driver.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Drivers\hal_inputs.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Drivers\hal_outputs.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Drivers\hal_outputs.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Drivers\hal_system.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Drivers\hal_system.h">
+    <Compile Include="Drivers\display_driver.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Drivers\hw_config.h">
@@ -153,10 +141,10 @@
     <Compile Include="Drivers\inputs_driver.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Drivers\leds_driver.c">
+    <Compile Include="Drivers\udccd_hal.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Drivers\leds_driver.h">
+    <Compile Include="Drivers\udccd_hal.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">

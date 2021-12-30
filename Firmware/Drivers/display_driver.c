@@ -14,7 +14,7 @@ v0.0 - YYYY-MM-DD: Initial version
 /***** Private definitions *****/
 
 /***** Private variables *****/
-static volatile uint8_t set_image = 0;
+static uint8_t set_image = 0;
 
 /***** Private function declarations *****/
 
@@ -106,7 +106,7 @@ void DSPDRV_RefreshDisplay(void)
  */
 void DSPDRV_SetDisplayBrightness(uint8_t lvl)
 {
-	HAL_SetPWM(OUTHAL_CH_LED,lvl);
+	HAL_SetPWM(HAL_PWM_CH_LED,lvl);
 }
 
 

@@ -17,6 +17,8 @@ v0.0 - YYYY-MM-DD
 #include "hw_config.h"
 
 /**** Public definitions ****/
+#define LED_DSP_DOT10	1
+#define LED_DSP_DOT20	2
 
 /**** Public function declarations ****/
 //Control functions

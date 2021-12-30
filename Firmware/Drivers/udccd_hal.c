@@ -56,10 +56,10 @@ One conversion = 13.5 Fadc cycles
 #include "hw_config.h"
 
 /**** Private variables ****/
-static volatile uint8_t bootstraps = 0x00;
-static volatile uint8_t upsw_mode = HAL_MODE_DIN;
-static volatile uint8_t dnsw_mode = HAL_MODE_DIN;
-static volatile uint8_t dccd_en = 0;
+static uint8_t bootstraps = 0x00;
+static uint8_t upsw_mode = HAL_INP_MODE_DIN;
+static uint8_t dnsw_mode = HAL_INP_MODE_DIN;
+static uint8_t dccd_en = 0;
 
 /**** Private function declarations ****/
 static uint8_t InvertDIN(uint8_t val);
@@ -414,7 +414,7 @@ uint8_t HAL_LatchBootstraps(void)
 {
 	//Init HW
 	bootstraps = 0x00;
-	INHAL_InitBootstraps();
+	HAL_InitBootstraps();
 	
 	//Read value
 	uint8_t i = 0;
@@ -440,15 +440,15 @@ uint8_t HAL_GetBootstrap(uint8_t ch)
 	
 	switch(ch)
 	{
-		case INPUT_BOOT0:
+		case HAL_BOOT0:
 			i = bootstraps&0x01;
 			break;
 			
-		case INPUT_BOOT1:
+		case HAL_BOOT1:
 			i = bootstraps&0x02;
 			break;
 			
-		case INPUT_BOOT2:
+		case HAL_BOOT2:
 			i = bootstraps&0x04;
 			break;
 			

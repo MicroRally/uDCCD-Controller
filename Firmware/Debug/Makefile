@@ -38,12 +38,10 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../Drivers/dccd_driver.c \
-../Drivers/hal_inputs.c \
-../Drivers/hal_outputs.c \
-../Drivers/hal_system.c \
+../Drivers/coil_driver.c \
+../Drivers/display_driver.c \
 ../Drivers/inputs_driver.c \
-../Drivers/leds_driver.c \
+../Drivers/udccd_hal.c \
 ../main.c
 
 
@@ -54,39 +52,31 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-Drivers/dccd_driver.o \
-Drivers/hal_inputs.o \
-Drivers/hal_outputs.o \
-Drivers/hal_system.o \
+Drivers/coil_driver.o \
+Drivers/display_driver.o \
 Drivers/inputs_driver.o \
-Drivers/leds_driver.o \
+Drivers/udccd_hal.o \
 main.o
 
 OBJS_AS_ARGS +=  \
-Drivers/dccd_driver.o \
-Drivers/hal_inputs.o \
-Drivers/hal_outputs.o \
-Drivers/hal_system.o \
+Drivers/coil_driver.o \
+Drivers/display_driver.o \
 Drivers/inputs_driver.o \
-Drivers/leds_driver.o \
+Drivers/udccd_hal.o \
 main.o
 
 C_DEPS +=  \
-Drivers/dccd_driver.d \
-Drivers/hal_inputs.d \
-Drivers/hal_outputs.d \
-Drivers/hal_system.d \
+Drivers/coil_driver.d \
+Drivers/display_driver.d \
 Drivers/inputs_driver.d \
-Drivers/leds_driver.d \
+Drivers/udccd_hal.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
-Drivers/dccd_driver.d \
-Drivers/hal_inputs.d \
-Drivers/hal_outputs.d \
-Drivers/hal_system.d \
+Drivers/coil_driver.d \
+Drivers/display_driver.d \
 Drivers/inputs_driver.d \
-Drivers/leds_driver.d \
+Drivers/udccd_hal.d \
 main.d
 
 OUTPUT_FILE_PATH +=uDCCD_Controller.elf
@@ -103,28 +93,14 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-Drivers/dccd_driver.o: ../Drivers/dccd_driver.c
+Drivers/coil_driver.o: ../Drivers/coil_driver.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=attiny88 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\gcc\dev\attiny88" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-Drivers/hal_inputs.o: ../Drivers/hal_inputs.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=attiny88 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\gcc\dev\attiny88" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-Drivers/hal_outputs.o: ../Drivers/hal_outputs.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=attiny88 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\gcc\dev\attiny88" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-Drivers/hal_system.o: ../Drivers/hal_system.c
+Drivers/display_driver.o: ../Drivers/display_driver.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=attiny88 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\gcc\dev\attiny88" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -138,7 +114,7 @@ Drivers/inputs_driver.o: ../Drivers/inputs_driver.c
 	@echo Finished building: $<
 	
 
-Drivers/leds_driver.o: ../Drivers/leds_driver.c
+Drivers/udccd_hal.o: ../Drivers/udccd_hal.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=attiny88 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.8.332\gcc\dev\attiny88" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

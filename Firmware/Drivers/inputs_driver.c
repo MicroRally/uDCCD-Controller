@@ -39,8 +39,6 @@ static inStateDef modesw;
 
 static analogDef measurments;
 
-static uint8_t bootstraps;
-
 /***** Private function declarations *****/
 void ReadAllAnalog(void);
 void ReadAllDigital(void);
