@@ -1,6 +1,6 @@
 /*
 uDCCD controller
-Coil constant current mode driver
+LED Display driver
 
 Author: Andis Jargans
 
@@ -8,8 +8,8 @@ Revision history:
 v0.0 - YYYY-MM-DD
 */
 
-#ifndef COIL_DRIVER
-#define COIL_DRIVER
+#ifndef DISPLAY_DRIVER
+#define DISPLAY_DRIVER
 
 /**** Includes ****/
 #include <avr/io.h>
@@ -21,12 +21,13 @@ v0.0 - YYYY-MM-DD
 
 /**** Public function declarations ****/
 //Control functions
-void COILDRV_Init(void);
-void COILDRV_SetTarget(uint16_t current);
-void COILDRV_UpdateMeasurments(uint16_t current, uint16_t voltage, uint16_t supply);
+void DSPDRV_Init(void);
+void DSPDRV_SetDisplayBW(uint8_t image);
+void DSPDRV_SetDisplayVal(uint8_t value, uint8_t style);
+void DSPDRV_SetDisplayBrightness(uint8_t lvl);
 
 //Interrupt and loop functions
-void COILDRV_Process(void);
+void LEDDRV_RefreshDisplay(void);
 
 //Data retrieve functions
 

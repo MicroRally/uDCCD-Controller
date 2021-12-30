@@ -1,6 +1,6 @@
 /*
 uDCCD controller
-Inputs Hardware abstraction layer
+Hardware abstraction layer
 
 Author: Andis Jargans
 
@@ -55,31 +55,34 @@ typedef struct halInpConfigStruct {
 }halInpConfigDef;
 
 /**** Public function declarations ****/
-//Control functions
+//Init functions
+void HAL_InitInputs(inHalConfigDef* extCfg);
+void HAL_InitOutputs(void);
 void HAL_InitSystick(void);
 void HAL_InitWatchdog(void);
-void HAL_ReducePower(void);
-void HAL_ResetWatchdog(void);
 void HAL_InitBootstraps(void);
 void HAL_DeInitBootstraps(void);
-uint8_t HAL_LatchBootstraps(void);
-uint8_t HAL_GetBootstrap(uint8_t ch);
 
-void HAL_InitInputs(inHalConfigDef* extCfg);
+//Control functions
 void HAL_WakeADC(void);
 void HAL_SleepADC(void);
 
-void HAL_InitOutputs(void);
 void HAL_SetPWM(uint8_t ch, uint8_t dc);
 void HAL_SetPWM16b(uint8_t ch, uint16_t dc);
 void HAL_SetLEDs(uint8_t image);
 void HAL_EnableDCCDch(void);
 void HAL_DisableDCCDch(void);
 
+void HAL_ReducePower(void);
+void HAL_ResetWatchdog(void);
+
 //Interrupt and loop functions
 
 //Data retrieve functions
 uint16_t HAL_ADCRead(uint8_t ch);
 uint8_t HAL_GPIORead(uint8_t ch);
+
+uint8_t HAL_LatchBootstraps(void);
+uint8_t HAL_GetBootstrap(uint8_t ch);
 
 #endif

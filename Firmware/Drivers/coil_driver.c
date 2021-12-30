@@ -10,8 +10,6 @@ v0.0 - YYYY-MM-DD: Initial version
 
 /***** Includes *****/
 #include "coil_driver.h"
-#include "udccd_hal.h"
-#include "hw_config.h"
 
 /***** Private definitions *****/
 typedef struct pidStruct{
@@ -84,6 +82,7 @@ void COILDRV_Init(void)
 void COILDRV_SetTarget(uint16_t current)
 {
 	if(current>COIL_MAX_SET_CURRENT) target_current = COIL_MAX_SET_CURRENT;
+	else if(current<COIL_MIN_SET_CURRENT) target_current = COIL_MIN_SET_CURRENT;
 	else target_current = current;
 }
 

@@ -52,12 +52,13 @@ One conversion = 13.5 Fadc cycles
 /**** Includes ****/
 #include <avr/io.h>
 #include <avr/wdt.h>
+#include "udccd_hal.h"
 #include "hw_config.h"
 
 /**** Private variables ****/
 static volatile uint8_t bootstraps = 0x00;
-static volatile uint8_t upsw_mode = INHAL_MODE_DIN;
-static volatile uint8_t dnsw_mode = INHAL_MODE_DIN;
+static volatile uint8_t upsw_mode = HAL_MODE_DIN;
+static volatile uint8_t dnsw_mode = HAL_MODE_DIN;
 static volatile uint8_t dccd_en = 0;
 
 /**** Private function declarations ****/
@@ -65,26 +66,6 @@ static uint8_t InvertDIN(uint8_t val);
 static void SetOutputCompare(uint8_t ch, uint16_t oc_val);
 
 /**** Public function definitions ****/
-void HAL_InitSystick(void)
-{
-	//Generic timing timer configuration
-	TCCR0A = 0x00; //Normal mode
-	TCNT0 = 0x00;
-	OCR0A = 0x00;
-	OCR0B = 0x00;
-	TIMSK0 = 0x01; //OVF interrupt
-		
-	TCCR0A |= 0x03;  //Enable timer, with div64, T=2ms @8MHz
-}
-
-void HAL_InitWatchdog(void)
-{
-	//watchdog timer setup
-	WDTCSR |= 0x10; //Change enable
-	WDTCSR |= 0x0D; //System reset mode, 0.5s period.
-	//use special instruction to reset watchdog timer
-}
-
 /**
  * @brief Initializes inputs hardware
  * @param [in] extCfg Struct with configuration parameters
@@ -129,7 +110,7 @@ void HAL_InitInputs(halInpConfigDef* extCfg)
 }
 
 /**
- * @brief Initializes hardware
+ * @brief Initializes outputs hardware
  */
 void HAL_InitOutputs(void)
 {
@@ -157,6 +138,47 @@ void HAL_InitOutputs(void)
 	
 	dccd_en = 0;
 	init_done = 1;
+}
+
+void HAL_InitSystick(void)
+{
+	//Generic timing timer configuration
+	TCCR0A = 0x00; //Normal mode
+	TCNT0 = 0x00;
+	OCR0A = 0x00;
+	OCR0B = 0x00;
+	TIMSK0 = 0x01; //OVF interrupt
+		
+	TCCR0A |= 0x03;  //Enable timer, with div64, T=2ms @8MHz
+}
+
+void HAL_InitWatchdog(void)
+{
+	//watchdog timer setup
+	WDTCSR |= 0x10; //Change enable
+	WDTCSR |= 0x0D; //System reset mode, 0.5s period.
+	//use special instruction to reset watchdog timer
+}
+
+/**
+ * @brief Initializes bootstraps hardware
+ */
+void HAL_InitBootstraps(void)
+{	
+	//Digital inputs configuration
+	//Bootstraps
+	DDRA &= ~0x0E; //Set as inputs
+	PORTA |= 0x0E; //Enable MCU pull-up
+	
+	bootstraps = 0x00;
+}
+
+/**
+ * @brief Turn off bootstrap pull-up's, to save power
+ */
+void HAL_DeInitBootstraps(void)
+{
+	PORTA &= ~0x0E; //Disable pullup`s
 }
 
 /**
@@ -304,17 +326,6 @@ uint8_t HAL_GPIORead(uint8_t ch)
 	else return 0;
 }
 
-void HAL_ReducePower(void)
-{
-	//Disable unnecessary peripherals 
-	PRR = 0x84;  //TWI and SPI
-}
-
-void HAL_ResetWatchdog(void)
-{
-	//Do WDT reset instruction
-}
-
 /**
  * @brief Set PWM duty cycle
  * @param [in] ch Timer output compare channel
@@ -385,25 +396,15 @@ void HAL_DisableDCCDch(void)
 	dccd_en = 0;
 }
 
-/**
- * @brief Initializes bootstraps hardware
- */
-void HAL_InitBootstraps(void)
-{	
-	//Digital inputs configuration
-	//Bootstraps
-	DDRA &= ~0x0E; //Set as inputs
-	PORTA |= 0x0E; //Enable MCU pull-up
-	
-	bootstraps = 0x00;
+void HAL_ReducePower(void)
+{
+	//Disable unnecessary peripherals 
+	PRR = 0x84;  //TWI and SPI
 }
 
-/**
- * @brief Turn off bootstrap pull-up's, to save power
- */
-void HAL_DeInitBootstraps(void)
+void HAL_ResetWatchdog(void)
 {
-	PORTA &= ~0x0E; //Disable pullup`s
+	//Do WDT reset instruction
 }
 
 /**
