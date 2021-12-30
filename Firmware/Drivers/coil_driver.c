@@ -82,6 +82,9 @@ void COILDRV_Init(void)
 	measurements.supply = 12000;
 	measurements.current = 0;
 	measurements.voltage = 0;
+	
+	set_voltage = 0;
+	target_current = 0;
 }
 
 /**

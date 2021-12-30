@@ -3,91 +3,3294 @@ uDCCD_Controller.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000000a4  2**0
+  0 .data         00000000  00800100  00800100  00001170  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000050  00000000  00000000  00000054  2**1
+  1 .text         000010fc  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  000000a4  2**0
+  2 .bss          0000006a  00800100  00800100  00001170  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00001170  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000000d4  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000011a0  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  00000110  2**0
+  5 .debug_aranges 00000220  00000000  00000000  000011dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   000005f3  00000000  00000000  00000130  2**0
+  6 .debug_info   000020c7  00000000  00000000  000013fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000574  00000000  00000000  00000723  2**0
+  7 .debug_abbrev 00000d5d  00000000  00000000  000034c3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000149  00000000  00000000  00000c97  2**0
+  8 .debug_line   0000159c  00000000  00000000  00004220  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  00000de0  2**2
+  9 .debug_frame  000004e8  00000000  00000000  000057bc  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000002f3  00000000  00000000  00000e04  2**0
+ 10 .debug_str    00000a8e  00000000  00000000  00005ca4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000010  00000000  00000000  000010f7  2**0
+ 11 .debug_loc    00001a61  00000000  00000000  00006732  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000248  00000000  00000000  00008193  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	13 c0       	rjmp	.+38     	; 0x28 <__ctors_end>
-   2:	22 c0       	rjmp	.+68     	; 0x48 <__bad_interrupt>
-   4:	21 c0       	rjmp	.+66     	; 0x48 <__bad_interrupt>
-   6:	20 c0       	rjmp	.+64     	; 0x48 <__bad_interrupt>
-   8:	1f c0       	rjmp	.+62     	; 0x48 <__bad_interrupt>
-   a:	1e c0       	rjmp	.+60     	; 0x48 <__bad_interrupt>
-   c:	1d c0       	rjmp	.+58     	; 0x48 <__bad_interrupt>
-   e:	1c c0       	rjmp	.+56     	; 0x48 <__bad_interrupt>
-  10:	1b c0       	rjmp	.+54     	; 0x48 <__bad_interrupt>
-  12:	1a c0       	rjmp	.+52     	; 0x48 <__bad_interrupt>
-  14:	19 c0       	rjmp	.+50     	; 0x48 <__bad_interrupt>
-  16:	18 c0       	rjmp	.+48     	; 0x48 <__bad_interrupt>
-  18:	17 c0       	rjmp	.+46     	; 0x48 <__bad_interrupt>
-  1a:	16 c0       	rjmp	.+44     	; 0x48 <__bad_interrupt>
-  1c:	15 c0       	rjmp	.+42     	; 0x48 <__bad_interrupt>
-  1e:	14 c0       	rjmp	.+40     	; 0x48 <__bad_interrupt>
-  20:	13 c0       	rjmp	.+38     	; 0x48 <__bad_interrupt>
-  22:	12 c0       	rjmp	.+36     	; 0x48 <__bad_interrupt>
-  24:	11 c0       	rjmp	.+34     	; 0x48 <__bad_interrupt>
-  26:	10 c0       	rjmp	.+32     	; 0x48 <__bad_interrupt>
+       0:	2c c0       	rjmp	.+88     	; 0x5a <__ctors_end>
+       2:	3b c0       	rjmp	.+118    	; 0x7a <__bad_interrupt>
+       4:	3a c0       	rjmp	.+116    	; 0x7a <__bad_interrupt>
+       6:	39 c0       	rjmp	.+114    	; 0x7a <__bad_interrupt>
+       8:	38 c0       	rjmp	.+112    	; 0x7a <__bad_interrupt>
+       a:	37 c0       	rjmp	.+110    	; 0x7a <__bad_interrupt>
+       c:	36 c0       	rjmp	.+108    	; 0x7a <__bad_interrupt>
+       e:	35 c0       	rjmp	.+106    	; 0x7a <__bad_interrupt>
+      10:	34 c0       	rjmp	.+104    	; 0x7a <__bad_interrupt>
+      12:	33 c0       	rjmp	.+102    	; 0x7a <__bad_interrupt>
+      14:	32 c0       	rjmp	.+100    	; 0x7a <__bad_interrupt>
+      16:	31 c0       	rjmp	.+98     	; 0x7a <__bad_interrupt>
+      18:	30 c0       	rjmp	.+96     	; 0x7a <__bad_interrupt>
+      1a:	2f c0       	rjmp	.+94     	; 0x7a <__bad_interrupt>
+      1c:	2e c0       	rjmp	.+92     	; 0x7a <__bad_interrupt>
+      1e:	2d c0       	rjmp	.+90     	; 0x7a <__bad_interrupt>
+      20:	2c c0       	rjmp	.+88     	; 0x7a <__bad_interrupt>
+      22:	2b c0       	rjmp	.+86     	; 0x7a <__bad_interrupt>
+      24:	2a c0       	rjmp	.+84     	; 0x7a <__bad_interrupt>
+      26:	29 c0       	rjmp	.+82     	; 0x7a <__bad_interrupt>
+      28:	72 c4       	rjmp	.+2276   	; 0x90e <INDRV_ResetChangeFlag+0x10>
+      2a:	7e c4       	rjmp	.+2300   	; 0x928 <INDRV_ResetChangeFlag+0x2a>
+      2c:	80 c4       	rjmp	.+2304   	; 0x92e <INDRV_ResetChangeFlag+0x30>
+      2e:	82 c4       	rjmp	.+2308   	; 0x934 <INDRV_ResetChangeFlag+0x36>
+      30:	84 c4       	rjmp	.+2312   	; 0x93a <INDRV_ResetChangeFlag+0x3c>
+      32:	86 c4       	rjmp	.+2316   	; 0x940 <INDRV_ResetChangeFlag+0x42>
+      34:	88 c4       	rjmp	.+2320   	; 0x946 <INDRV_ResetChangeFlag+0x48>
+      36:	f4 c5       	rjmp	.+3048   	; 0xc20 <HAL_ADCRead+0x1e>
+      38:	03 c6       	rjmp	.+3078   	; 0xc40 <HAL_ADCRead+0x3e>
+      3a:	f4 c5       	rjmp	.+3048   	; 0xc24 <HAL_ADCRead+0x22>
+      3c:	f5 c5       	rjmp	.+3050   	; 0xc28 <HAL_ADCRead+0x26>
+      3e:	f6 c5       	rjmp	.+3052   	; 0xc2c <HAL_ADCRead+0x2a>
+      40:	f7 c5       	rjmp	.+3054   	; 0xc30 <HAL_ADCRead+0x2e>
+      42:	f8 c5       	rjmp	.+3056   	; 0xc34 <HAL_ADCRead+0x32>
+      44:	f9 c5       	rjmp	.+3058   	; 0xc38 <HAL_ADCRead+0x36>
+      46:	fa c5       	rjmp	.+3060   	; 0xc3c <HAL_ADCRead+0x3a>
+      48:	21 c6       	rjmp	.+3138   	; 0xc8c <HAL_GPIORead+0x12>
+      4a:	28 c6       	rjmp	.+3152   	; 0xc9c <HAL_GPIORead+0x22>
+      4c:	23 c6       	rjmp	.+3142   	; 0xc94 <HAL_GPIORead+0x1a>
+      4e:	2a c6       	rjmp	.+3156   	; 0xca4 <HAL_GPIORead+0x2a>
+      50:	30 c6       	rjmp	.+3168   	; 0xcb2 <HAL_GPIORead+0x38>
+      52:	36 c6       	rjmp	.+3180   	; 0xcc0 <HAL_GPIORead+0x46>
+      54:	38 c6       	rjmp	.+3184   	; 0xcc6 <HAL_GPIORead+0x4c>
+      56:	3a c6       	rjmp	.+3188   	; 0xccc <HAL_GPIORead+0x52>
+      58:	3c c6       	rjmp	.+3192   	; 0xcd2 <HAL_GPIORead+0x58>
 
-00000028 <__ctors_end>:
-  28:	11 24       	eor	r1, r1
-  2a:	1f be       	out	0x3f, r1	; 63
-  2c:	cf ef       	ldi	r28, 0xFF	; 255
-  2e:	d2 e0       	ldi	r29, 0x02	; 2
-  30:	de bf       	out	0x3e, r29	; 62
-  32:	cd bf       	out	0x3d, r28	; 61
+0000005a <__ctors_end>:
+      5a:	11 24       	eor	r1, r1
+      5c:	1f be       	out	0x3f, r1	; 63
+      5e:	cf ef       	ldi	r28, 0xFF	; 255
+      60:	d2 e0       	ldi	r29, 0x02	; 2
+      62:	de bf       	out	0x3e, r29	; 62
+      64:	cd bf       	out	0x3d, r28	; 61
 
-00000034 <__do_clear_bss>:
-  34:	21 e0       	ldi	r18, 0x01	; 1
-  36:	a0 e0       	ldi	r26, 0x00	; 0
-  38:	b1 e0       	ldi	r27, 0x01	; 1
-  3a:	01 c0       	rjmp	.+2      	; 0x3e <.do_clear_bss_start>
+00000066 <__do_clear_bss>:
+      66:	21 e0       	ldi	r18, 0x01	; 1
+      68:	a0 e0       	ldi	r26, 0x00	; 0
+      6a:	b1 e0       	ldi	r27, 0x01	; 1
+      6c:	01 c0       	rjmp	.+2      	; 0x70 <.do_clear_bss_start>
 
-0000003c <.do_clear_bss_loop>:
-  3c:	1d 92       	st	X+, r1
+0000006e <.do_clear_bss_loop>:
+      6e:	1d 92       	st	X+, r1
 
-0000003e <.do_clear_bss_start>:
-  3e:	a0 30       	cpi	r26, 0x00	; 0
-  40:	b2 07       	cpc	r27, r18
-  42:	e1 f7       	brne	.-8      	; 0x3c <.do_clear_bss_loop>
-  44:	02 d0       	rcall	.+4      	; 0x4a <main>
-  46:	02 c0       	rjmp	.+4      	; 0x4c <_exit>
+00000070 <.do_clear_bss_start>:
+      70:	aa 36       	cpi	r26, 0x6A	; 106
+      72:	b2 07       	cpc	r27, r18
+      74:	e1 f7       	brne	.-8      	; 0x6e <.do_clear_bss_loop>
+      76:	8b d7       	rcall	.+3862   	; 0xf8e <main>
+      78:	3f c8       	rjmp	.-3970   	; 0xfffff0f8 <__eeprom_end+0xff7ef0f8>
 
-00000048 <__bad_interrupt>:
-  48:	db cf       	rjmp	.-74     	; 0x0 <__vectors>
+0000007a <__bad_interrupt>:
+      7a:	c2 cf       	rjmp	.-124    	; 0x0 <__vectors>
 
-0000004a <main>:
+0000007c <COILDRV_Init>:
+/**
+ * @brief Initializes DCCD hardware driver
+ */
+void COILDRV_Init(void)
+{
+	HAL_InitOutputs();
+      7c:	8e d5       	rcall	.+2844   	; 0xb9a <HAL_InitOutputs>
+	HAL_EnableDCCDch();
+      7e:	85 d6       	rcall	.+3338   	; 0xd8a <HAL_EnableDCCDch>
+	HAL_SetPWM(HAL_PWM_CH_DCCD,0);
+      80:	60 e0       	ldi	r22, 0x00	; 0
+      82:	81 e0       	ldi	r24, 0x01	; 1
+      84:	38 d6       	rcall	.+3184   	; 0xcf6 <HAL_SetPWM>
+	
+	pidData.kp_mul = COIL_PID_KP_MUL;
+      86:	ed e0       	ldi	r30, 0x0D	; 13
+      88:	f1 e0       	ldi	r31, 0x01	; 1
+      8a:	83 e0       	ldi	r24, 0x03	; 3
+      8c:	80 83       	st	Z, r24
+	pidData.kp_div = COIL_PID_KP_DIV;
+      8e:	81 e0       	ldi	r24, 0x01	; 1
+      90:	81 83       	std	Z+1, r24	; 0x01
+	pidData.ki_mul = COIL_PID_KI_MUL;
+      92:	82 83       	std	Z+2, r24	; 0x02
+	pidData.ki_div = COIL_PID_KI_DIV;
+      94:	83 83       	std	Z+3, r24	; 0x03
+	pidData.kd_mul = COIL_PID_KD_MUL;
+      96:	84 83       	std	Z+4, r24	; 0x04
+	pidData.kd_div = COIL_PID_KD_DIV;
+      98:	8a e0       	ldi	r24, 0x0A	; 10
+      9a:	85 83       	std	Z+5, r24	; 0x05
+	pidData.prev_error = 0;
+      9c:	16 82       	std	Z+6, r1	; 0x06
+      9e:	17 82       	std	Z+7, r1	; 0x07
+      a0:	10 86       	std	Z+8, r1	; 0x08
+      a2:	11 86       	std	Z+9, r1	; 0x09
+	pidData.integral = 0;
+      a4:	12 86       	std	Z+10, r1	; 0x0a
+      a6:	13 86       	std	Z+11, r1	; 0x0b
+      a8:	14 86       	std	Z+12, r1	; 0x0c
+      aa:	15 86       	std	Z+13, r1	; 0x0d
+	pidData.integral_min = 0;
+      ac:	16 86       	std	Z+14, r1	; 0x0e
+      ae:	17 86       	std	Z+15, r1	; 0x0f
+      b0:	10 8a       	std	Z+16, r1	; 0x10
+      b2:	11 8a       	std	Z+17, r1	; 0x11
+	pidData.integral_max = COIL_MAX_OUT_VOLTAGE;
+      b4:	80 e1       	ldi	r24, 0x10	; 16
+      b6:	97 e2       	ldi	r25, 0x27	; 39
+      b8:	a0 e0       	ldi	r26, 0x00	; 0
+      ba:	b0 e0       	ldi	r27, 0x00	; 0
+      bc:	82 8b       	std	Z+18, r24	; 0x12
+      be:	93 8b       	std	Z+19, r25	; 0x13
+      c0:	a4 8b       	std	Z+20, r26	; 0x14
+      c2:	b5 8b       	std	Z+21, r27	; 0x15
+	
+	measurements.supply = 12000;
+      c4:	e7 e0       	ldi	r30, 0x07	; 7
+      c6:	f1 e0       	ldi	r31, 0x01	; 1
+      c8:	80 ee       	ldi	r24, 0xE0	; 224
+      ca:	9e e2       	ldi	r25, 0x2E	; 46
+      cc:	91 83       	std	Z+1, r25	; 0x01
+      ce:	80 83       	st	Z, r24
+	measurements.current = 0;
+      d0:	13 82       	std	Z+3, r1	; 0x03
+      d2:	12 82       	std	Z+2, r1	; 0x02
+	measurements.voltage = 0;
+      d4:	15 82       	std	Z+5, r1	; 0x05
+      d6:	14 82       	std	Z+4, r1	; 0x04
+	
+	set_voltage = 0;
+      d8:	10 92 26 01 	sts	0x0126, r1	; 0x800126 <set_voltage+0x1>
+      dc:	10 92 25 01 	sts	0x0125, r1	; 0x800125 <set_voltage>
+	target_current = 0;
+      e0:	10 92 24 01 	sts	0x0124, r1	; 0x800124 <target_current+0x1>
+      e4:	10 92 23 01 	sts	0x0123, r1	; 0x800123 <target_current>
+      e8:	08 95       	ret
 
-/**** Private function declarations ****/
+000000ea <COILDRV_SetTarget>:
+/**
+ * @brief Set target output current in mA
+ */
+void COILDRV_SetTarget(uint16_t current)
+{
+	if(current>COIL_MAX_SET_CURRENT) target_current = COIL_MAX_SET_CURRENT;
+      ea:	85 39       	cpi	r24, 0x95	; 149
+      ec:	21 e1       	ldi	r18, 0x11	; 17
+      ee:	92 07       	cpc	r25, r18
+      f0:	38 f0       	brcs	.+14     	; 0x100 <COILDRV_SetTarget+0x16>
+      f2:	84 e9       	ldi	r24, 0x94	; 148
+      f4:	91 e1       	ldi	r25, 0x11	; 17
+      f6:	90 93 24 01 	sts	0x0124, r25	; 0x800124 <target_current+0x1>
+      fa:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <target_current>
+      fe:	08 95       	ret
+	else if(current<COIL_MIN_SET_CURRENT) target_current = COIL_MIN_SET_CURRENT;
+     100:	84 36       	cpi	r24, 0x64	; 100
+     102:	91 05       	cpc	r25, r1
+     104:	38 f4       	brcc	.+14     	; 0x114 <COILDRV_SetTarget+0x2a>
+     106:	84 e6       	ldi	r24, 0x64	; 100
+     108:	90 e0       	ldi	r25, 0x00	; 0
+     10a:	90 93 24 01 	sts	0x0124, r25	; 0x800124 <target_current+0x1>
+     10e:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <target_current>
+     112:	08 95       	ret
+	else target_current = current;
+     114:	90 93 24 01 	sts	0x0124, r25	; 0x800124 <target_current+0x1>
+     118:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <target_current>
+     11c:	08 95       	ret
+
+0000011e <COILDRV_UpdateMeasurments>:
+/**
+ * @brief Update output measurement values
+ */
+void COILDRV_UpdateMeasurments(uint16_t current, uint16_t voltage, uint16_t supply)
+{
+	measurements.supply = supply;
+     11e:	e7 e0       	ldi	r30, 0x07	; 7
+     120:	f1 e0       	ldi	r31, 0x01	; 1
+     122:	51 83       	std	Z+1, r21	; 0x01
+     124:	40 83       	st	Z, r20
+	measurements.current = current;
+     126:	93 83       	std	Z+3, r25	; 0x03
+     128:	82 83       	std	Z+2, r24	; 0x02
+	measurements.voltage = voltage;
+     12a:	75 83       	std	Z+5, r23	; 0x05
+     12c:	64 83       	std	Z+4, r22	; 0x04
+     12e:	08 95       	ret
+
+00000130 <Process_Faults>:
+ */
+uint8_t Process_Faults(warnDef* warn )
+{
+	static uint16_t fault_timer = 0;
+
+	if((warn->overcurrnet)||(warn->uout_high)||(warn->uout_low))
+     130:	fc 01       	movw	r30, r24
+     132:	21 81       	ldd	r18, Z+1	; 0x01
+     134:	21 11       	cpse	r18, r1
+     136:	06 c0       	rjmp	.+12     	; 0x144 <Process_Faults+0x14>
+     138:	22 81       	ldd	r18, Z+2	; 0x02
+     13a:	21 11       	cpse	r18, r1
+     13c:	03 c0       	rjmp	.+6      	; 0x144 <Process_Faults+0x14>
+     13e:	83 81       	ldd	r24, Z+3	; 0x03
+     140:	88 23       	and	r24, r24
+     142:	41 f0       	breq	.+16     	; 0x154 <Process_Faults+0x24>
+	{
+		//Start fault cooldown timer
+		fault_timer = COIL_FAULT_COOLDOWN_TIME;
+     144:	88 ee       	ldi	r24, 0xE8	; 232
+     146:	93 e0       	ldi	r25, 0x03	; 3
+     148:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+     14c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		return 1;
+     150:	81 e0       	ldi	r24, 0x01	; 1
+     152:	08 95       	ret
+	}
+	else if(fault_timer) 
+     154:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+     158:	30 91 01 01 	lds	r19, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+     15c:	21 15       	cp	r18, r1
+     15e:	31 05       	cpc	r19, r1
+     160:	39 f0       	breq	.+14     	; 0x170 <Process_Faults+0x40>
+	{
+		//Decrement fault cooldown timer
+		fault_timer--;
+     162:	21 50       	subi	r18, 0x01	; 1
+     164:	31 09       	sbc	r19, r1
+     166:	30 93 01 01 	sts	0x0101, r19	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+     16a:	20 93 00 01 	sts	0x0100, r18	; 0x800100 <__DATA_REGION_ORIGIN__>
+		return 1;
+     16e:	81 e0       	ldi	r24, 0x01	; 1
+	else
+	{
+		//No fault
+		return 0;
+	}
+}
+     170:	08 95       	ret
+
+00000172 <PID_Reset>:
+/**
+ * @brief Reset PID controller
+ */
+void PID_Reset(pidDef* pidCtrler)
+{
+	pidCtrler->integral = 0;
+     172:	fc 01       	movw	r30, r24
+     174:	12 86       	std	Z+10, r1	; 0x0a
+     176:	13 86       	std	Z+11, r1	; 0x0b
+     178:	14 86       	std	Z+12, r1	; 0x0c
+     17a:	15 86       	std	Z+13, r1	; 0x0d
+	pidCtrler->prev_error = 0;
+     17c:	16 82       	std	Z+6, r1	; 0x06
+     17e:	17 82       	std	Z+7, r1	; 0x07
+     180:	10 86       	std	Z+8, r1	; 0x08
+     182:	11 86       	std	Z+9, r1	; 0x09
+     184:	08 95       	ret
+
+00000186 <OutputVoltageToPWM>:
+
+/**
+ * @brief Convert output-supply ratio to 16bit PWM value
+ */
+uint16_t OutputVoltageToPWM(uint16_t out, uint16_t supply)
+{
+     186:	cf 92       	push	r12
+     188:	df 92       	push	r13
+     18a:	ef 92       	push	r14
+     18c:	ff 92       	push	r15
+     18e:	0f 93       	push	r16
+     190:	1f 93       	push	r17
+     192:	fb 01       	movw	r30, r22
+	if((supply)&&(out))
+     194:	30 97       	sbiw	r30, 0x00	; 0
+     196:	09 f4       	brne	.+2      	; 0x19a <OutputVoltageToPWM+0x14>
+     198:	6e c0       	rjmp	.+220    	; 0x276 <__DATA_REGION_LENGTH__+0x76>
+     19a:	00 97       	sbiw	r24, 0x00	; 0
+     19c:	09 f4       	brne	.+2      	; 0x1a0 <OutputVoltageToPWM+0x1a>
+     19e:	6e c0       	rjmp	.+220    	; 0x27c <__DATA_REGION_LENGTH__+0x7c>
+	{
+		//Compensate for supply voltage changes
+		uint32_t temp = ((uint32_t)out*0xFFFF)/supply;
+     1a0:	8c 01       	movw	r16, r24
+     1a2:	20 e0       	ldi	r18, 0x00	; 0
+     1a4:	30 e0       	ldi	r19, 0x00	; 0
+     1a6:	b9 01       	movw	r22, r18
+     1a8:	a8 01       	movw	r20, r16
+     1aa:	44 0f       	add	r20, r20
+     1ac:	55 1f       	adc	r21, r21
+     1ae:	66 1f       	adc	r22, r22
+     1b0:	77 1f       	adc	r23, r23
+     1b2:	44 0f       	add	r20, r20
+     1b4:	55 1f       	adc	r21, r21
+     1b6:	66 1f       	adc	r22, r22
+     1b8:	77 1f       	adc	r23, r23
+     1ba:	44 0f       	add	r20, r20
+     1bc:	55 1f       	adc	r21, r21
+     1be:	66 1f       	adc	r22, r22
+     1c0:	77 1f       	adc	r23, r23
+     1c2:	44 0f       	add	r20, r20
+     1c4:	55 1f       	adc	r21, r21
+     1c6:	66 1f       	adc	r22, r22
+     1c8:	77 1f       	adc	r23, r23
+     1ca:	44 0f       	add	r20, r20
+     1cc:	55 1f       	adc	r21, r21
+     1ce:	66 1f       	adc	r22, r22
+     1d0:	77 1f       	adc	r23, r23
+     1d2:	40 0f       	add	r20, r16
+     1d4:	51 1f       	adc	r21, r17
+     1d6:	62 1f       	adc	r22, r18
+     1d8:	73 1f       	adc	r23, r19
+     1da:	44 0f       	add	r20, r20
+     1dc:	55 1f       	adc	r21, r21
+     1de:	66 1f       	adc	r22, r22
+     1e0:	77 1f       	adc	r23, r23
+     1e2:	44 0f       	add	r20, r20
+     1e4:	55 1f       	adc	r21, r21
+     1e6:	66 1f       	adc	r22, r22
+     1e8:	77 1f       	adc	r23, r23
+     1ea:	44 0f       	add	r20, r20
+     1ec:	55 1f       	adc	r21, r21
+     1ee:	66 1f       	adc	r22, r22
+     1f0:	77 1f       	adc	r23, r23
+     1f2:	44 0f       	add	r20, r20
+     1f4:	55 1f       	adc	r21, r21
+     1f6:	66 1f       	adc	r22, r22
+     1f8:	77 1f       	adc	r23, r23
+     1fa:	db 01       	movw	r26, r22
+     1fc:	ca 01       	movw	r24, r20
+     1fe:	88 0f       	add	r24, r24
+     200:	99 1f       	adc	r25, r25
+     202:	aa 1f       	adc	r26, r26
+     204:	bb 1f       	adc	r27, r27
+     206:	ac 01       	movw	r20, r24
+     208:	bd 01       	movw	r22, r26
+     20a:	40 0f       	add	r20, r16
+     20c:	51 1f       	adc	r21, r17
+     20e:	62 1f       	adc	r22, r18
+     210:	73 1f       	adc	r23, r19
+     212:	6a 01       	movw	r12, r20
+     214:	7b 01       	movw	r14, r22
+     216:	cc 0c       	add	r12, r12
+     218:	dd 1c       	adc	r13, r13
+     21a:	ee 1c       	adc	r14, r14
+     21c:	ff 1c       	adc	r15, r15
+     21e:	d7 01       	movw	r26, r14
+     220:	c6 01       	movw	r24, r12
+     222:	88 0f       	add	r24, r24
+     224:	99 1f       	adc	r25, r25
+     226:	aa 1f       	adc	r26, r26
+     228:	bb 1f       	adc	r27, r27
+     22a:	88 0f       	add	r24, r24
+     22c:	99 1f       	adc	r25, r25
+     22e:	aa 1f       	adc	r26, r26
+     230:	bb 1f       	adc	r27, r27
+     232:	88 0f       	add	r24, r24
+     234:	99 1f       	adc	r25, r25
+     236:	aa 1f       	adc	r26, r26
+     238:	bb 1f       	adc	r27, r27
+     23a:	88 0f       	add	r24, r24
+     23c:	99 1f       	adc	r25, r25
+     23e:	aa 1f       	adc	r26, r26
+     240:	bb 1f       	adc	r27, r27
+     242:	88 0f       	add	r24, r24
+     244:	99 1f       	adc	r25, r25
+     246:	aa 1f       	adc	r26, r26
+     248:	bb 1f       	adc	r27, r27
+     24a:	8c 19       	sub	r24, r12
+     24c:	9d 09       	sbc	r25, r13
+     24e:	ae 09       	sbc	r26, r14
+     250:	bf 09       	sbc	r27, r15
+     252:	bc 01       	movw	r22, r24
+     254:	cd 01       	movw	r24, r26
+     256:	60 0f       	add	r22, r16
+     258:	71 1f       	adc	r23, r17
+     25a:	82 1f       	adc	r24, r18
+     25c:	93 1f       	adc	r25, r19
+     25e:	9f 01       	movw	r18, r30
+     260:	40 e0       	ldi	r20, 0x00	; 0
+     262:	50 e0       	ldi	r21, 0x00	; 0
+     264:	0b d7       	rcall	.+3606   	; 0x107c <__udivmodsi4>
+		if(temp>0xFFFF) return 0xFFFF;
+     266:	21 15       	cp	r18, r1
+     268:	31 05       	cpc	r19, r1
+     26a:	81 e0       	ldi	r24, 0x01	; 1
+     26c:	48 07       	cpc	r20, r24
+     26e:	51 05       	cpc	r21, r1
+     270:	40 f4       	brcc	.+16     	; 0x282 <__DATA_REGION_LENGTH__+0x82>
+		else return (uint16_t)temp;
+     272:	c9 01       	movw	r24, r18
+     274:	08 c0       	rjmp	.+16     	; 0x286 <__DATA_REGION_LENGTH__+0x86>
+	}
+	else return 0;
+     276:	80 e0       	ldi	r24, 0x00	; 0
+     278:	90 e0       	ldi	r25, 0x00	; 0
+     27a:	05 c0       	rjmp	.+10     	; 0x286 <__DATA_REGION_LENGTH__+0x86>
+     27c:	80 e0       	ldi	r24, 0x00	; 0
+     27e:	90 e0       	ldi	r25, 0x00	; 0
+     280:	02 c0       	rjmp	.+4      	; 0x286 <__DATA_REGION_LENGTH__+0x86>
+{
+	if((supply)&&(out))
+	{
+		//Compensate for supply voltage changes
+		uint32_t temp = ((uint32_t)out*0xFFFF)/supply;
+		if(temp>0xFFFF) return 0xFFFF;
+     282:	8f ef       	ldi	r24, 0xFF	; 255
+     284:	9f ef       	ldi	r25, 0xFF	; 255
+		else return (uint16_t)temp;
+	}
+	else return 0;
+}
+     286:	1f 91       	pop	r17
+     288:	0f 91       	pop	r16
+     28a:	ff 90       	pop	r15
+     28c:	ef 90       	pop	r14
+     28e:	df 90       	pop	r13
+     290:	cf 90       	pop	r12
+     292:	08 95       	ret
+
+00000294 <SaturatedAdd_s32>:
+
+/**
+ * @brief Saturated 32bit add - can't overflow
+ */
+int32_t SaturatedAdd_s32(int32_t a,int32_t b)
+{
+     294:	0f 93       	push	r16
+     296:	1f 93       	push	r17
+	if(b<0)
+     298:	55 23       	and	r21, r21
+     29a:	84 f4       	brge	.+32     	; 0x2bc <SaturatedAdd_s32+0x28>
+	{
+		int32_t sum = a+b;
+     29c:	89 01       	movw	r16, r18
+     29e:	9a 01       	movw	r18, r20
+     2a0:	06 0f       	add	r16, r22
+     2a2:	17 1f       	adc	r17, r23
+     2a4:	28 1f       	adc	r18, r24
+     2a6:	39 1f       	adc	r19, r25
+		if(sum>a) return 0x80000000;	//Underflow happened
+     2a8:	60 17       	cp	r22, r16
+     2aa:	71 07       	cpc	r23, r17
+     2ac:	82 07       	cpc	r24, r18
+     2ae:	93 07       	cpc	r25, r19
+     2b0:	d4 f4       	brge	.+52     	; 0x2e6 <SaturatedAdd_s32+0x52>
+     2b2:	a0 e0       	ldi	r26, 0x00	; 0
+     2b4:	f0 e0       	ldi	r31, 0x00	; 0
+     2b6:	e0 e0       	ldi	r30, 0x00	; 0
+     2b8:	90 e8       	ldi	r25, 0x80	; 128
+     2ba:	22 c0       	rjmp	.+68     	; 0x300 <__stack+0x1>
+		else return sum;
+	}
+	else if(b>0)
+     2bc:	12 16       	cp	r1, r18
+     2be:	13 06       	cpc	r1, r19
+     2c0:	14 06       	cpc	r1, r20
+     2c2:	15 06       	cpc	r1, r21
+     2c4:	ac f4       	brge	.+42     	; 0x2f0 <SaturatedAdd_s32+0x5c>
+	{
+		int32_t sum = a+b;
+     2c6:	89 01       	movw	r16, r18
+     2c8:	9a 01       	movw	r18, r20
+     2ca:	06 0f       	add	r16, r22
+     2cc:	17 1f       	adc	r17, r23
+     2ce:	28 1f       	adc	r18, r24
+     2d0:	39 1f       	adc	r19, r25
+		if(sum<a) return 0x7FFFFFFF;	//Overflow happened
+     2d2:	06 17       	cp	r16, r22
+     2d4:	17 07       	cpc	r17, r23
+     2d6:	28 07       	cpc	r18, r24
+     2d8:	39 07       	cpc	r19, r25
+     2da:	74 f4       	brge	.+28     	; 0x2f8 <SaturatedAdd_s32+0x64>
+     2dc:	af ef       	ldi	r26, 0xFF	; 255
+     2de:	ff ef       	ldi	r31, 0xFF	; 255
+     2e0:	ef ef       	ldi	r30, 0xFF	; 255
+     2e2:	9f e7       	ldi	r25, 0x7F	; 127
+     2e4:	0d c0       	rjmp	.+26     	; 0x300 <__stack+0x1>
+{
+	if(b<0)
+	{
+		int32_t sum = a+b;
+		if(sum>a) return 0x80000000;	//Underflow happened
+		else return sum;
+     2e6:	a0 2f       	mov	r26, r16
+     2e8:	f1 2f       	mov	r31, r17
+     2ea:	e2 2f       	mov	r30, r18
+     2ec:	93 2f       	mov	r25, r19
+     2ee:	08 c0       	rjmp	.+16     	; 0x300 <__stack+0x1>
+	{
+		int32_t sum = a+b;
+		if(sum<a) return 0x7FFFFFFF;	//Overflow happened
+		else return sum;
+	}
+	else return a;
+     2f0:	a6 2f       	mov	r26, r22
+     2f2:	f7 2f       	mov	r31, r23
+     2f4:	e8 2f       	mov	r30, r24
+     2f6:	04 c0       	rjmp	.+8      	; 0x300 <__stack+0x1>
+	}
+	else if(b>0)
+	{
+		int32_t sum = a+b;
+		if(sum<a) return 0x7FFFFFFF;	//Overflow happened
+		else return sum;
+     2f8:	a0 2f       	mov	r26, r16
+     2fa:	f1 2f       	mov	r31, r17
+     2fc:	e2 2f       	mov	r30, r18
+     2fe:	93 2f       	mov	r25, r19
+	}
+	else return a;
+}
+     300:	6a 2f       	mov	r22, r26
+     302:	7f 2f       	mov	r23, r31
+     304:	8e 2f       	mov	r24, r30
+     306:	1f 91       	pop	r17
+     308:	0f 91       	pop	r16
+     30a:	08 95       	ret
+
+0000030c <SaturatedSub_s32>:
+
+/**
+ * @brief Saturated 32bit add - can't underflow
+ */
+int32_t SaturatedSub_s32(int32_t a,int32_t b)
+{
+     30c:	cf 92       	push	r12
+     30e:	df 92       	push	r13
+     310:	ef 92       	push	r14
+     312:	ff 92       	push	r15
+	if(b<0)
+     314:	55 23       	and	r21, r21
+     316:	84 f4       	brge	.+32     	; 0x338 <SaturatedSub_s32+0x2c>
+	{
+		int32_t sum = a-b;
+     318:	6b 01       	movw	r12, r22
+     31a:	7c 01       	movw	r14, r24
+     31c:	c2 1a       	sub	r12, r18
+     31e:	d3 0a       	sbc	r13, r19
+     320:	e4 0a       	sbc	r14, r20
+     322:	f5 0a       	sbc	r15, r21
+		if(sum<a) return 0x7FFFFFFF;	//Overflow happened
+     324:	c6 16       	cp	r12, r22
+     326:	d7 06       	cpc	r13, r23
+     328:	e8 06       	cpc	r14, r24
+     32a:	f9 06       	cpc	r15, r25
+     32c:	d4 f4       	brge	.+52     	; 0x362 <SaturatedSub_s32+0x56>
+     32e:	3f ef       	ldi	r19, 0xFF	; 255
+     330:	2f ef       	ldi	r18, 0xFF	; 255
+     332:	4f ef       	ldi	r20, 0xFF	; 255
+     334:	9f e7       	ldi	r25, 0x7F	; 127
+     336:	22 c0       	rjmp	.+68     	; 0x37c <SaturatedSub_s32+0x70>
+		else return sum;
+	}
+	else if(b>0)
+     338:	12 16       	cp	r1, r18
+     33a:	13 06       	cpc	r1, r19
+     33c:	14 06       	cpc	r1, r20
+     33e:	15 06       	cpc	r1, r21
+     340:	ac f4       	brge	.+42     	; 0x36c <SaturatedSub_s32+0x60>
+	{
+		int32_t sum = a-b;
+     342:	6b 01       	movw	r12, r22
+     344:	7c 01       	movw	r14, r24
+     346:	c2 1a       	sub	r12, r18
+     348:	d3 0a       	sbc	r13, r19
+     34a:	e4 0a       	sbc	r14, r20
+     34c:	f5 0a       	sbc	r15, r21
+		if(sum>a) return 0x80000000;	//Overflow happened
+     34e:	6c 15       	cp	r22, r12
+     350:	7d 05       	cpc	r23, r13
+     352:	8e 05       	cpc	r24, r14
+     354:	9f 05       	cpc	r25, r15
+     356:	74 f4       	brge	.+28     	; 0x374 <SaturatedSub_s32+0x68>
+     358:	30 e0       	ldi	r19, 0x00	; 0
+     35a:	20 e0       	ldi	r18, 0x00	; 0
+     35c:	40 e0       	ldi	r20, 0x00	; 0
+     35e:	90 e8       	ldi	r25, 0x80	; 128
+     360:	0d c0       	rjmp	.+26     	; 0x37c <SaturatedSub_s32+0x70>
+{
+	if(b<0)
+	{
+		int32_t sum = a-b;
+		if(sum<a) return 0x7FFFFFFF;	//Overflow happened
+		else return sum;
+     362:	3c 2d       	mov	r19, r12
+     364:	2d 2d       	mov	r18, r13
+     366:	4e 2d       	mov	r20, r14
+     368:	9f 2d       	mov	r25, r15
+     36a:	08 c0       	rjmp	.+16     	; 0x37c <SaturatedSub_s32+0x70>
+	{
+		int32_t sum = a-b;
+		if(sum>a) return 0x80000000;	//Overflow happened
+		else return sum;
+	}
+	else return a;
+     36c:	36 2f       	mov	r19, r22
+     36e:	27 2f       	mov	r18, r23
+     370:	48 2f       	mov	r20, r24
+     372:	04 c0       	rjmp	.+8      	; 0x37c <SaturatedSub_s32+0x70>
+	}
+	else if(b>0)
+	{
+		int32_t sum = a-b;
+		if(sum>a) return 0x80000000;	//Overflow happened
+		else return sum;
+     374:	3c 2d       	mov	r19, r12
+     376:	2d 2d       	mov	r18, r13
+     378:	4e 2d       	mov	r20, r14
+     37a:	9f 2d       	mov	r25, r15
+	}
+	else return a;
+}
+     37c:	63 2f       	mov	r22, r19
+     37e:	72 2f       	mov	r23, r18
+     380:	84 2f       	mov	r24, r20
+     382:	ff 90       	pop	r15
+     384:	ef 90       	pop	r14
+     386:	df 90       	pop	r13
+     388:	cf 90       	pop	r12
+     38a:	08 95       	ret
+
+0000038c <PID_Controller>:
+
+/**
+ * @brief Do PID control
+ */
+int32_t PID_Controller(uint16_t target, uint16_t feedback, pidDef* pidCtrler, uint8_t zeroInt)
+{
+     38c:	4f 92       	push	r4
+     38e:	5f 92       	push	r5
+     390:	6f 92       	push	r6
+     392:	7f 92       	push	r7
+     394:	8f 92       	push	r8
+     396:	9f 92       	push	r9
+     398:	af 92       	push	r10
+     39a:	bf 92       	push	r11
+     39c:	cf 92       	push	r12
+     39e:	df 92       	push	r13
+     3a0:	ef 92       	push	r14
+     3a2:	ff 92       	push	r15
+     3a4:	cf 93       	push	r28
+     3a6:	df 93       	push	r29
+     3a8:	ea 01       	movw	r28, r20
+     3aa:	72 2e       	mov	r7, r18
+	//Calculate error, e(t)
+	int32_t error = (int32_t)target - feedback;
+     3ac:	6c 01       	movw	r12, r24
+     3ae:	e1 2c       	mov	r14, r1
+     3b0:	f1 2c       	mov	r15, r1
+     3b2:	c6 1a       	sub	r12, r22
+     3b4:	d7 0a       	sbc	r13, r23
+     3b6:	e1 08       	sbc	r14, r1
+     3b8:	f1 08       	sbc	r15, r1
+	
+	//Calculate de/dt, protect against over/underflow
+	int32_t de = SaturatedSub_s32(error,pidCtrler->prev_error);	
+     3ba:	2e 81       	ldd	r18, Y+6	; 0x06
+     3bc:	3f 81       	ldd	r19, Y+7	; 0x07
+     3be:	48 85       	ldd	r20, Y+8	; 0x08
+     3c0:	59 85       	ldd	r21, Y+9	; 0x09
+     3c2:	c7 01       	movw	r24, r14
+     3c4:	b6 01       	movw	r22, r12
+     3c6:	a2 df       	rcall	.-188    	; 0x30c <SaturatedSub_s32>
+     3c8:	4b 01       	movw	r8, r22
+     3ca:	5c 01       	movw	r10, r24
+	pidCtrler->prev_error = error;
+     3cc:	ce 82       	std	Y+6, r12	; 0x06
+     3ce:	df 82       	std	Y+7, r13	; 0x07
+     3d0:	e8 86       	std	Y+8, r14	; 0x08
+     3d2:	f9 86       	std	Y+9, r15	; 0x09
+
+	//Calculate e*dt, protect against over/underflow
+	pidCtrler->integral = SaturatedAdd_s32(pidCtrler->integral,error);
+     3d4:	6a 85       	ldd	r22, Y+10	; 0x0a
+     3d6:	7b 85       	ldd	r23, Y+11	; 0x0b
+     3d8:	8c 85       	ldd	r24, Y+12	; 0x0c
+     3da:	9d 85       	ldd	r25, Y+13	; 0x0d
+     3dc:	a7 01       	movw	r20, r14
+     3de:	96 01       	movw	r18, r12
+     3e0:	59 df       	rcall	.-334    	; 0x294 <SaturatedAdd_s32>
+     3e2:	6a 87       	std	Y+10, r22	; 0x0a
+     3e4:	7b 87       	std	Y+11, r23	; 0x0b
+     3e6:	8c 87       	std	Y+12, r24	; 0x0c
+     3e8:	9d 87       	std	Y+13, r25	; 0x0d
+	
+	//Apply artifical integral value limit
+	if(zeroInt) pidCtrler->integral = 0;
+     3ea:	77 20       	and	r7, r7
+     3ec:	29 f0       	breq	.+10     	; 0x3f8 <PID_Controller+0x6c>
+     3ee:	1a 86       	std	Y+10, r1	; 0x0a
+     3f0:	1b 86       	std	Y+11, r1	; 0x0b
+     3f2:	1c 86       	std	Y+12, r1	; 0x0c
+     3f4:	1d 86       	std	Y+13, r1	; 0x0d
+     3f6:	1b c0       	rjmp	.+54     	; 0x42e <__LOCK_REGION_LENGTH__+0x2e>
+	else if( pidCtrler->integral > pidCtrler->integral_max ) pidCtrler->integral = pidCtrler->integral_max;
+     3f8:	4a 88       	ldd	r4, Y+18	; 0x12
+     3fa:	5b 88       	ldd	r5, Y+19	; 0x13
+     3fc:	6c 88       	ldd	r6, Y+20	; 0x14
+     3fe:	7d 88       	ldd	r7, Y+21	; 0x15
+     400:	46 16       	cp	r4, r22
+     402:	57 06       	cpc	r5, r23
+     404:	68 06       	cpc	r6, r24
+     406:	79 06       	cpc	r7, r25
+     408:	2c f4       	brge	.+10     	; 0x414 <__LOCK_REGION_LENGTH__+0x14>
+     40a:	4a 86       	std	Y+10, r4	; 0x0a
+     40c:	5b 86       	std	Y+11, r5	; 0x0b
+     40e:	6c 86       	std	Y+12, r6	; 0x0c
+     410:	7d 86       	std	Y+13, r7	; 0x0d
+     412:	0d c0       	rjmp	.+26     	; 0x42e <__LOCK_REGION_LENGTH__+0x2e>
+	else if( pidCtrler->integral < pidCtrler->integral_min ) pidCtrler->integral = pidCtrler->integral_min;
+     414:	4e 84       	ldd	r4, Y+14	; 0x0e
+     416:	5f 84       	ldd	r5, Y+15	; 0x0f
+     418:	68 88       	ldd	r6, Y+16	; 0x10
+     41a:	79 88       	ldd	r7, Y+17	; 0x11
+     41c:	64 15       	cp	r22, r4
+     41e:	75 05       	cpc	r23, r5
+     420:	86 05       	cpc	r24, r6
+     422:	97 05       	cpc	r25, r7
+     424:	24 f4       	brge	.+8      	; 0x42e <__LOCK_REGION_LENGTH__+0x2e>
+     426:	4a 86       	std	Y+10, r4	; 0x0a
+     428:	5b 86       	std	Y+11, r5	; 0x0b
+     42a:	6c 86       	std	Y+12, r6	; 0x0c
+     42c:	7d 86       	std	Y+13, r7	; 0x0d
+	
+	//Calculate Kp,Ki,Kd
+	int32_t kp = (error*pidCtrler->kp_mul)/pidCtrler->kp_div;
+     42e:	68 81       	ld	r22, Y
+     430:	70 e0       	ldi	r23, 0x00	; 0
+     432:	80 e0       	ldi	r24, 0x00	; 0
+     434:	90 e0       	ldi	r25, 0x00	; 0
+     436:	a7 01       	movw	r20, r14
+     438:	96 01       	movw	r18, r12
+     43a:	f3 d5       	rcall	.+3046   	; 0x1022 <__mulsi3>
+     43c:	29 81       	ldd	r18, Y+1	; 0x01
+     43e:	30 e0       	ldi	r19, 0x00	; 0
+     440:	40 e0       	ldi	r20, 0x00	; 0
+     442:	50 e0       	ldi	r21, 0x00	; 0
+     444:	3d d6       	rcall	.+3194   	; 0x10c0 <__divmodsi4>
+     446:	69 01       	movw	r12, r18
+     448:	7a 01       	movw	r14, r20
+	int32_t ki = (pidCtrler->integral*pidCtrler->ki_mul)/pidCtrler->ki_div;
+     44a:	2a 85       	ldd	r18, Y+10	; 0x0a
+     44c:	3b 85       	ldd	r19, Y+11	; 0x0b
+     44e:	4c 85       	ldd	r20, Y+12	; 0x0c
+     450:	5d 85       	ldd	r21, Y+13	; 0x0d
+     452:	6a 81       	ldd	r22, Y+2	; 0x02
+     454:	70 e0       	ldi	r23, 0x00	; 0
+     456:	80 e0       	ldi	r24, 0x00	; 0
+     458:	90 e0       	ldi	r25, 0x00	; 0
+     45a:	e3 d5       	rcall	.+3014   	; 0x1022 <__mulsi3>
+     45c:	2b 81       	ldd	r18, Y+3	; 0x03
+     45e:	30 e0       	ldi	r19, 0x00	; 0
+     460:	40 e0       	ldi	r20, 0x00	; 0
+     462:	50 e0       	ldi	r21, 0x00	; 0
+     464:	2d d6       	rcall	.+3162   	; 0x10c0 <__divmodsi4>
+     466:	29 01       	movw	r4, r18
+     468:	3a 01       	movw	r6, r20
+	int32_t kd = (de*pidCtrler->kd_mul)/pidCtrler->kd_div;
+     46a:	6c 81       	ldd	r22, Y+4	; 0x04
+     46c:	70 e0       	ldi	r23, 0x00	; 0
+     46e:	80 e0       	ldi	r24, 0x00	; 0
+     470:	90 e0       	ldi	r25, 0x00	; 0
+     472:	a5 01       	movw	r20, r10
+     474:	94 01       	movw	r18, r8
+     476:	d5 d5       	rcall	.+2986   	; 0x1022 <__mulsi3>
+     478:	2d 81       	ldd	r18, Y+5	; 0x05
+     47a:	30 e0       	ldi	r19, 0x00	; 0
+     47c:	40 e0       	ldi	r20, 0x00	; 0
+     47e:	50 e0       	ldi	r21, 0x00	; 0
+     480:	1f d6       	rcall	.+3134   	; 0x10c0 <__divmodsi4>
+     482:	49 01       	movw	r8, r18
+     484:	5a 01       	movw	r10, r20
+	
+	//Calculate output value
+	int32_t out = SaturatedAdd_s32(kp,ki);
+     486:	a3 01       	movw	r20, r6
+     488:	92 01       	movw	r18, r4
+     48a:	c7 01       	movw	r24, r14
+     48c:	b6 01       	movw	r22, r12
+     48e:	02 df       	rcall	.-508    	; 0x294 <SaturatedAdd_s32>
+	out = SaturatedAdd_s32(out,kd);
+     490:	a5 01       	movw	r20, r10
+     492:	94 01       	movw	r18, r8
+     494:	ff de       	rcall	.-514    	; 0x294 <SaturatedAdd_s32>
+	
+	return out;
+}
+     496:	df 91       	pop	r29
+     498:	cf 91       	pop	r28
+     49a:	ff 90       	pop	r15
+     49c:	ef 90       	pop	r14
+     49e:	df 90       	pop	r13
+     4a0:	cf 90       	pop	r12
+     4a2:	bf 90       	pop	r11
+     4a4:	af 90       	pop	r10
+     4a6:	9f 90       	pop	r9
+     4a8:	8f 90       	pop	r8
+     4aa:	7f 90       	pop	r7
+     4ac:	6f 90       	pop	r6
+     4ae:	5f 90       	pop	r5
+     4b0:	4f 90       	pop	r4
+     4b2:	08 95       	ret
+
+000004b4 <PercentOfValue_u16>:
+/**
+ * @brief Get X percent value of given value
+ */
+uint16_t PercentOfValue_u16(uint16_t value, uint8_t percent)
+{
+	uint32_t temp = ((uint32_t)value*percent)/100;
+     4b4:	9c 01       	movw	r18, r24
+     4b6:	40 e0       	ldi	r20, 0x00	; 0
+     4b8:	50 e0       	ldi	r21, 0x00	; 0
+     4ba:	70 e0       	ldi	r23, 0x00	; 0
+     4bc:	80 e0       	ldi	r24, 0x00	; 0
+     4be:	90 e0       	ldi	r25, 0x00	; 0
+     4c0:	b0 d5       	rcall	.+2912   	; 0x1022 <__mulsi3>
+     4c2:	24 e6       	ldi	r18, 0x64	; 100
+     4c4:	30 e0       	ldi	r19, 0x00	; 0
+     4c6:	40 e0       	ldi	r20, 0x00	; 0
+     4c8:	50 e0       	ldi	r21, 0x00	; 0
+     4ca:	d8 d5       	rcall	.+2992   	; 0x107c <__udivmodsi4>
+	if(temp>0x0000FFFF) return 0xFFFF;
+     4cc:	21 15       	cp	r18, r1
+     4ce:	31 05       	cpc	r19, r1
+     4d0:	81 e0       	ldi	r24, 0x01	; 1
+     4d2:	48 07       	cpc	r20, r24
+     4d4:	51 05       	cpc	r21, r1
+     4d6:	10 f4       	brcc	.+4      	; 0x4dc <PercentOfValue_u16+0x28>
+	else return (uint16_t)temp;
+     4d8:	c9 01       	movw	r24, r18
+     4da:	08 95       	ret
+ * @brief Get X percent value of given value
+ */
+uint16_t PercentOfValue_u16(uint16_t value, uint8_t percent)
+{
+	uint32_t temp = ((uint32_t)value*percent)/100;
+	if(temp>0x0000FFFF) return 0xFFFF;
+     4dc:	8f ef       	ldi	r24, 0xFF	; 255
+     4de:	9f ef       	ldi	r25, 0xFF	; 255
+	else return (uint16_t)temp;
+     4e0:	08 95       	ret
+
+000004e2 <Get_Warnings>:
+
+/**
+ * @brief Process fault warning states
+ */
+void Get_Warnings(uint16_t set_i, uint16_t set_u, measDef* meas, warnDef* warn )
+{
+     4e2:	cf 92       	push	r12
+     4e4:	df 92       	push	r13
+     4e6:	ef 92       	push	r14
+     4e8:	ff 92       	push	r15
+     4ea:	0f 93       	push	r16
+     4ec:	1f 93       	push	r17
+     4ee:	cf 93       	push	r28
+     4f0:	df 93       	push	r29
+     4f2:	8b 01       	movw	r16, r22
+     4f4:	7a 01       	movw	r14, r20
+     4f6:	e9 01       	movw	r28, r18
+	//Check load loss condition
+	if((set_u!=0)&&(meas->current==0)) warn->load_loss = 1;
+     4f8:	67 2b       	or	r22, r23
+     4fa:	41 f0       	breq	.+16     	; 0x50c <Get_Warnings+0x2a>
+     4fc:	fa 01       	movw	r30, r20
+     4fe:	22 81       	ldd	r18, Z+2	; 0x02
+     500:	33 81       	ldd	r19, Z+3	; 0x03
+     502:	23 2b       	or	r18, r19
+     504:	19 f4       	brne	.+6      	; 0x50c <Get_Warnings+0x2a>
+     506:	21 e0       	ldi	r18, 0x01	; 1
+     508:	28 83       	st	Y, r18
+     50a:	01 c0       	rjmp	.+2      	; 0x50e <Get_Warnings+0x2c>
+	else warn->load_loss = 0;
+     50c:	18 82       	st	Y, r1
+	
+	//Determine overcurrent threshold
+	uint16_t ocp_limit = COIL_MAX_OUT_CURRENT;
+	if(set_u!=0) ocp_limit = PercentOfValue_u16(set_i,COIL_OCP_LIMIT_PERCENT);
+     50e:	01 15       	cp	r16, r1
+     510:	11 05       	cpc	r17, r1
+     512:	19 f0       	breq	.+6      	; 0x51a <Get_Warnings+0x38>
+     514:	60 ea       	ldi	r22, 0xA0	; 160
+     516:	ce df       	rcall	.-100    	; 0x4b4 <PercentOfValue_u16>
+     518:	02 c0       	rjmp	.+4      	; 0x51e <Get_Warnings+0x3c>
+	//Check load loss condition
+	if((set_u!=0)&&(meas->current==0)) warn->load_loss = 1;
+	else warn->load_loss = 0;
+	
+	//Determine overcurrent threshold
+	uint16_t ocp_limit = COIL_MAX_OUT_CURRENT;
+     51a:	80 e7       	ldi	r24, 0x70	; 112
+     51c:	97 e1       	ldi	r25, 0x17	; 23
+	if(set_u!=0) ocp_limit = PercentOfValue_u16(set_i,COIL_OCP_LIMIT_PERCENT);
+	
+	//Check overcurrent condition
+	if((meas->current)>ocp_limit) warn->overcurrnet = 1;
+     51e:	f7 01       	movw	r30, r14
+     520:	22 81       	ldd	r18, Z+2	; 0x02
+     522:	33 81       	ldd	r19, Z+3	; 0x03
+     524:	82 17       	cp	r24, r18
+     526:	93 07       	cpc	r25, r19
+     528:	18 f4       	brcc	.+6      	; 0x530 <Get_Warnings+0x4e>
+     52a:	81 e0       	ldi	r24, 0x01	; 1
+     52c:	89 83       	std	Y+1, r24	; 0x01
+     52e:	01 c0       	rjmp	.+2      	; 0x532 <Get_Warnings+0x50>
+	else warn->overcurrnet = 0;
+     530:	19 82       	std	Y+1, r1	; 0x01
+	
+	//Determine over/under voltage threshold
+	uint16_t ovp_limit = COIL_OUT_OVP_LIMIT_DEFAULT;
+	uint16_t uvp_limit = 0;
+	
+	if(set_u!=0) ovp_limit = PercentOfValue_u16(set_u,COIL_OUT_OVP_LIMIT_PERCENT);
+     532:	01 15       	cp	r16, r1
+     534:	11 05       	cpc	r17, r1
+     536:	29 f0       	breq	.+10     	; 0x542 <Get_Warnings+0x60>
+     538:	68 e7       	ldi	r22, 0x78	; 120
+     53a:	c8 01       	movw	r24, r16
+     53c:	bb df       	rcall	.-138    	; 0x4b4 <PercentOfValue_u16>
+     53e:	6c 01       	movw	r12, r24
+     540:	06 c0       	rjmp	.+12     	; 0x54e <Get_Warnings+0x6c>
+	//Check overcurrent condition
+	if((meas->current)>ocp_limit) warn->overcurrnet = 1;
+	else warn->overcurrnet = 0;
+	
+	//Determine over/under voltage threshold
+	uint16_t ovp_limit = COIL_OUT_OVP_LIMIT_DEFAULT;
+     542:	0f 2e       	mov	r0, r31
+     544:	f0 e7       	ldi	r31, 0x70	; 112
+     546:	cf 2e       	mov	r12, r31
+     548:	f7 e1       	ldi	r31, 0x17	; 23
+     54a:	df 2e       	mov	r13, r31
+     54c:	f0 2d       	mov	r31, r0
+	uint16_t uvp_limit = 0;
+	
+	if(set_u!=0) ovp_limit = PercentOfValue_u16(set_u,COIL_OUT_OVP_LIMIT_PERCENT);
+	if(set_u!=0) uvp_limit = PercentOfValue_u16(set_u,COIL_OUT_UVP_LIMIT_PERCENT);
+     54e:	01 15       	cp	r16, r1
+     550:	11 05       	cpc	r17, r1
+     552:	21 f0       	breq	.+8      	; 0x55c <Get_Warnings+0x7a>
+     554:	60 e5       	ldi	r22, 0x50	; 80
+     556:	c8 01       	movw	r24, r16
+     558:	ad df       	rcall	.-166    	; 0x4b4 <PercentOfValue_u16>
+     55a:	02 c0       	rjmp	.+4      	; 0x560 <Get_Warnings+0x7e>
+	if((meas->current)>ocp_limit) warn->overcurrnet = 1;
+	else warn->overcurrnet = 0;
+	
+	//Determine over/under voltage threshold
+	uint16_t ovp_limit = COIL_OUT_OVP_LIMIT_DEFAULT;
+	uint16_t uvp_limit = 0;
+     55c:	80 e0       	ldi	r24, 0x00	; 0
+     55e:	90 e0       	ldi	r25, 0x00	; 0
+	
+	if(set_u!=0) ovp_limit = PercentOfValue_u16(set_u,COIL_OUT_OVP_LIMIT_PERCENT);
+	if(set_u!=0) uvp_limit = PercentOfValue_u16(set_u,COIL_OUT_UVP_LIMIT_PERCENT);
+	
+	//Check overvolatge condition
+	if((meas->voltage)>ovp_limit) warn->uout_high = 1;
+     560:	f7 01       	movw	r30, r14
+     562:	24 81       	ldd	r18, Z+4	; 0x04
+     564:	35 81       	ldd	r19, Z+5	; 0x05
+     566:	c2 16       	cp	r12, r18
+     568:	d3 06       	cpc	r13, r19
+     56a:	18 f4       	brcc	.+6      	; 0x572 <Get_Warnings+0x90>
+     56c:	21 e0       	ldi	r18, 0x01	; 1
+     56e:	2a 83       	std	Y+2, r18	; 0x02
+     570:	01 c0       	rjmp	.+2      	; 0x574 <Get_Warnings+0x92>
+	else warn->uout_high = 0;
+     572:	1a 82       	std	Y+2, r1	; 0x02
+	
+	//Check undervolatge condition
+	if(((meas->voltage)<uvp_limit)&&(uvp_limit!=0)) warn->uout_low = 1;
+     574:	f7 01       	movw	r30, r14
+     576:	24 81       	ldd	r18, Z+4	; 0x04
+     578:	35 81       	ldd	r19, Z+5	; 0x05
+     57a:	28 17       	cp	r18, r24
+     57c:	39 07       	cpc	r19, r25
+     57e:	28 f4       	brcc	.+10     	; 0x58a <Get_Warnings+0xa8>
+     580:	89 2b       	or	r24, r25
+     582:	19 f0       	breq	.+6      	; 0x58a <Get_Warnings+0xa8>
+     584:	81 e0       	ldi	r24, 0x01	; 1
+     586:	8b 83       	std	Y+3, r24	; 0x03
+     588:	01 c0       	rjmp	.+2      	; 0x58c <Get_Warnings+0xaa>
+	else warn->uout_low = 0;
+     58a:	1b 82       	std	Y+3, r1	; 0x03
+	
+	//Check supply limits
+	if(((meas->supply)<COIL_SUPPLY_MIN)||((meas->supply)>COIL_SUPPLY_MAX)) warn->supply = 1;
+     58c:	f7 01       	movw	r30, r14
+     58e:	80 81       	ld	r24, Z
+     590:	91 81       	ldd	r25, Z+1	; 0x01
+     592:	80 57       	subi	r24, 0x70	; 112
+     594:	97 41       	sbci	r25, 0x17	; 23
+     596:	81 3e       	cpi	r24, 0xE1	; 225
+     598:	9e 42       	sbci	r25, 0x2E	; 46
+     59a:	18 f0       	brcs	.+6      	; 0x5a2 <Get_Warnings+0xc0>
+     59c:	81 e0       	ldi	r24, 0x01	; 1
+     59e:	8c 83       	std	Y+4, r24	; 0x04
+     5a0:	01 c0       	rjmp	.+2      	; 0x5a4 <Get_Warnings+0xc2>
+	else warn->supply = 0;
+     5a2:	1c 82       	std	Y+4, r1	; 0x04
+}
+     5a4:	df 91       	pop	r29
+     5a6:	cf 91       	pop	r28
+     5a8:	1f 91       	pop	r17
+     5aa:	0f 91       	pop	r16
+     5ac:	ff 90       	pop	r15
+     5ae:	ef 90       	pop	r14
+     5b0:	df 90       	pop	r13
+     5b2:	cf 90       	pop	r12
+     5b4:	08 95       	ret
+
+000005b6 <COILDRV_Process>:
+
+/**
+ * @brief Main coil driver processing loop
+ */
+void COILDRV_Process(void)
+{
+     5b6:	cf 93       	push	r28
+     5b8:	df 93       	push	r29
+	uint16_t new_output_voltage = 0;
+	
+	//Protections
+	Get_Warnings(target_current,set_voltage,&measurements,&warnings);
+     5ba:	60 91 25 01 	lds	r22, 0x0125	; 0x800125 <set_voltage>
+     5be:	70 91 26 01 	lds	r23, 0x0126	; 0x800126 <set_voltage+0x1>
+     5c2:	22 e0       	ldi	r18, 0x02	; 2
+     5c4:	31 e0       	ldi	r19, 0x01	; 1
+     5c6:	47 e0       	ldi	r20, 0x07	; 7
+     5c8:	51 e0       	ldi	r21, 0x01	; 1
+     5ca:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <target_current>
+     5ce:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <target_current+0x1>
+     5d2:	87 df       	rcall	.-242    	; 0x4e2 <Get_Warnings>
+	uint8_t fault = Process_Faults(&warnings);
+     5d4:	82 e0       	ldi	r24, 0x02	; 2
+     5d6:	91 e0       	ldi	r25, 0x01	; 1
+     5d8:	ab dd       	rcall	.-1194   	; 0x130 <Process_Faults>
+	
+	if(fault)
+     5da:	88 23       	and	r24, r24
+     5dc:	49 f0       	breq	.+18     	; 0x5f0 <COILDRV_Process+0x3a>
+	{
+		//Turn off output, wait for fault to end
+		HAL_SetPWM(HAL_PWM_CH_DCCD,0);
+     5de:	60 e0       	ldi	r22, 0x00	; 0
+     5e0:	81 e0       	ldi	r24, 0x01	; 1
+     5e2:	89 d3       	rcall	.+1810   	; 0xcf6 <HAL_SetPWM>
+		PID_Reset(&pidData);
+     5e4:	8d e0       	ldi	r24, 0x0D	; 13
+     5e6:	91 e0       	ldi	r25, 0x01	; 1
+     5e8:	c4 dd       	rcall	.-1144   	; 0x172 <PID_Reset>
+/**
+ * @brief Main coil driver processing loop
+ */
+void COILDRV_Process(void)
+{
+	uint16_t new_output_voltage = 0;
+     5ea:	c0 e0       	ldi	r28, 0x00	; 0
+     5ec:	d0 e0       	ldi	r29, 0x00	; 0
+     5ee:	28 c0       	rjmp	.+80     	; 0x640 <COILDRV_Process+0x8a>
+		PID_Reset(&pidData);
+	}
+	else
+	{
+		//Get PID controller output
+		int32_t pidout = PID_Controller(target_current,measurements.current,&pidData,warnings.load_loss);
+     5f0:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <warnings>
+     5f4:	60 91 09 01 	lds	r22, 0x0109	; 0x800109 <measurements+0x2>
+     5f8:	70 91 0a 01 	lds	r23, 0x010A	; 0x80010a <measurements+0x3>
+     5fc:	4d e0       	ldi	r20, 0x0D	; 13
+     5fe:	51 e0       	ldi	r21, 0x01	; 1
+     600:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <target_current>
+     604:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <target_current+0x1>
+     608:	c1 de       	rcall	.-638    	; 0x38c <PID_Controller>
+			
+		//Do limiting and casting
+		if(pidout>COIL_MAX_OUT_VOLTAGE) new_output_voltage = COIL_MAX_OUT_VOLTAGE;
+     60a:	61 31       	cpi	r22, 0x11	; 17
+     60c:	27 e2       	ldi	r18, 0x27	; 39
+     60e:	72 07       	cpc	r23, r18
+     610:	81 05       	cpc	r24, r1
+     612:	91 05       	cpc	r25, r1
+     614:	3c f4       	brge	.+14     	; 0x624 <COILDRV_Process+0x6e>
+		else if(pidout<COIL_MIN_OUT_VOLTAGE) new_output_voltage = 0;
+     616:	64 36       	cpi	r22, 0x64	; 100
+     618:	71 05       	cpc	r23, r1
+     61a:	81 05       	cpc	r24, r1
+     61c:	91 05       	cpc	r25, r1
+     61e:	2c f0       	brlt	.+10     	; 0x62a <COILDRV_Process+0x74>
+		else new_output_voltage = (uint16_t) pidout;
+     620:	eb 01       	movw	r28, r22
+     622:	05 c0       	rjmp	.+10     	; 0x62e <COILDRV_Process+0x78>
+	{
+		//Get PID controller output
+		int32_t pidout = PID_Controller(target_current,measurements.current,&pidData,warnings.load_loss);
+			
+		//Do limiting and casting
+		if(pidout>COIL_MAX_OUT_VOLTAGE) new_output_voltage = COIL_MAX_OUT_VOLTAGE;
+     624:	c0 e1       	ldi	r28, 0x10	; 16
+     626:	d7 e2       	ldi	r29, 0x27	; 39
+     628:	02 c0       	rjmp	.+4      	; 0x62e <COILDRV_Process+0x78>
+		else if(pidout<COIL_MIN_OUT_VOLTAGE) new_output_voltage = 0;
+     62a:	c0 e0       	ldi	r28, 0x00	; 0
+     62c:	d0 e0       	ldi	r29, 0x00	; 0
+		else new_output_voltage = (uint16_t) pidout;
+		
+		//Convert set voltage to PWM value, to get set with current supply voltage
+		uint16_t pwm = OutputVoltageToPWM(new_output_voltage,measurements.supply);
+     62e:	60 91 07 01 	lds	r22, 0x0107	; 0x800107 <measurements>
+     632:	70 91 08 01 	lds	r23, 0x0108	; 0x800108 <measurements+0x1>
+     636:	ce 01       	movw	r24, r28
+     638:	a6 dd       	rcall	.-1204   	; 0x186 <OutputVoltageToPWM>
+		HAL_SetPWM16b(HAL_PWM_CH_DCCD,pwm);
+     63a:	bc 01       	movw	r22, r24
+     63c:	81 e0       	ldi	r24, 0x01	; 1
+     63e:	79 d3       	rcall	.+1778   	; 0xd32 <HAL_SetPWM16b>
+	}
+
+	set_voltage	= new_output_voltage;
+     640:	d0 93 26 01 	sts	0x0126, r29	; 0x800126 <set_voltage+0x1>
+     644:	c0 93 25 01 	sts	0x0125, r28	; 0x800125 <set_voltage>
+}
+     648:	df 91       	pop	r29
+     64a:	cf 91       	pop	r28
+     64c:	08 95       	ret
+
+0000064e <DSPDRV_Init>:
+void DSPDRV_SetDisplayBW(uint8_t image)
+{
+	//remove extra bits
+	image &= 0x3F;
+	
+	set_image=image;
+     64e:	a5 d2       	rcall	.+1354   	; 0xb9a <HAL_InitOutputs>
+     650:	60 e0       	ldi	r22, 0x00	; 0
+     652:	82 e0       	ldi	r24, 0x02	; 2
+     654:	50 d3       	rcall	.+1696   	; 0xcf6 <HAL_SetPWM>
+     656:	80 e0       	ldi	r24, 0x00	; 0
+     658:	8c d3       	rcall	.+1816   	; 0xd72 <HAL_SetLEDs>
+     65a:	10 92 27 01 	sts	0x0127, r1	; 0x800127 <set_image>
+     65e:	08 95       	ret
+
+00000660 <DSPDRV_SetDisplayVal>:
+ */
+void DSPDRV_SetDisplayVal(uint8_t value, uint8_t style)
+{
+	uint8_t image = 0x00;
+	
+	switch(style)
+     660:	61 30       	cpi	r22, 0x01	; 1
+     662:	71 f0       	breq	.+28     	; 0x680 <DSPDRV_SetDisplayVal+0x20>
+     664:	62 30       	cpi	r22, 0x02	; 2
+     666:	11 f5       	brne	.+68     	; 0x6ac <DSPDRV_SetDisplayVal+0x4c>
+	{
+		case LED_DSP_DOT20:
+			//dot
+			if(value<20) image = 0x01;
+     668:	84 31       	cpi	r24, 0x14	; 20
+     66a:	60 f1       	brcs	.+88     	; 0x6c4 <DSPDRV_SetDisplayVal+0x64>
+			else if(value<40) image = 0x02;
+     66c:	88 32       	cpi	r24, 0x28	; 40
+     66e:	60 f1       	brcs	.+88     	; 0x6c8 <DSPDRV_SetDisplayVal+0x68>
+			else if(value<60) image = 0x04;
+     670:	8c 33       	cpi	r24, 0x3C	; 60
+     672:	60 f1       	brcs	.+88     	; 0x6cc <DSPDRV_SetDisplayVal+0x6c>
+			else if(value<80) image = 0x08;
+     674:	80 35       	cpi	r24, 0x50	; 80
+     676:	60 f1       	brcs	.+88     	; 0x6d0 <DSPDRV_SetDisplayVal+0x70>
+			else if(value<100) image = 0x10;
+     678:	84 36       	cpi	r24, 0x64	; 100
+     67a:	60 f5       	brcc	.+88     	; 0x6d4 <DSPDRV_SetDisplayVal+0x74>
+     67c:	80 e1       	ldi	r24, 0x10	; 16
+     67e:	49 c0       	rjmp	.+146    	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else image = 0x20;
+			break;
+			
+		case LED_DSP_DOT10:
+			//extended dot
+			if(value<10) image = 0x01;       //0
+     680:	8a 30       	cpi	r24, 0x0A	; 10
+     682:	50 f1       	brcs	.+84     	; 0x6d8 <DSPDRV_SetDisplayVal+0x78>
+			else if(value<20) image = 0x03;  //10
+     684:	84 31       	cpi	r24, 0x14	; 20
+     686:	50 f1       	brcs	.+84     	; 0x6dc <DSPDRV_SetDisplayVal+0x7c>
+			else if(value<30) image = 0x02;  //20
+     688:	8e 31       	cpi	r24, 0x1E	; 30
+     68a:	50 f1       	brcs	.+84     	; 0x6e0 <DSPDRV_SetDisplayVal+0x80>
+			else if(value<40) image = 0x06;  //30
+     68c:	88 32       	cpi	r24, 0x28	; 40
+     68e:	50 f1       	brcs	.+84     	; 0x6e4 <DSPDRV_SetDisplayVal+0x84>
+			else if(value<50) image = 0x04;  //40
+     690:	82 33       	cpi	r24, 0x32	; 50
+     692:	50 f1       	brcs	.+84     	; 0x6e8 <DSPDRV_SetDisplayVal+0x88>
+			else if(value<60) image = 0x0C;  //50
+     694:	8c 33       	cpi	r24, 0x3C	; 60
+     696:	50 f1       	brcs	.+84     	; 0x6ec <DSPDRV_SetDisplayVal+0x8c>
+			else if(value<70) image = 0x08;  //60
+     698:	86 34       	cpi	r24, 0x46	; 70
+     69a:	50 f1       	brcs	.+84     	; 0x6f0 <DSPDRV_SetDisplayVal+0x90>
+			else if(value<80) image = 0x18;  //70
+     69c:	80 35       	cpi	r24, 0x50	; 80
+     69e:	50 f1       	brcs	.+84     	; 0x6f4 <DSPDRV_SetDisplayVal+0x94>
+			else if(value<90) image = 0x10;  //80
+     6a0:	8a 35       	cpi	r24, 0x5A	; 90
+     6a2:	50 f1       	brcs	.+84     	; 0x6f8 <DSPDRV_SetDisplayVal+0x98>
+			else if(value<100) image = 0x30; //90
+     6a4:	84 36       	cpi	r24, 0x64	; 100
+     6a6:	50 f5       	brcc	.+84     	; 0x6fc <DSPDRV_SetDisplayVal+0x9c>
+     6a8:	80 e3       	ldi	r24, 0x30	; 48
+     6aa:	33 c0       	rjmp	.+102    	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else image = 0x20;               //100
+			break;
+
+		default:
+			//bar
+			if(value<20) image = 0x01;
+     6ac:	84 31       	cpi	r24, 0x14	; 20
+     6ae:	40 f1       	brcs	.+80     	; 0x700 <DSPDRV_SetDisplayVal+0xa0>
+			else if(value<40) image = 0x03;
+     6b0:	88 32       	cpi	r24, 0x28	; 40
+     6b2:	40 f1       	brcs	.+80     	; 0x704 <DSPDRV_SetDisplayVal+0xa4>
+			else if(value<60) image = 0x07;
+     6b4:	8c 33       	cpi	r24, 0x3C	; 60
+     6b6:	40 f1       	brcs	.+80     	; 0x708 <DSPDRV_SetDisplayVal+0xa8>
+			else if(value<80) image = 0x0F;
+     6b8:	80 35       	cpi	r24, 0x50	; 80
+     6ba:	40 f1       	brcs	.+80     	; 0x70c <DSPDRV_SetDisplayVal+0xac>
+			else if(value<100) image = 0x1F;
+     6bc:	84 36       	cpi	r24, 0x64	; 100
+     6be:	40 f5       	brcc	.+80     	; 0x710 <DSPDRV_SetDisplayVal+0xb0>
+     6c0:	8f e1       	ldi	r24, 0x1F	; 31
+     6c2:	27 c0       	rjmp	.+78     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+	
+	switch(style)
+	{
+		case LED_DSP_DOT20:
+			//dot
+			if(value<20) image = 0x01;
+     6c4:	81 e0       	ldi	r24, 0x01	; 1
+     6c6:	25 c0       	rjmp	.+74     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<40) image = 0x02;
+     6c8:	82 e0       	ldi	r24, 0x02	; 2
+     6ca:	23 c0       	rjmp	.+70     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<60) image = 0x04;
+     6cc:	84 e0       	ldi	r24, 0x04	; 4
+     6ce:	21 c0       	rjmp	.+66     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<80) image = 0x08;
+     6d0:	88 e0       	ldi	r24, 0x08	; 8
+     6d2:	1f c0       	rjmp	.+62     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<100) image = 0x10;
+			else image = 0x20;
+     6d4:	80 e2       	ldi	r24, 0x20	; 32
+     6d6:	1d c0       	rjmp	.+58     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			break;
+			
+		case LED_DSP_DOT10:
+			//extended dot
+			if(value<10) image = 0x01;       //0
+     6d8:	81 e0       	ldi	r24, 0x01	; 1
+     6da:	1b c0       	rjmp	.+54     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<20) image = 0x03;  //10
+     6dc:	83 e0       	ldi	r24, 0x03	; 3
+     6de:	19 c0       	rjmp	.+50     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<30) image = 0x02;  //20
+     6e0:	82 e0       	ldi	r24, 0x02	; 2
+     6e2:	17 c0       	rjmp	.+46     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<40) image = 0x06;  //30
+     6e4:	86 e0       	ldi	r24, 0x06	; 6
+     6e6:	15 c0       	rjmp	.+42     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<50) image = 0x04;  //40
+     6e8:	84 e0       	ldi	r24, 0x04	; 4
+     6ea:	13 c0       	rjmp	.+38     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<60) image = 0x0C;  //50
+     6ec:	8c e0       	ldi	r24, 0x0C	; 12
+     6ee:	11 c0       	rjmp	.+34     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<70) image = 0x08;  //60
+     6f0:	88 e0       	ldi	r24, 0x08	; 8
+     6f2:	0f c0       	rjmp	.+30     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<80) image = 0x18;  //70
+     6f4:	88 e1       	ldi	r24, 0x18	; 24
+     6f6:	0d c0       	rjmp	.+26     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<90) image = 0x10;  //80
+     6f8:	80 e1       	ldi	r24, 0x10	; 16
+     6fa:	0b c0       	rjmp	.+22     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<100) image = 0x30; //90
+			else image = 0x20;               //100
+     6fc:	80 e2       	ldi	r24, 0x20	; 32
+     6fe:	09 c0       	rjmp	.+18     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			break;
+
+		default:
+			//bar
+			if(value<20) image = 0x01;
+     700:	81 e0       	ldi	r24, 0x01	; 1
+     702:	07 c0       	rjmp	.+14     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<40) image = 0x03;
+     704:	83 e0       	ldi	r24, 0x03	; 3
+     706:	05 c0       	rjmp	.+10     	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<60) image = 0x07;
+     708:	87 e0       	ldi	r24, 0x07	; 7
+     70a:	03 c0       	rjmp	.+6      	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<80) image = 0x0F;
+     70c:	8f e0       	ldi	r24, 0x0F	; 15
+     70e:	01 c0       	rjmp	.+2      	; 0x712 <DSPDRV_SetDisplayVal+0xb2>
+			else if(value<100) image = 0x1F;
+			else image = 0x3F;
+     710:	8f e3       	ldi	r24, 0x3F	; 63
+			break;
+	}
+	
+	set_image = image;
+     712:	80 93 27 01 	sts	0x0127, r24	; 0x800127 <set_image>
+     716:	08 95       	ret
+
+00000718 <DSPDRV_RefreshDisplay>:
+/**
+ * @brief Applies set image
+ */
+void DSPDRV_RefreshDisplay(void)
+{
+	HAL_SetLEDs(set_image);
+     718:	80 91 27 01 	lds	r24, 0x0127	; 0x800127 <set_image>
+     71c:	2a d3       	rcall	.+1620   	; 0xd72 <HAL_SetLEDs>
+     71e:	08 95       	ret
+
+00000720 <DSPDRV_SetDisplayBrightness>:
+ * @brief Set display brightness
+ * @param [in] lvl Percent value [0..100]
+ */
+void DSPDRV_SetDisplayBrightness(uint8_t lvl)
+{
+	HAL_SetPWM(HAL_PWM_CH_LED,lvl);
+     720:	68 2f       	mov	r22, r24
+     722:	82 e0       	ldi	r24, 0x02	; 2
+     724:	e8 d2       	rcall	.+1488   	; 0xcf6 <HAL_SetPWM>
+     726:	08 95       	ret
+
+00000728 <INDRV_Init>:
+/**
+ * @brief Initializes Inputs Driver
+ * @param [in] initCfg Inputs configuration
+ */
+void INDRV_Init(inInitDef* initCfg)
+{
+     728:	cf 93       	push	r28
+     72a:	df 93       	push	r29
+     72c:	00 d0       	rcall	.+0      	; 0x72e <INDRV_Init+0x6>
+     72e:	1f 92       	push	r1
+     730:	cd b7       	in	r28, 0x3d	; 61
+     732:	de b7       	in	r29, 0x3e	; 62
+     734:	fc 01       	movw	r30, r24
+	//HV input configuration
+	dimm.type = INPUT_MODE_DIGITAL;
+     736:	ad e4       	ldi	r26, 0x4D	; 77
+     738:	b1 e0       	ldi	r27, 0x01	; 1
+     73a:	1c 92       	st	X, r1
+	dimm.act_lvl = initCfg->act_lvl_dimm;
+     73c:	80 81       	ld	r24, Z
+     73e:	11 96       	adiw	r26, 0x01	; 1
+     740:	8c 93       	st	X, r24
+     742:	11 97       	sbiw	r26, 0x01	; 1
+	dimm.dbnc_timer = 0;
+     744:	12 96       	adiw	r26, 0x02	; 2
+     746:	1c 92       	st	X, r1
+     748:	12 97       	sbiw	r26, 0x02	; 2
+	dimm.state = 0;
+     74a:	13 96       	adiw	r26, 0x03	; 3
+     74c:	1c 92       	st	X, r1
+     74e:	13 97       	sbiw	r26, 0x03	; 3
+	dimm.changed = 0;
+     750:	14 96       	adiw	r26, 0x04	; 4
+     752:	1c 92       	st	X, r1
+	
+	brake.type = INPUT_MODE_DIGITAL;
+     754:	a8 e4       	ldi	r26, 0x48	; 72
+     756:	b1 e0       	ldi	r27, 0x01	; 1
+     758:	1c 92       	st	X, r1
+	brake.act_lvl = initCfg->act_lvl_brake;
+     75a:	81 81       	ldd	r24, Z+1	; 0x01
+     75c:	11 96       	adiw	r26, 0x01	; 1
+     75e:	8c 93       	st	X, r24
+     760:	11 97       	sbiw	r26, 0x01	; 1
+	brake.dbnc_timer = 0;
+     762:	12 96       	adiw	r26, 0x02	; 2
+     764:	1c 92       	st	X, r1
+     766:	12 97       	sbiw	r26, 0x02	; 2
+	brake.state = 0;
+     768:	13 96       	adiw	r26, 0x03	; 3
+     76a:	1c 92       	st	X, r1
+     76c:	13 97       	sbiw	r26, 0x03	; 3
+	brake.changed = 0;
+     76e:	14 96       	adiw	r26, 0x04	; 4
+     770:	1c 92       	st	X, r1
+	
+	hbrake.type = INPUT_MODE_DIGITAL;
+     772:	a3 e4       	ldi	r26, 0x43	; 67
+     774:	b1 e0       	ldi	r27, 0x01	; 1
+     776:	1c 92       	st	X, r1
+	hbrake.act_lvl = initCfg->act_lvl_hbrake;
+     778:	82 81       	ldd	r24, Z+2	; 0x02
+     77a:	11 96       	adiw	r26, 0x01	; 1
+     77c:	8c 93       	st	X, r24
+     77e:	11 97       	sbiw	r26, 0x01	; 1
+	hbrake.dbnc_timer = 0;
+     780:	12 96       	adiw	r26, 0x02	; 2
+     782:	1c 92       	st	X, r1
+     784:	12 97       	sbiw	r26, 0x02	; 2
+	hbrake.state = 0;
+     786:	13 96       	adiw	r26, 0x03	; 3
+     788:	1c 92       	st	X, r1
+     78a:	13 97       	sbiw	r26, 0x03	; 3
+	hbrake.changed = 0;
+     78c:	14 96       	adiw	r26, 0x04	; 4
+     78e:	1c 92       	st	X, r1
+	
+	//Low voltage input configuration	
+	upsw.type = initCfg->mode_upsw;
+     790:	96 81       	ldd	r25, Z+6	; 0x06
+     792:	ae e3       	ldi	r26, 0x3E	; 62
+     794:	b1 e0       	ldi	r27, 0x01	; 1
+     796:	9c 93       	st	X, r25
+	upsw.act_lvl = initCfg->act_lvl_upsw;
+     798:	83 81       	ldd	r24, Z+3	; 0x03
+     79a:	11 96       	adiw	r26, 0x01	; 1
+     79c:	8c 93       	st	X, r24
+     79e:	11 97       	sbiw	r26, 0x01	; 1
+	upsw.dbnc_timer = 0;
+     7a0:	12 96       	adiw	r26, 0x02	; 2
+     7a2:	1c 92       	st	X, r1
+     7a4:	12 97       	sbiw	r26, 0x02	; 2
+	upsw.state = 0;
+     7a6:	13 96       	adiw	r26, 0x03	; 3
+     7a8:	1c 92       	st	X, r1
+     7aa:	13 97       	sbiw	r26, 0x03	; 3
+	upsw.changed = 0;
+     7ac:	14 96       	adiw	r26, 0x04	; 4
+     7ae:	1c 92       	st	X, r1
+	
+	dnsw.type = initCfg->mode_dnsw;
+     7b0:	87 81       	ldd	r24, Z+7	; 0x07
+     7b2:	a9 e3       	ldi	r26, 0x39	; 57
+     7b4:	b1 e0       	ldi	r27, 0x01	; 1
+     7b6:	8c 93       	st	X, r24
+	dnsw.act_lvl = initCfg->act_lvl_dnsw;
+     7b8:	24 81       	ldd	r18, Z+4	; 0x04
+     7ba:	11 96       	adiw	r26, 0x01	; 1
+     7bc:	2c 93       	st	X, r18
+     7be:	11 97       	sbiw	r26, 0x01	; 1
+	dnsw.dbnc_timer = 0;
+     7c0:	12 96       	adiw	r26, 0x02	; 2
+     7c2:	1c 92       	st	X, r1
+     7c4:	12 97       	sbiw	r26, 0x02	; 2
+	dnsw.state = 0;
+     7c6:	13 96       	adiw	r26, 0x03	; 3
+     7c8:	1c 92       	st	X, r1
+     7ca:	13 97       	sbiw	r26, 0x03	; 3
+	dnsw.changed = 0;
+     7cc:	14 96       	adiw	r26, 0x04	; 4
+     7ce:	1c 92       	st	X, r1
+	
+	modesw.type = INPUT_MODE_DIGITAL;
+     7d0:	a4 e3       	ldi	r26, 0x34	; 52
+     7d2:	b1 e0       	ldi	r27, 0x01	; 1
+     7d4:	1c 92       	st	X, r1
+	modesw.act_lvl = initCfg->act_lvl_mode;
+     7d6:	25 81       	ldd	r18, Z+5	; 0x05
+     7d8:	11 96       	adiw	r26, 0x01	; 1
+     7da:	2c 93       	st	X, r18
+     7dc:	11 97       	sbiw	r26, 0x01	; 1
+	modesw.dbnc_timer = 0;
+     7de:	12 96       	adiw	r26, 0x02	; 2
+     7e0:	1c 92       	st	X, r1
+     7e2:	12 97       	sbiw	r26, 0x02	; 2
+	modesw.state = 0;
+     7e4:	13 96       	adiw	r26, 0x03	; 3
+     7e6:	1c 92       	st	X, r1
+     7e8:	13 97       	sbiw	r26, 0x03	; 3
+	modesw.changed = 0;
+     7ea:	14 96       	adiw	r26, 0x04	; 4
+     7ec:	1c 92       	st	X, r1
+	
+	//HAL init preparation -------------
+	halInpConfigDef halCfg;
+	
+	halCfg.adc_wake = 1;
+     7ee:	21 e0       	ldi	r18, 0x01	; 1
+     7f0:	29 83       	std	Y+1, r18	; 0x01
+
+	//UP switch input HAL config
+	if(upsw.type==INPUT_MODE_ANALOG) halCfg.upsw_mode = HAL_INP_MODE_AIN;
+     7f2:	91 30       	cpi	r25, 0x01	; 1
+     7f4:	11 f4       	brne	.+4      	; 0x7fa <INDRV_Init+0xd2>
+     7f6:	9a 83       	std	Y+2, r25	; 0x02
+     7f8:	01 c0       	rjmp	.+2      	; 0x7fc <INDRV_Init+0xd4>
+	else halCfg.upsw_mode = HAL_INP_MODE_DIN;
+     7fa:	1a 82       	std	Y+2, r1	; 0x02
+	
+	//DOWN switch input HAL config
+	if(dnsw.type==INPUT_MODE_ANALOG) halCfg.dnsw_mode = HAL_INP_MODE_AIN;
+     7fc:	81 30       	cpi	r24, 0x01	; 1
+     7fe:	11 f4       	brne	.+4      	; 0x804 <INDRV_Init+0xdc>
+     800:	8b 83       	std	Y+3, r24	; 0x03
+     802:	01 c0       	rjmp	.+2      	; 0x806 <INDRV_Init+0xde>
+	else halCfg.dnsw_mode = HAL_INP_MODE_DIN;
+     804:	1b 82       	std	Y+3, r1	; 0x03
+	
+	HAL_InitInputs(&halCfg);
+     806:	ce 01       	movw	r24, r28
+     808:	01 96       	adiw	r24, 0x01	; 1
+     80a:	75 d1       	rcall	.+746    	; 0xaf6 <HAL_InitInputs>
+}
+     80c:	0f 90       	pop	r0
+     80e:	0f 90       	pop	r0
+     810:	0f 90       	pop	r0
+     812:	df 91       	pop	r29
+     814:	cf 91       	pop	r28
+     816:	08 95       	ret
+
+00000818 <INDRV_GetAnalog>:
+ * @param [in] ch Channel to read
+ * @return Properly converted analog value as mV or mA
+ */
+uint16_t INDRV_GetAnalog(uint8_t ch)
+{
+	switch(ch)
+     818:	83 30       	cpi	r24, 0x03	; 3
+     81a:	b1 f0       	breq	.+44     	; 0x848 <INDRV_GetAnalog+0x30>
+     81c:	28 f4       	brcc	.+10     	; 0x828 <INDRV_GetAnalog+0x10>
+     81e:	81 30       	cpi	r24, 0x01	; 1
+     820:	49 f0       	breq	.+18     	; 0x834 <INDRV_GetAnalog+0x1c>
+     822:	82 30       	cpi	r24, 0x02	; 2
+     824:	61 f0       	breq	.+24     	; 0x83e <INDRV_GetAnalog+0x26>
+     826:	24 c0       	rjmp	.+72     	; 0x870 <INDRV_GetAnalog+0x58>
+     828:	85 30       	cpi	r24, 0x05	; 5
+     82a:	c1 f0       	breq	.+48     	; 0x85c <INDRV_GetAnalog+0x44>
+     82c:	90 f0       	brcs	.+36     	; 0x852 <INDRV_GetAnalog+0x3a>
+     82e:	86 30       	cpi	r24, 0x06	; 6
+     830:	d1 f0       	breq	.+52     	; 0x866 <INDRV_GetAnalog+0x4e>
+     832:	1e c0       	rjmp	.+60     	; 0x870 <INDRV_GetAnalog+0x58>
+	{
+		case ANALOG_CH_BATTERY:
+			return measurments.battery;
+     834:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <measurments>
+     838:	90 91 29 01 	lds	r25, 0x0129	; 0x800129 <measurments+0x1>
+     83c:	08 95       	ret
+			
+		case ANALOG_CH_DCCD_U:
+			return measurments.dccd_u;
+     83e:	80 91 2a 01 	lds	r24, 0x012A	; 0x80012a <measurments+0x2>
+     842:	90 91 2b 01 	lds	r25, 0x012B	; 0x80012b <measurments+0x3>
+     846:	08 95       	ret
+			
+		case ANALOG_CH_DCCD_I:
+			return measurments.dccd_i;
+     848:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <measurments+0x4>
+     84c:	90 91 2d 01 	lds	r25, 0x012D	; 0x80012d <measurments+0x5>
+     850:	08 95       	ret
+			
+		case ANALOG_CH_POT:
+			return measurments.pot;
+     852:	80 91 2e 01 	lds	r24, 0x012E	; 0x80012e <measurments+0x6>
+     856:	90 91 2f 01 	lds	r25, 0x012F	; 0x80012f <measurments+0x7>
+     85a:	08 95       	ret
+			
+		case ANALOG_CH_UPSW:
+			return measurments.upsw;
+     85c:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <measurments+0x8>
+     860:	90 91 31 01 	lds	r25, 0x0131	; 0x800131 <measurments+0x9>
+     864:	08 95       	ret
+			
+		case ANALOG_CH_DNSW:
+			return measurments.dnsw;
+     866:	80 91 32 01 	lds	r24, 0x0132	; 0x800132 <measurments+0xa>
+     86a:	90 91 33 01 	lds	r25, 0x0133	; 0x800133 <measurments+0xb>
+     86e:	08 95       	ret
+			
+		default:
+			return 0xFFFF;
+     870:	8f ef       	ldi	r24, 0xFF	; 255
+     872:	9f ef       	ldi	r25, 0xFF	; 255
+	}
+}
+     874:	08 95       	ret
+
+00000876 <INDRV_GetInputState>:
+ * @param [in] ch Channel to read
+ * @return Activity status, 0-off, 1-on
+ */
+uint8_t INDRV_GetInputState(uint8_t ch)
+{
+	switch(ch)
+     876:	83 30       	cpi	r24, 0x03	; 3
+     878:	91 f0       	breq	.+36     	; 0x89e <INDRV_GetInputState+0x28>
+     87a:	28 f4       	brcc	.+10     	; 0x886 <INDRV_GetInputState+0x10>
+     87c:	81 30       	cpi	r24, 0x01	; 1
+     87e:	49 f0       	breq	.+18     	; 0x892 <INDRV_GetInputState+0x1c>
+     880:	82 30       	cpi	r24, 0x02	; 2
+     882:	51 f0       	breq	.+20     	; 0x898 <INDRV_GetInputState+0x22>
+     884:	18 c0       	rjmp	.+48     	; 0x8b6 <INDRV_GetInputState+0x40>
+     886:	85 30       	cpi	r24, 0x05	; 5
+     888:	81 f0       	breq	.+32     	; 0x8aa <INDRV_GetInputState+0x34>
+     88a:	60 f0       	brcs	.+24     	; 0x8a4 <INDRV_GetInputState+0x2e>
+     88c:	86 30       	cpi	r24, 0x06	; 6
+     88e:	81 f0       	breq	.+32     	; 0x8b0 <INDRV_GetInputState+0x3a>
+     890:	12 c0       	rjmp	.+36     	; 0x8b6 <INDRV_GetInputState+0x40>
+	{
+		case INPUT_CH_DIMM:
+			return dimm.state;
+     892:	80 91 50 01 	lds	r24, 0x0150	; 0x800150 <dimm+0x3>
+     896:	08 95       	ret
+			
+		case INPUT_CH_BRAKE:
+			return brake.state;
+     898:	80 91 4b 01 	lds	r24, 0x014B	; 0x80014b <brake+0x3>
+     89c:	08 95       	ret
+			
+		case INPUT_CH_HBRAKE:
+			return hbrake.state;
+     89e:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <hbrake+0x3>
+     8a2:	08 95       	ret
+			
+		case INPUT_CH_UPSW:
+			return upsw.state;
+     8a4:	80 91 41 01 	lds	r24, 0x0141	; 0x800141 <upsw+0x3>
+     8a8:	08 95       	ret
+			
+		case INPUT_CH_DNSW:
+			return dnsw.state;
+     8aa:	80 91 3c 01 	lds	r24, 0x013C	; 0x80013c <dnsw+0x3>
+     8ae:	08 95       	ret
+			
+		case INPUT_CH_MODE:
+			return modesw.state;
+     8b0:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <modesw+0x3>
+     8b4:	08 95       	ret
+			
+		default:
+			return 0;
+     8b6:	80 e0       	ldi	r24, 0x00	; 0
+	}
+}
+     8b8:	08 95       	ret
+
+000008ba <INDRV_GetInputChange>:
+ * @param [in] ch Channel to read
+ * @return State change status, 0-same, 1-changed
+ */
+uint8_t INDRV_GetInputChange(uint8_t ch)
+{
+	switch(ch)
+     8ba:	83 30       	cpi	r24, 0x03	; 3
+     8bc:	91 f0       	breq	.+36     	; 0x8e2 <INDRV_GetInputChange+0x28>
+     8be:	28 f4       	brcc	.+10     	; 0x8ca <INDRV_GetInputChange+0x10>
+     8c0:	81 30       	cpi	r24, 0x01	; 1
+     8c2:	49 f0       	breq	.+18     	; 0x8d6 <INDRV_GetInputChange+0x1c>
+     8c4:	82 30       	cpi	r24, 0x02	; 2
+     8c6:	51 f0       	breq	.+20     	; 0x8dc <INDRV_GetInputChange+0x22>
+     8c8:	18 c0       	rjmp	.+48     	; 0x8fa <INDRV_GetInputChange+0x40>
+     8ca:	85 30       	cpi	r24, 0x05	; 5
+     8cc:	81 f0       	breq	.+32     	; 0x8ee <INDRV_GetInputChange+0x34>
+     8ce:	60 f0       	brcs	.+24     	; 0x8e8 <INDRV_GetInputChange+0x2e>
+     8d0:	86 30       	cpi	r24, 0x06	; 6
+     8d2:	81 f0       	breq	.+32     	; 0x8f4 <INDRV_GetInputChange+0x3a>
+     8d4:	12 c0       	rjmp	.+36     	; 0x8fa <INDRV_GetInputChange+0x40>
+	{
+		case INPUT_CH_DIMM:
+			return dimm.changed;
+     8d6:	80 91 51 01 	lds	r24, 0x0151	; 0x800151 <dimm+0x4>
+     8da:	08 95       	ret
+			
+		case INPUT_CH_BRAKE:
+			return brake.changed;
+     8dc:	80 91 4c 01 	lds	r24, 0x014C	; 0x80014c <brake+0x4>
+     8e0:	08 95       	ret
+			
+		case INPUT_CH_HBRAKE:
+			return hbrake.changed;
+     8e2:	80 91 47 01 	lds	r24, 0x0147	; 0x800147 <hbrake+0x4>
+     8e6:	08 95       	ret
+			
+		case INPUT_CH_UPSW:
+			return upsw.changed;
+     8e8:	80 91 42 01 	lds	r24, 0x0142	; 0x800142 <upsw+0x4>
+     8ec:	08 95       	ret
+			
+		case INPUT_CH_DNSW:
+			return dnsw.changed;
+     8ee:	80 91 3d 01 	lds	r24, 0x013D	; 0x80013d <dnsw+0x4>
+     8f2:	08 95       	ret
+			
+		case INPUT_CH_MODE:
+			return modesw.changed;
+     8f4:	80 91 38 01 	lds	r24, 0x0138	; 0x800138 <modesw+0x4>
+     8f8:	08 95       	ret
+			
+		default:
+			return 0;
+     8fa:	80 e0       	ldi	r24, 0x00	; 0
+	}
+}
+     8fc:	08 95       	ret
+
+000008fe <INDRV_ResetChangeFlag>:
+ * @brief Reset change flag for chosen channel
+ * @param [in] ch Channel to reset
+ */
+void INDRV_ResetChangeFlag(uint8_t ch)
+{
+	switch(ch)
+     8fe:	90 e0       	ldi	r25, 0x00	; 0
+     900:	87 30       	cpi	r24, 0x07	; 7
+     902:	91 05       	cpc	r25, r1
+     904:	10 f5       	brcc	.+68     	; 0x94a <INDRV_ResetChangeFlag+0x4c>
+     906:	fc 01       	movw	r30, r24
+     908:	ec 5e       	subi	r30, 0xEC	; 236
+     90a:	ff 4f       	sbci	r31, 0xFF	; 255
+     90c:	09 94       	ijmp
+	{
+		case INPUT_CH_ALL:
+			dimm.changed = 0;
+     90e:	10 92 51 01 	sts	0x0151, r1	; 0x800151 <dimm+0x4>
+			brake.changed = 0;
+     912:	10 92 4c 01 	sts	0x014C, r1	; 0x80014c <brake+0x4>
+			hbrake.changed = 0;
+     916:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <hbrake+0x4>
+			upsw.changed = 0;
+     91a:	10 92 42 01 	sts	0x0142, r1	; 0x800142 <upsw+0x4>
+			dnsw.changed = 0;
+     91e:	10 92 3d 01 	sts	0x013D, r1	; 0x80013d <dnsw+0x4>
+			modesw.changed = 0;
+     922:	10 92 38 01 	sts	0x0138, r1	; 0x800138 <modesw+0x4>
+			break;
+     926:	08 95       	ret
+			
+		case INPUT_CH_DIMM:
+			dimm.changed = 0;
+     928:	10 92 51 01 	sts	0x0151, r1	; 0x800151 <dimm+0x4>
+			break;
+     92c:	08 95       	ret
+			
+		case INPUT_CH_BRAKE:
+			brake.changed = 0;
+     92e:	10 92 4c 01 	sts	0x014C, r1	; 0x80014c <brake+0x4>
+			break;
+     932:	08 95       	ret
+			
+		case INPUT_CH_HBRAKE:
+			hbrake.changed = 0;
+     934:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <hbrake+0x4>
+			break;
+     938:	08 95       	ret
+			
+		case INPUT_CH_UPSW:
+			upsw.changed = 0;
+     93a:	10 92 42 01 	sts	0x0142, r1	; 0x800142 <upsw+0x4>
+			break;
+     93e:	08 95       	ret
+			
+		case INPUT_CH_DNSW:
+			dnsw.changed = 0;
+     940:	10 92 3d 01 	sts	0x013D, r1	; 0x80013d <dnsw+0x4>
+			break;
+     944:	08 95       	ret
+			
+		case INPUT_CH_MODE:
+			modesw.changed = 0;
+     946:	10 92 38 01 	sts	0x0138, r1	; 0x800138 <modesw+0x4>
+     94a:	08 95       	ret
+
+0000094c <ReadAllAnalog>:
+/***** Private function definitions *****/
+/**
+ * @brief Read and convert all analog channels. Also does ADC mapping
+ */
+void ReadAllAnalog(void)
+{
+     94c:	0f 93       	push	r16
+     94e:	1f 93       	push	r17
+     950:	cf 93       	push	r28
+     952:	df 93       	push	r29
+	uint16_t raw = 0;
+	
+	raw = HAL_ADCRead(HAL_AIN_BATMON);
+     954:	81 e0       	ldi	r24, 0x01	; 1
+     956:	55 d1       	rcall	.+682    	; 0xc02 <HAL_ADCRead>
+	measurments.battery = raw*20; //mV
+     958:	9c 01       	movw	r18, r24
+     95a:	22 0f       	add	r18, r18
+     95c:	33 1f       	adc	r19, r19
+     95e:	22 0f       	add	r18, r18
+     960:	33 1f       	adc	r19, r19
+     962:	82 0f       	add	r24, r18
+     964:	93 1f       	adc	r25, r19
+     966:	88 0f       	add	r24, r24
+     968:	99 1f       	adc	r25, r25
+     96a:	88 0f       	add	r24, r24
+     96c:	99 1f       	adc	r25, r25
+     96e:	c8 e2       	ldi	r28, 0x28	; 40
+     970:	d1 e0       	ldi	r29, 0x01	; 1
+     972:	99 83       	std	Y+1, r25	; 0x01
+     974:	88 83       	st	Y, r24
+	
+	raw = HAL_ADCRead(HAL_AIN_UMON);
+     976:	82 e0       	ldi	r24, 0x02	; 2
+     978:	44 d1       	rcall	.+648    	; 0xc02 <HAL_ADCRead>
+	measurments.dccd_u = raw*20;  //mV
+     97a:	9c 01       	movw	r18, r24
+     97c:	22 0f       	add	r18, r18
+     97e:	33 1f       	adc	r19, r19
+     980:	22 0f       	add	r18, r18
+     982:	33 1f       	adc	r19, r19
+     984:	82 0f       	add	r24, r18
+     986:	93 1f       	adc	r25, r19
+     988:	88 0f       	add	r24, r24
+     98a:	99 1f       	adc	r25, r25
+     98c:	88 0f       	add	r24, r24
+     98e:	99 1f       	adc	r25, r25
+     990:	9b 83       	std	Y+3, r25	; 0x03
+     992:	8a 83       	std	Y+2, r24	; 0x02
+	
+	raw = HAL_ADCRead(HAL_AIN_IMON);
+     994:	83 e0       	ldi	r24, 0x03	; 3
+     996:	35 d1       	rcall	.+618    	; 0xc02 <HAL_ADCRead>
+	measurments.dccd_i = raw*10; //mA
+     998:	9c 01       	movw	r18, r24
+     99a:	22 0f       	add	r18, r18
+     99c:	33 1f       	adc	r19, r19
+     99e:	22 0f       	add	r18, r18
+     9a0:	33 1f       	adc	r19, r19
+     9a2:	82 0f       	add	r24, r18
+     9a4:	93 1f       	adc	r25, r19
+     9a6:	88 0f       	add	r24, r24
+     9a8:	99 1f       	adc	r25, r25
+     9aa:	9d 83       	std	Y+5, r25	; 0x05
+     9ac:	8c 83       	std	Y+4, r24	; 0x04
+	
+	raw = HAL_ADCRead(HAL_AIN_POT);
+     9ae:	84 e0       	ldi	r24, 0x04	; 4
+     9b0:	28 d1       	rcall	.+592    	; 0xc02 <HAL_ADCRead>
+	measurments.pot = (raw*64)/13;  //mV
+     9b2:	00 24       	eor	r0, r0
+     9b4:	96 95       	lsr	r25
+     9b6:	87 95       	ror	r24
+     9b8:	07 94       	ror	r0
+     9ba:	96 95       	lsr	r25
+     9bc:	87 95       	ror	r24
+     9be:	07 94       	ror	r0
+     9c0:	98 2f       	mov	r25, r24
+     9c2:	80 2d       	mov	r24, r0
+     9c4:	0d e0       	ldi	r16, 0x0D	; 13
+     9c6:	10 e0       	ldi	r17, 0x00	; 0
+     9c8:	b8 01       	movw	r22, r16
+     9ca:	44 d3       	rcall	.+1672   	; 0x1054 <__udivmodhi4>
+     9cc:	7f 83       	std	Y+7, r23	; 0x07
+     9ce:	6e 83       	std	Y+6, r22	; 0x06
+	
+	raw = HAL_ADCRead(HAL_AIN_UPSW);
+     9d0:	85 e0       	ldi	r24, 0x05	; 5
+     9d2:	17 d1       	rcall	.+558    	; 0xc02 <HAL_ADCRead>
+	measurments.upsw = (raw*64)/13;  //mV
+     9d4:	00 24       	eor	r0, r0
+     9d6:	96 95       	lsr	r25
+     9d8:	87 95       	ror	r24
+     9da:	07 94       	ror	r0
+     9dc:	96 95       	lsr	r25
+     9de:	87 95       	ror	r24
+     9e0:	07 94       	ror	r0
+     9e2:	98 2f       	mov	r25, r24
+     9e4:	80 2d       	mov	r24, r0
+     9e6:	b8 01       	movw	r22, r16
+     9e8:	35 d3       	rcall	.+1642   	; 0x1054 <__udivmodhi4>
+     9ea:	79 87       	std	Y+9, r23	; 0x09
+     9ec:	68 87       	std	Y+8, r22	; 0x08
+	
+	raw = HAL_ADCRead(HAL_AIN_DNSW);
+     9ee:	86 e0       	ldi	r24, 0x06	; 6
+     9f0:	08 d1       	rcall	.+528    	; 0xc02 <HAL_ADCRead>
+	measurments.dnsw = (raw*64)/13;	 //mV
+     9f2:	00 24       	eor	r0, r0
+     9f4:	96 95       	lsr	r25
+     9f6:	87 95       	ror	r24
+     9f8:	07 94       	ror	r0
+     9fa:	96 95       	lsr	r25
+     9fc:	87 95       	ror	r24
+     9fe:	07 94       	ror	r0
+     a00:	98 2f       	mov	r25, r24
+     a02:	80 2d       	mov	r24, r0
+     a04:	b8 01       	movw	r22, r16
+     a06:	26 d3       	rcall	.+1612   	; 0x1054 <__udivmodhi4>
+     a08:	7b 87       	std	Y+11, r23	; 0x0b
+     a0a:	6a 87       	std	Y+10, r22	; 0x0a
+}
+     a0c:	df 91       	pop	r29
+     a0e:	cf 91       	pop	r28
+     a10:	1f 91       	pop	r17
+     a12:	0f 91       	pop	r16
+     a14:	08 95       	ret
+
+00000a16 <DoDebounce>:
+ * @param [in/out] input Pointer to input`s data structure
+ * @param [in] level Read pin level
+ * @param [in] dbnc_limit Debounce time limit
+ */
+void DoDebounce(inStateDef* input, uint8_t level, uint8_t dbnc_limit)
+{	
+     a16:	fc 01       	movw	r30, r24
+	uint8_t s = 0;
+	//Determine state
+	if(level==(input->act_lvl)) s=1;
+     a18:	81 81       	ldd	r24, Z+1	; 0x01
+     a1a:	86 13       	cpse	r24, r22
+     a1c:	02 c0       	rjmp	.+4      	; 0xa22 <DoDebounce+0xc>
+     a1e:	91 e0       	ldi	r25, 0x01	; 1
+     a20:	01 c0       	rjmp	.+2      	; 0xa24 <DoDebounce+0xe>
+	else s=0;
+     a22:	90 e0       	ldi	r25, 0x00	; 0
+	
+	//Do debounce logic
+	if(s!=(input->state))
+     a24:	83 81       	ldd	r24, Z+3	; 0x03
+     a26:	98 17       	cp	r25, r24
+     a28:	59 f0       	breq	.+22     	; 0xa40 <DoDebounce+0x2a>
+	{
+		if(input->dbnc_timer>=dbnc_limit)
+     a2a:	82 81       	ldd	r24, Z+2	; 0x02
+     a2c:	84 17       	cp	r24, r20
+     a2e:	28 f0       	brcs	.+10     	; 0xa3a <DoDebounce+0x24>
+		{
+			input->state = s;
+     a30:	93 83       	std	Z+3, r25	; 0x03
+			input->changed = 1;
+     a32:	81 e0       	ldi	r24, 0x01	; 1
+     a34:	84 83       	std	Z+4, r24	; 0x04
+			input->dbnc_timer = 0;
+     a36:	12 82       	std	Z+2, r1	; 0x02
+     a38:	08 95       	ret
+		}
+		else input->dbnc_timer++;
+     a3a:	8f 5f       	subi	r24, 0xFF	; 255
+     a3c:	82 83       	std	Z+2, r24	; 0x02
+     a3e:	08 95       	ret
+	}
+	else input->dbnc_timer = 0;
+     a40:	12 82       	std	Z+2, r1	; 0x02
+     a42:	08 95       	ret
+
+00000a44 <ReadAllDigital>:
+ */
+void ReadAllDigital(void)
+{
+	uint8_t hwlvl = 0;
+	
+	hwlvl = HAL_GPIORead(HAL_DIN_DIMM);
+     a44:	81 e0       	ldi	r24, 0x01	; 1
+     a46:	19 d1       	rcall	.+562    	; 0xc7a <HAL_GPIORead>
+	DoDebounce(&dimm, hwlvl, DEBOUNCE_TIME_DIMM);
+     a48:	4a e0       	ldi	r20, 0x0A	; 10
+     a4a:	68 2f       	mov	r22, r24
+     a4c:	8d e4       	ldi	r24, 0x4D	; 77
+     a4e:	91 e0       	ldi	r25, 0x01	; 1
+     a50:	e2 df       	rcall	.-60     	; 0xa16 <DoDebounce>
+	
+	hwlvl = HAL_GPIORead(HAL_DIN_BRAKE);
+     a52:	82 e0       	ldi	r24, 0x02	; 2
+     a54:	12 d1       	rcall	.+548    	; 0xc7a <HAL_GPIORead>
+	DoDebounce(&brake, hwlvl, DEBOUNCE_TIME_BRKAE);
+     a56:	4a e0       	ldi	r20, 0x0A	; 10
+     a58:	68 2f       	mov	r22, r24
+     a5a:	88 e4       	ldi	r24, 0x48	; 72
+     a5c:	91 e0       	ldi	r25, 0x01	; 1
+     a5e:	db df       	rcall	.-74     	; 0xa16 <DoDebounce>
+	
+	hwlvl = HAL_GPIORead(HAL_DIN_HBRAKE);
+     a60:	83 e0       	ldi	r24, 0x03	; 3
+     a62:	0b d1       	rcall	.+534    	; 0xc7a <HAL_GPIORead>
+	DoDebounce(&hbrake, hwlvl, DEBOUNCE_TIME_HBRAKE);
+     a64:	4a e0       	ldi	r20, 0x0A	; 10
+     a66:	68 2f       	mov	r22, r24
+     a68:	83 e4       	ldi	r24, 0x43	; 67
+     a6a:	91 e0       	ldi	r25, 0x01	; 1
+     a6c:	d4 df       	rcall	.-88     	; 0xa16 <DoDebounce>
+	
+	hwlvl = HAL_GPIORead(HAL_DIN_MODE);
+     a6e:	86 e0       	ldi	r24, 0x06	; 6
+     a70:	04 d1       	rcall	.+520    	; 0xc7a <HAL_GPIORead>
+	DoDebounce(&modesw, hwlvl, DEBOUNCE_TIME_MODESW);
+     a72:	4a e0       	ldi	r20, 0x0A	; 10
+     a74:	68 2f       	mov	r22, r24
+     a76:	84 e3       	ldi	r24, 0x34	; 52
+     a78:	91 e0       	ldi	r25, 0x01	; 1
+     a7a:	cd df       	rcall	.-102    	; 0xa16 <DoDebounce>
+	
+	if(upsw.type!=INPUT_MODE_ANALOG)
+     a7c:	80 91 3e 01 	lds	r24, 0x013E	; 0x80013e <upsw>
+     a80:	81 30       	cpi	r24, 0x01	; 1
+     a82:	39 f0       	breq	.+14     	; 0xa92 <ReadAllDigital+0x4e>
+	{
+		hwlvl = HAL_GPIORead(HAL_DIN_UPSW);
+     a84:	84 e0       	ldi	r24, 0x04	; 4
+     a86:	f9 d0       	rcall	.+498    	; 0xc7a <HAL_GPIORead>
+		DoDebounce(&upsw, hwlvl, DEBOUNCE_TIME_UPSW);
+     a88:	4a e0       	ldi	r20, 0x0A	; 10
+     a8a:	68 2f       	mov	r22, r24
+     a8c:	8e e3       	ldi	r24, 0x3E	; 62
+     a8e:	91 e0       	ldi	r25, 0x01	; 1
+     a90:	c2 df       	rcall	.-124    	; 0xa16 <DoDebounce>
+	};
+	
+	if(dnsw.type!=INPUT_MODE_ANALOG)
+     a92:	80 91 39 01 	lds	r24, 0x0139	; 0x800139 <dnsw>
+     a96:	81 30       	cpi	r24, 0x01	; 1
+     a98:	39 f0       	breq	.+14     	; 0xaa8 <ReadAllDigital+0x64>
+	{
+		hwlvl = HAL_GPIORead(HAL_DIN_DNSW);
+     a9a:	85 e0       	ldi	r24, 0x05	; 5
+     a9c:	ee d0       	rcall	.+476    	; 0xc7a <HAL_GPIORead>
+		DoDebounce(&dnsw, hwlvl, DEBOUNCE_TIME_DNSW);
+     a9e:	4a e0       	ldi	r20, 0x0A	; 10
+     aa0:	68 2f       	mov	r22, r24
+     aa2:	89 e3       	ldi	r24, 0x39	; 57
+     aa4:	91 e0       	ldi	r25, 0x01	; 1
+     aa6:	b7 df       	rcall	.-146    	; 0xa16 <DoDebounce>
+     aa8:	08 95       	ret
+
+00000aaa <INDRV_ReadAll>:
+/**
+ * @brief Process all input channels
+ */
+void INDRV_ReadAll(void)
+{
+	ReadAllAnalog();
+     aaa:	50 df       	rcall	.-352    	; 0x94c <ReadAllAnalog>
+	ReadAllDigital();
+     aac:	cb df       	rcall	.-106    	; 0xa44 <ReadAllDigital>
+     aae:	08 95       	ret
+
+00000ab0 <InvertDIN>:
+	//wait to finish
+	while(ADCSRA&0x40);
+	//Disable ADC
+	ADCSRA &= ~0x80;
+	//Disable ADC power
+	PRR |= 0x01;
+     ab0:	88 23       	and	r24, r24
+     ab2:	11 f0       	breq	.+4      	; 0xab8 <InvertDIN+0x8>
+     ab4:	80 e0       	ldi	r24, 0x00	; 0
+     ab6:	08 95       	ret
+     ab8:	81 e0       	ldi	r24, 0x01	; 1
+     aba:	08 95       	ret
+
+00000abc <SetOutputCompare>:
+     abc:	81 30       	cpi	r24, 0x01	; 1
+     abe:	19 f0       	breq	.+6      	; 0xac6 <SetOutputCompare+0xa>
+     ac0:	82 30       	cpi	r24, 0x02	; 2
+     ac2:	a1 f0       	breq	.+40     	; 0xaec <SetOutputCompare+0x30>
+     ac4:	08 95       	ret
+     ac6:	6b 3f       	cpi	r22, 0xFB	; 251
+     ac8:	71 05       	cpc	r23, r1
+     aca:	10 f0       	brcs	.+4      	; 0xad0 <SetOutputCompare+0x14>
+     acc:	6a ef       	ldi	r22, 0xFA	; 250
+     ace:	70 e0       	ldi	r23, 0x00	; 0
+     ad0:	80 91 54 01 	lds	r24, 0x0154	; 0x800154 <dccd_en>
+     ad4:	88 23       	and	r24, r24
+     ad6:	29 f0       	breq	.+10     	; 0xae2 <SetOutputCompare+0x26>
+     ad8:	70 93 89 00 	sts	0x0089, r23	; 0x800089 <__TEXT_REGION_LENGTH__+0x7fe089>
+     adc:	60 93 88 00 	sts	0x0088, r22	; 0x800088 <__TEXT_REGION_LENGTH__+0x7fe088>
+     ae0:	08 95       	ret
+     ae2:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__TEXT_REGION_LENGTH__+0x7fe089>
+     ae6:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__TEXT_REGION_LENGTH__+0x7fe088>
+     aea:	08 95       	ret
+     aec:	70 93 8b 00 	sts	0x008B, r23	; 0x80008b <__TEXT_REGION_LENGTH__+0x7fe08b>
+     af0:	60 93 8a 00 	sts	0x008A, r22	; 0x80008a <__TEXT_REGION_LENGTH__+0x7fe08a>
+     af4:	08 95       	ret
+
+00000af6 <HAL_InitInputs>:
+     af6:	20 91 53 01 	lds	r18, 0x0153	; 0x800153 <init_done.1666>
+     afa:	21 11       	cpse	r18, r1
+     afc:	4d c0       	rjmp	.+154    	; 0xb98 <HAL_InitInputs+0xa2>
+     afe:	fc 01       	movw	r30, r24
+     b00:	21 81       	ldd	r18, Z+1	; 0x01
+     b02:	20 93 56 01 	sts	0x0156, r18	; 0x800156 <upsw_mode>
+     b06:	22 81       	ldd	r18, Z+2	; 0x02
+     b08:	20 93 55 01 	sts	0x0155, r18	; 0x800155 <dnsw_mode>
+     b0c:	e4 e6       	ldi	r30, 0x64	; 100
+     b0e:	f0 e0       	ldi	r31, 0x00	; 0
+     b10:	20 81       	ld	r18, Z
+     b12:	2e 7f       	andi	r18, 0xFE	; 254
+     b14:	20 83       	st	Z, r18
+     b16:	22 b3       	in	r18, 0x12	; 18
+     b18:	24 60       	ori	r18, 0x04	; 4
+     b1a:	22 bb       	out	0x12, r18	; 18
+     b1c:	ee e7       	ldi	r30, 0x7E	; 126
+     b1e:	f0 e0       	ldi	r31, 0x00	; 0
+     b20:	20 81       	ld	r18, Z
+     b22:	2f 60       	ori	r18, 0x0F	; 15
+     b24:	20 83       	st	Z, r18
+     b26:	20 91 56 01 	lds	r18, 0x0156	; 0x800156 <upsw_mode>
+     b2a:	21 30       	cpi	r18, 0x01	; 1
+     b2c:	19 f4       	brne	.+6      	; 0xb34 <HAL_InitInputs+0x3e>
+     b2e:	20 81       	ld	r18, Z
+     b30:	20 61       	ori	r18, 0x10	; 16
+     b32:	20 83       	st	Z, r18
+     b34:	20 91 55 01 	lds	r18, 0x0155	; 0x800155 <dnsw_mode>
+     b38:	21 30       	cpi	r18, 0x01	; 1
+     b3a:	29 f4       	brne	.+10     	; 0xb46 <HAL_InitInputs+0x50>
+     b3c:	ee e7       	ldi	r30, 0x7E	; 126
+     b3e:	f0 e0       	ldi	r31, 0x00	; 0
+     b40:	20 81       	ld	r18, Z
+     b42:	20 62       	ori	r18, 0x20	; 32
+     b44:	20 83       	st	Z, r18
+     b46:	20 e4       	ldi	r18, 0x40	; 64
+     b48:	20 93 7c 00 	sts	0x007C, r18	; 0x80007c <__TEXT_REGION_LENGTH__+0x7fe07c>
+     b4c:	ea e7       	ldi	r30, 0x7A	; 122
+     b4e:	f0 e0       	ldi	r31, 0x00	; 0
+     b50:	10 82       	st	Z, r1
+     b52:	20 81       	ld	r18, Z
+     b54:	26 60       	ori	r18, 0x06	; 6
+     b56:	20 83       	st	Z, r18
+     b58:	10 92 7b 00 	sts	0x007B, r1	; 0x80007b <__TEXT_REGION_LENGTH__+0x7fe07b>
+     b5c:	fc 01       	movw	r30, r24
+     b5e:	80 81       	ld	r24, Z
+     b60:	88 23       	and	r24, r24
+     b62:	31 f0       	breq	.+12     	; 0xb70 <HAL_InitInputs+0x7a>
+     b64:	ea e7       	ldi	r30, 0x7A	; 122
+     b66:	f0 e0       	ldi	r31, 0x00	; 0
+     b68:	80 81       	ld	r24, Z
+     b6a:	80 68       	ori	r24, 0x80	; 128
+     b6c:	80 83       	st	Z, r24
+     b6e:	05 c0       	rjmp	.+10     	; 0xb7a <HAL_InitInputs+0x84>
+     b70:	e4 e6       	ldi	r30, 0x64	; 100
+     b72:	f0 e0       	ldi	r31, 0x00	; 0
+     b74:	80 81       	ld	r24, Z
+     b76:	81 60       	ori	r24, 0x01	; 1
+     b78:	80 83       	st	Z, r24
+     b7a:	84 b1       	in	r24, 0x04	; 4
+     b7c:	8e 73       	andi	r24, 0x3E	; 62
+     b7e:	84 b9       	out	0x04, r24	; 4
+     b80:	85 b1       	in	r24, 0x05	; 5
+     b82:	8e 73       	andi	r24, 0x3E	; 62
+     b84:	85 b9       	out	0x05, r24	; 5
+     b86:	87 b1       	in	r24, 0x07	; 7
+     b88:	8f 74       	andi	r24, 0x4F	; 79
+     b8a:	87 b9       	out	0x07, r24	; 7
+     b8c:	88 b1       	in	r24, 0x08	; 8
+     b8e:	8f 74       	andi	r24, 0x4F	; 79
+     b90:	88 b9       	out	0x08, r24	; 8
+     b92:	81 e0       	ldi	r24, 0x01	; 1
+     b94:	80 93 53 01 	sts	0x0153, r24	; 0x800153 <init_done.1666>
+     b98:	08 95       	ret
+
+00000b9a <HAL_InitOutputs>:
+     b9a:	80 91 52 01 	lds	r24, 0x0152	; 0x800152 <init_done.1670>
+     b9e:	81 11       	cpse	r24, r1
+     ba0:	2f c0       	rjmp	.+94     	; 0xc00 <HAL_InitOutputs+0x66>
+     ba2:	85 b1       	in	r24, 0x05	; 5
+     ba4:	89 7f       	andi	r24, 0xF9	; 249
+     ba6:	85 b9       	out	0x05, r24	; 5
+     ba8:	84 b1       	in	r24, 0x04	; 4
+     baa:	86 60       	ori	r24, 0x06	; 6
+     bac:	84 b9       	out	0x04, r24	; 4
+     bae:	8b b1       	in	r24, 0x0b	; 11
+     bb0:	80 7c       	andi	r24, 0xC0	; 192
+     bb2:	8b b9       	out	0x0b, r24	; 11
+     bb4:	8a b1       	in	r24, 0x0a	; 10
+     bb6:	8f 63       	ori	r24, 0x3F	; 63
+     bb8:	8a b9       	out	0x0a, r24	; 10
+     bba:	80 ea       	ldi	r24, 0xA0	; 160
+     bbc:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7fe080>
+     bc0:	e1 e8       	ldi	r30, 0x81	; 129
+     bc2:	f0 e0       	ldi	r31, 0x00	; 0
+     bc4:	80 e1       	ldi	r24, 0x10	; 16
+     bc6:	80 83       	st	Z, r24
+     bc8:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7fe082>
+     bcc:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7fe085>
+     bd0:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7fe084>
+     bd4:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__TEXT_REGION_LENGTH__+0x7fe089>
+     bd8:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__TEXT_REGION_LENGTH__+0x7fe088>
+     bdc:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__TEXT_REGION_LENGTH__+0x7fe08b>
+     be0:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__TEXT_REGION_LENGTH__+0x7fe08a>
+     be4:	80 e0       	ldi	r24, 0x00	; 0
+     be6:	91 e0       	ldi	r25, 0x01	; 1
+     be8:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7fe087>
+     bec:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7fe086>
+     bf0:	80 81       	ld	r24, Z
+     bf2:	81 60       	ori	r24, 0x01	; 1
+     bf4:	80 83       	st	Z, r24
+     bf6:	10 92 54 01 	sts	0x0154, r1	; 0x800154 <dccd_en>
+     bfa:	81 e0       	ldi	r24, 0x01	; 1
+     bfc:	80 93 52 01 	sts	0x0152, r24	; 0x800152 <init_done.1670>
+     c00:	08 95       	ret
+
+00000c02 <HAL_ADCRead>:
+ * @brief Perform single ADC conversion
+ * @param [in] ch Analog channel to read
+ * @returns	Raw 10bit ADC value, 0xFFFF in case of failure
+ */
+uint16_t HAL_ADCRead(uint8_t ch)
+{
+     c02:	e8 2f       	mov	r30, r24
+	//check if ADC is enabled
+	if(!(ADCSRA&0x80)) return 0xFFFF;
+     c04:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7fe07a>
+     c08:	88 23       	and	r24, r24
+     c0a:	8c f5       	brge	.+98     	; 0xc6e <HAL_ADCRead+0x6c>
+	
+	uint8_t mux = 0;	
+	
+	//Channel to MUX mapping
+	switch(ch)
+     c0c:	8e 2f       	mov	r24, r30
+     c0e:	90 e0       	ldi	r25, 0x00	; 0
+     c10:	fc 01       	movw	r30, r24
+     c12:	31 97       	sbiw	r30, 0x01	; 1
+     c14:	e9 30       	cpi	r30, 0x09	; 9
+     c16:	f1 05       	cpc	r31, r1
+     c18:	68 f5       	brcc	.+90     	; 0xc74 <HAL_ADCRead+0x72>
+     c1a:	e5 5e       	subi	r30, 0xE5	; 229
+     c1c:	ff 4f       	sbci	r31, 0xFF	; 255
+     c1e:	09 94       	ijmp
+	{
+		case HAL_AIN_BATMON:
+			mux = 0x00;
+     c20:	20 e0       	ldi	r18, 0x00	; 0
+     c22:	0f c0       	rjmp	.+30     	; 0xc42 <HAL_ADCRead+0x40>
+		case HAL_AIN_UMON:
+			mux = 0x01;
+			break;
+			
+		case HAL_AIN_IMON:
+			mux = 0x02;
+     c24:	22 e0       	ldi	r18, 0x02	; 2
+			break;
+     c26:	0d c0       	rjmp	.+26     	; 0xc42 <HAL_ADCRead+0x40>
+			
+		case HAL_AIN_POT:
+			mux = 0x03;
+     c28:	23 e0       	ldi	r18, 0x03	; 3
+			break;
+     c2a:	0b c0       	rjmp	.+22     	; 0xc42 <HAL_ADCRead+0x40>
+			
+		case HAL_AIN_UPSW:
+			mux = 0x04;
+     c2c:	24 e0       	ldi	r18, 0x04	; 4
+			break;
+     c2e:	09 c0       	rjmp	.+18     	; 0xc42 <HAL_ADCRead+0x40>
+			
+		case HAL_AIN_DNSW:
+			mux = 0x05;
+     c30:	25 e0       	ldi	r18, 0x05	; 5
+			break;
+     c32:	07 c0       	rjmp	.+14     	; 0xc42 <HAL_ADCRead+0x40>
+			
+		case HAL_AIN_TEMP:
+			mux = 0x08;
+     c34:	28 e0       	ldi	r18, 0x08	; 8
+			break;
+     c36:	05 c0       	rjmp	.+10     	; 0xc42 <HAL_ADCRead+0x40>
+			
+		case HAL_AIN_INTREF:
+			mux = 0x14;
+     c38:	24 e1       	ldi	r18, 0x14	; 20
+			break;
+     c3a:	03 c0       	rjmp	.+6      	; 0xc42 <HAL_ADCRead+0x40>
+			
+		case HAL_AIN_GND:
+			mux = 0x15;
+     c3c:	25 e1       	ldi	r18, 0x15	; 21
+			break;
+     c3e:	01 c0       	rjmp	.+2      	; 0xc42 <HAL_ADCRead+0x40>
+		case HAL_AIN_BATMON:
+			mux = 0x00;
+			break;
+			
+		case HAL_AIN_UMON:
+			mux = 0x01;
+     c40:	21 e0       	ldi	r18, 0x01	; 1
+			
+		default:
+			return 0xFFFF;
+	}
+	
+	ADMUX &= ~0x0F;
+     c42:	ec e7       	ldi	r30, 0x7C	; 124
+     c44:	f0 e0       	ldi	r31, 0x00	; 0
+     c46:	90 81       	ld	r25, Z
+     c48:	90 7f       	andi	r25, 0xF0	; 240
+     c4a:	90 83       	st	Z, r25
+	ADMUX |= mux;
+     c4c:	80 81       	ld	r24, Z
+     c4e:	82 2b       	or	r24, r18
+     c50:	80 83       	st	Z, r24
+	ADCSRA |= 0x40;
+     c52:	ea e7       	ldi	r30, 0x7A	; 122
+     c54:	f0 e0       	ldi	r31, 0x00	; 0
+     c56:	80 81       	ld	r24, Z
+     c58:	80 64       	ori	r24, 0x40	; 64
+     c5a:	80 83       	st	Z, r24
+	while(ADCSRA&0x40); //wait to finish
+     c5c:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7fe07a>
+     c60:	86 fd       	sbrc	r24, 6
+     c62:	fc cf       	rjmp	.-8      	; 0xc5c <HAL_ADCRead+0x5a>
+	return ADC;
+     c64:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7fe078>
+     c68:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7fe079>
+     c6c:	08 95       	ret
+ * @returns	Raw 10bit ADC value, 0xFFFF in case of failure
+ */
+uint16_t HAL_ADCRead(uint8_t ch)
+{
+	//check if ADC is enabled
+	if(!(ADCSRA&0x80)) return 0xFFFF;
+     c6e:	8f ef       	ldi	r24, 0xFF	; 255
+     c70:	9f ef       	ldi	r25, 0xFF	; 255
+     c72:	08 95       	ret
+		case HAL_AIN_GND:
+			mux = 0x15;
+			break;
+			
+		default:
+			return 0xFFFF;
+     c74:	8f ef       	ldi	r24, 0xFF	; 255
+     c76:	9f ef       	ldi	r25, 0xFF	; 255
+	ADMUX &= ~0x0F;
+	ADMUX |= mux;
+	ADCSRA |= 0x40;
+	while(ADCSRA&0x40); //wait to finish
+	return ADC;
+}
+     c78:	08 95       	ret
+
+00000c7a <HAL_GPIORead>:
+uint8_t HAL_GPIORead(uint8_t ch)
+{
+	uint8_t raw = 0x00;
+	
+	//Channel mapping
+	switch(ch)
+     c7a:	90 e0       	ldi	r25, 0x00	; 0
+     c7c:	fc 01       	movw	r30, r24
+     c7e:	31 97       	sbiw	r30, 0x01	; 1
+     c80:	e9 30       	cpi	r30, 0x09	; 9
+     c82:	f1 05       	cpc	r31, r1
+     c84:	48 f5       	brcc	.+82     	; 0xcd8 <HAL_GPIORead+0x5e>
+     c86:	ec 5d       	subi	r30, 0xDC	; 220
+     c88:	ff 4f       	sbci	r31, 0xFF	; 255
+     c8a:	09 94       	ijmp
+	{
+		case HAL_DIN_DIMM:
+			raw = InvertDIN(PINB&0x01);
+     c8c:	83 b1       	in	r24, 0x03	; 3
+     c8e:	81 70       	andi	r24, 0x01	; 1
+     c90:	0f df       	rcall	.-482    	; 0xab0 <InvertDIN>
+			break;
+     c92:	27 c0       	rjmp	.+78     	; 0xce2 <HAL_GPIORead+0x68>
+			
+		case HAL_DIN_HBRAKE:
+			raw = InvertDIN(PINB&0x40);
+     c94:	83 b1       	in	r24, 0x03	; 3
+     c96:	80 74       	andi	r24, 0x40	; 64
+     c98:	0b df       	rcall	.-490    	; 0xab0 <InvertDIN>
+			break;
+     c9a:	23 c0       	rjmp	.+70     	; 0xce2 <HAL_GPIORead+0x68>
+			
+		case HAL_DIN_BRAKE:
+			raw = InvertDIN(PINB&0x80);
+     c9c:	83 b1       	in	r24, 0x03	; 3
+     c9e:	80 78       	andi	r24, 0x80	; 128
+     ca0:	07 df       	rcall	.-498    	; 0xab0 <InvertDIN>
+			break;
+     ca2:	1f c0       	rjmp	.+62     	; 0xce2 <HAL_GPIORead+0x68>
+			
+		case HAL_DIN_UPSW:
+			if(upsw_mode!=HAL_INP_MODE_AIN) raw = PINC&0x10;
+     ca4:	80 91 56 01 	lds	r24, 0x0156	; 0x800156 <upsw_mode>
+     ca8:	81 30       	cpi	r24, 0x01	; 1
+     caa:	c1 f0       	breq	.+48     	; 0xcdc <HAL_GPIORead+0x62>
+     cac:	86 b1       	in	r24, 0x06	; 6
+     cae:	80 71       	andi	r24, 0x10	; 16
+     cb0:	18 c0       	rjmp	.+48     	; 0xce2 <HAL_GPIORead+0x68>
+			else raw = 0xFF;
+			break;
+			
+		case HAL_DIN_DNSW:
+			if(dnsw_mode!=HAL_INP_MODE_AIN) raw = PINC&0x20;
+     cb2:	80 91 55 01 	lds	r24, 0x0155	; 0x800155 <dnsw_mode>
+     cb6:	81 30       	cpi	r24, 0x01	; 1
+     cb8:	99 f0       	breq	.+38     	; 0xce0 <HAL_GPIORead+0x66>
+     cba:	86 b1       	in	r24, 0x06	; 6
+     cbc:	80 72       	andi	r24, 0x20	; 32
+     cbe:	11 c0       	rjmp	.+34     	; 0xce2 <HAL_GPIORead+0x68>
+			else raw = 0xFF;
+			break;
+			
+		case HAL_DIN_MODE:
+			raw = PINC&0x80;
+     cc0:	86 b1       	in	r24, 0x06	; 6
+     cc2:	80 78       	andi	r24, 0x80	; 128
+			break;
+     cc4:	0e c0       	rjmp	.+28     	; 0xce2 <HAL_GPIORead+0x68>
+			
+		case HAL_DIN_BOOT0:
+			raw = PINA&0x02;
+     cc6:	8c b1       	in	r24, 0x0c	; 12
+     cc8:	82 70       	andi	r24, 0x02	; 2
+			break;
+     cca:	0b c0       	rjmp	.+22     	; 0xce2 <HAL_GPIORead+0x68>
+			
+		case HAL_DIN_BOOT1:
+			raw = PINA&0x04;
+     ccc:	8c b1       	in	r24, 0x0c	; 12
+     cce:	84 70       	andi	r24, 0x04	; 4
+			break;
+     cd0:	08 c0       	rjmp	.+16     	; 0xce2 <HAL_GPIORead+0x68>
+			
+		case HAL_DIN_BOOT2:
+			raw = PINA&0x08;
+     cd2:	8c b1       	in	r24, 0x0c	; 12
+     cd4:	88 70       	andi	r24, 0x08	; 8
+			break;
+     cd6:	05 c0       	rjmp	.+10     	; 0xce2 <HAL_GPIORead+0x68>
+			
+		default:
+			raw = 0xFF;
+     cd8:	8f ef       	ldi	r24, 0xFF	; 255
+     cda:	03 c0       	rjmp	.+6      	; 0xce2 <HAL_GPIORead+0x68>
+			raw = InvertDIN(PINB&0x80);
+			break;
+			
+		case HAL_DIN_UPSW:
+			if(upsw_mode!=HAL_INP_MODE_AIN) raw = PINC&0x10;
+			else raw = 0xFF;
+     cdc:	8f ef       	ldi	r24, 0xFF	; 255
+     cde:	01 c0       	rjmp	.+2      	; 0xce2 <HAL_GPIORead+0x68>
+			break;
+			
+		case HAL_DIN_DNSW:
+			if(dnsw_mode!=HAL_INP_MODE_AIN) raw = PINC&0x20;
+			else raw = 0xFF;
+     ce0:	8f ef       	ldi	r24, 0xFF	; 255
+			
+		default:
+			raw = 0xFF;
+	}
+	
+	if(raw==0xFF) return 0xFF;
+     ce2:	8f 3f       	cpi	r24, 0xFF	; 255
+     ce4:	21 f0       	breq	.+8      	; 0xcee <HAL_GPIORead+0x74>
+	else if(raw) return 1;
+     ce6:	88 23       	and	r24, r24
+     ce8:	21 f0       	breq	.+8      	; 0xcf2 <HAL_GPIORead+0x78>
+     cea:	81 e0       	ldi	r24, 0x01	; 1
+     cec:	08 95       	ret
+			
+		default:
+			raw = 0xFF;
+	}
+	
+	if(raw==0xFF) return 0xFF;
+     cee:	8f ef       	ldi	r24, 0xFF	; 255
+     cf0:	08 95       	ret
+	else if(raw) return 1;
+	else return 0;
+     cf2:	80 e0       	ldi	r24, 0x00	; 0
+}
+     cf4:	08 95       	ret
+
+00000cf6 <HAL_SetPWM>:
+ * @brief Set PWM duty cycle
+ * @param [in] ch Timer output compare channel
+ * @param [in] dc PWM Duty cycle in percent [0..100]
+ */
+void HAL_SetPWM(uint8_t ch, uint8_t dc)
+{
+     cf6:	cf 93       	push	r28
+     cf8:	c8 2f       	mov	r28, r24
+	//Map PWM Duty cycle to TIM TOP range
+	uint16_t temp = 0;
+	if(dc>=100) temp = CFG_PWM_TIMER_TOP;
+     cfa:	64 36       	cpi	r22, 0x64	; 100
+     cfc:	88 f4       	brcc	.+34     	; 0xd20 <HAL_SetPWM+0x2a>
+	else if(dc==0) temp = 0;
+     cfe:	66 23       	and	r22, r22
+     d00:	91 f0       	breq	.+36     	; 0xd26 <HAL_SetPWM+0x30>
+	else temp = (uint16_t)(((uint32_t)dc*CFG_PWM_TIMER_TOP)/100);
+     d02:	86 2f       	mov	r24, r22
+     d04:	90 e0       	ldi	r25, 0x00	; 0
+     d06:	a0 e0       	ldi	r26, 0x00	; 0
+     d08:	b0 e0       	ldi	r27, 0x00	; 0
+     d0a:	66 27       	eor	r22, r22
+     d0c:	78 2f       	mov	r23, r24
+     d0e:	89 2f       	mov	r24, r25
+     d10:	9a 2f       	mov	r25, r26
+     d12:	24 e6       	ldi	r18, 0x64	; 100
+     d14:	30 e0       	ldi	r19, 0x00	; 0
+     d16:	40 e0       	ldi	r20, 0x00	; 0
+     d18:	50 e0       	ldi	r21, 0x00	; 0
+     d1a:	b0 d1       	rcall	.+864    	; 0x107c <__udivmodsi4>
+     d1c:	b9 01       	movw	r22, r18
+     d1e:	05 c0       	rjmp	.+10     	; 0xd2a <HAL_SetPWM+0x34>
+ */
+void HAL_SetPWM(uint8_t ch, uint8_t dc)
+{
+	//Map PWM Duty cycle to TIM TOP range
+	uint16_t temp = 0;
+	if(dc>=100) temp = CFG_PWM_TIMER_TOP;
+     d20:	60 e0       	ldi	r22, 0x00	; 0
+     d22:	71 e0       	ldi	r23, 0x01	; 1
+     d24:	02 c0       	rjmp	.+4      	; 0xd2a <HAL_SetPWM+0x34>
+	else if(dc==0) temp = 0;
+     d26:	60 e0       	ldi	r22, 0x00	; 0
+     d28:	70 e0       	ldi	r23, 0x00	; 0
+	else temp = (uint16_t)(((uint32_t)dc*CFG_PWM_TIMER_TOP)/100);
+	
+	SetOutputCompare(ch,temp);
+     d2a:	8c 2f       	mov	r24, r28
+     d2c:	c7 de       	rcall	.-626    	; 0xabc <SetOutputCompare>
+}
+     d2e:	cf 91       	pop	r28
+     d30:	08 95       	ret
+
+00000d32 <HAL_SetPWM16b>:
+ * @brief Set PWM duty cycle, but with more resolution
+ * @param [in] ch Timer output compare channel
+ * @param [in] dc PWM Duty cycle as 16bit value
+ */
+void HAL_SetPWM16b(uint8_t ch, uint16_t dc)
+{
+     d32:	cf 93       	push	r28
+     d34:	c8 2f       	mov	r28, r24
+	//Map PWM Duty cycle to TIM TOP range
+	uint16_t temp = 0;
+	if(dc==0xFFFF) temp = CFG_PWM_TIMER_TOP;
+     d36:	6f 3f       	cpi	r22, 0xFF	; 255
+     d38:	8f ef       	ldi	r24, 0xFF	; 255
+     d3a:	78 07       	cpc	r23, r24
+     d3c:	89 f0       	breq	.+34     	; 0xd60 <HAL_SetPWM16b+0x2e>
+	else if(dc==0) temp = 0;
+     d3e:	61 15       	cp	r22, r1
+     d40:	71 05       	cpc	r23, r1
+     d42:	89 f0       	breq	.+34     	; 0xd66 <HAL_SetPWM16b+0x34>
+	else temp = (uint16_t)(((uint32_t)dc*CFG_PWM_TIMER_TOP)/0xFFFF);
+     d44:	cb 01       	movw	r24, r22
+     d46:	a0 e0       	ldi	r26, 0x00	; 0
+     d48:	b0 e0       	ldi	r27, 0x00	; 0
+     d4a:	66 27       	eor	r22, r22
+     d4c:	78 2f       	mov	r23, r24
+     d4e:	89 2f       	mov	r24, r25
+     d50:	9a 2f       	mov	r25, r26
+     d52:	2f ef       	ldi	r18, 0xFF	; 255
+     d54:	3f ef       	ldi	r19, 0xFF	; 255
+     d56:	40 e0       	ldi	r20, 0x00	; 0
+     d58:	50 e0       	ldi	r21, 0x00	; 0
+     d5a:	90 d1       	rcall	.+800    	; 0x107c <__udivmodsi4>
+     d5c:	b9 01       	movw	r22, r18
+     d5e:	05 c0       	rjmp	.+10     	; 0xd6a <HAL_SetPWM16b+0x38>
+ */
+void HAL_SetPWM16b(uint8_t ch, uint16_t dc)
+{
+	//Map PWM Duty cycle to TIM TOP range
+	uint16_t temp = 0;
+	if(dc==0xFFFF) temp = CFG_PWM_TIMER_TOP;
+     d60:	60 e0       	ldi	r22, 0x00	; 0
+     d62:	71 e0       	ldi	r23, 0x01	; 1
+     d64:	02 c0       	rjmp	.+4      	; 0xd6a <HAL_SetPWM16b+0x38>
+	else if(dc==0) temp = 0;
+     d66:	60 e0       	ldi	r22, 0x00	; 0
+     d68:	70 e0       	ldi	r23, 0x00	; 0
+	else temp = (uint16_t)(((uint32_t)dc*CFG_PWM_TIMER_TOP)/0xFFFF);
+	
+	SetOutputCompare(ch,temp);
+     d6a:	8c 2f       	mov	r24, r28
+     d6c:	a7 de       	rcall	.-690    	; 0xabc <SetOutputCompare>
+}
+     d6e:	cf 91       	pop	r28
+     d70:	08 95       	ret
+
+00000d72 <HAL_SetLEDs>:
+ * @param [in] image bitwise output states to set
+ */
+void HAL_SetLEDs(uint8_t image)
+{
+	//Capture current display image
+	uint8_t temp = PORTD;
+     d72:	9b b1       	in	r25, 0x0b	; 11
+	temp &= 0x3F;
+     d74:	9f 73       	andi	r25, 0x3F	; 63
+	
+	//To reduce unnecessary flashing, change outputs only if there is change
+	if(image!=temp)
+     d76:	98 17       	cp	r25, r24
+     d78:	39 f0       	breq	.+14     	; 0xd88 <HAL_SetLEDs+0x16>
+	{
+		//clear display
+		PORTD &= ~0x3F;
+     d7a:	9b b1       	in	r25, 0x0b	; 11
+     d7c:	90 7c       	andi	r25, 0xC0	; 192
+     d7e:	9b b9       	out	0x0b, r25	; 11
+		
+		//set display
+		PORTD |= (image&0x3F);
+     d80:	9b b1       	in	r25, 0x0b	; 11
+     d82:	8f 73       	andi	r24, 0x3F	; 63
+     d84:	89 2b       	or	r24, r25
+     d86:	8b b9       	out	0x0b, r24	; 11
+     d88:	08 95       	ret
+
+00000d8a <HAL_EnableDCCDch>:
+/**
+ * @brief Enable DCCDs output channel (OC1A)
+ */
+void HAL_EnableDCCDch(void)
+{
+	dccd_en = 1;
+     d8a:	81 e0       	ldi	r24, 0x01	; 1
+     d8c:	80 93 54 01 	sts	0x0154, r24	; 0x800154 <dccd_en>
+     d90:	08 95       	ret
+
+00000d92 <GatherData>:
+	}
+}
+
+/**** Private function definitions ****/
+void GatherData(uint8_t times)
+{
+     d92:	cf 93       	push	r28
+     d94:	df 93       	push	r29
+     d96:	d8 2f       	mov	r29, r24
+	for(uint8_t i=0; i<times; i++)
+     d98:	c0 e0       	ldi	r28, 0x00	; 0
+     d9a:	02 c0       	rjmp	.+4      	; 0xda0 <GatherData+0xe>
+	{
+		INDRV_ReadAll();
+     d9c:	86 de       	rcall	.-756    	; 0xaaa <INDRV_ReadAll>
+}
+
+/**** Private function definitions ****/
+void GatherData(uint8_t times)
+{
+	for(uint8_t i=0; i<times; i++)
+     d9e:	cf 5f       	subi	r28, 0xFF	; 255
+     da0:	cd 17       	cp	r28, r29
+     da2:	e0 f3       	brcs	.-8      	; 0xd9c <GatherData+0xa>
+	{
+		INDRV_ReadAll();
+	}
+	
+	supply_u = INDRV_GetAnalog(ANALOG_CH_BATTERY);
+     da4:	81 e0       	ldi	r24, 0x01	; 1
+     da6:	38 dd       	rcall	.-1424   	; 0x818 <INDRV_GetAnalog>
+     da8:	90 93 69 01 	sts	0x0169, r25	; 0x800169 <supply_u+0x1>
+     dac:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <supply_u>
+	dccd_u = INDRV_GetAnalog(ANALOG_CH_DCCD_U);
+     db0:	82 e0       	ldi	r24, 0x02	; 2
+     db2:	32 dd       	rcall	.-1436   	; 0x818 <INDRV_GetAnalog>
+     db4:	90 93 67 01 	sts	0x0167, r25	; 0x800167 <dccd_u+0x1>
+     db8:	80 93 66 01 	sts	0x0166, r24	; 0x800166 <dccd_u>
+	dccd_i = INDRV_GetAnalog(ANALOG_CH_DCCD_I);
+     dbc:	83 e0       	ldi	r24, 0x03	; 3
+     dbe:	2c dd       	rcall	.-1448   	; 0x818 <INDRV_GetAnalog>
+     dc0:	90 93 65 01 	sts	0x0165, r25	; 0x800165 <dccd_i+0x1>
+     dc4:	80 93 64 01 	sts	0x0164, r24	; 0x800164 <dccd_i>
+	pot = INDRV_GetAnalog(ANALOG_CH_POT);
+     dc8:	84 e0       	ldi	r24, 0x04	; 4
+     dca:	26 dd       	rcall	.-1460   	; 0x818 <INDRV_GetAnalog>
+     dcc:	90 93 63 01 	sts	0x0163, r25	; 0x800163 <pot+0x1>
+     dd0:	80 93 62 01 	sts	0x0162, r24	; 0x800162 <pot>
+
+	hbrake_act = INDRV_GetInputState(INPUT_CH_HBRAKE);
+     dd4:	83 e0       	ldi	r24, 0x03	; 3
+     dd6:	4f dd       	rcall	.-1378   	; 0x876 <INDRV_GetInputState>
+     dd8:	80 93 61 01 	sts	0x0161, r24	; 0x800161 <hbrake_act>
+	brakes_act = INDRV_GetInputState(INPUT_CH_BRAKE);
+     ddc:	82 e0       	ldi	r24, 0x02	; 2
+     dde:	4b dd       	rcall	.-1386   	; 0x876 <INDRV_GetInputState>
+     de0:	80 93 60 01 	sts	0x0160, r24	; 0x800160 <brakes_act>
+	dimm_act = INDRV_GetInputState(INPUT_CH_DIMM);
+     de4:	81 e0       	ldi	r24, 0x01	; 1
+     de6:	47 dd       	rcall	.-1394   	; 0x876 <INDRV_GetInputState>
+     de8:	80 93 5f 01 	sts	0x015F, r24	; 0x80015f <dimm_act>
+
+	upsw_act = INDRV_GetInputState(INPUT_CH_UPSW);
+     dec:	84 e0       	ldi	r24, 0x04	; 4
+     dee:	43 dd       	rcall	.-1402   	; 0x876 <INDRV_GetInputState>
+     df0:	80 93 5e 01 	sts	0x015E, r24	; 0x80015e <upsw_act>
+	dnsw_act = INDRV_GetInputState(INPUT_CH_DNSW);
+     df4:	85 e0       	ldi	r24, 0x05	; 5
+     df6:	3f dd       	rcall	.-1410   	; 0x876 <INDRV_GetInputState>
+     df8:	80 93 5d 01 	sts	0x015D, r24	; 0x80015d <dnsw_act>
+	mode_act = INDRV_GetInputState(INPUT_CH_MODE);
+     dfc:	86 e0       	ldi	r24, 0x06	; 6
+     dfe:	3b dd       	rcall	.-1418   	; 0x876 <INDRV_GetInputState>
+     e00:	80 93 5c 01 	sts	0x015C, r24	; 0x80015c <mode_act>
+}
+     e04:	df 91       	pop	r29
+     e06:	cf 91       	pop	r28
+     e08:	08 95       	ret
+
+00000e0a <ProcessUpDownButtons>:
+
+uint8_t ProcessUpDownButtons(uint8_t force)
+{
+     e0a:	1f 93       	push	r17
+     e0c:	cf 93       	push	r28
+     e0e:	df 93       	push	r29
+     e10:	c8 2f       	mov	r28, r24
+	uint8_t upsw_changed = INDRV_GetInputChange(INPUT_CH_UPSW);
+     e12:	84 e0       	ldi	r24, 0x04	; 4
+     e14:	52 dd       	rcall	.-1372   	; 0x8ba <INDRV_GetInputChange>
+     e16:	18 2f       	mov	r17, r24
+	uint8_t dnsw_changed = INDRV_GetInputChange(INPUT_CH_DNSW);
+     e18:	85 e0       	ldi	r24, 0x05	; 5
+     e1a:	4f dd       	rcall	.-1378   	; 0x8ba <INDRV_GetInputChange>
+     e1c:	d8 2f       	mov	r29, r24
+	
+	INDRV_ResetChangeFlag(INPUT_CH_UPSW);
+     e1e:	84 e0       	ldi	r24, 0x04	; 4
+     e20:	6e dd       	rcall	.-1316   	; 0x8fe <INDRV_ResetChangeFlag>
+	INDRV_ResetChangeFlag(INPUT_CH_DNSW);
+     e22:	85 e0       	ldi	r24, 0x05	; 5
+     e24:	6c dd       	rcall	.-1320   	; 0x8fe <INDRV_ResetChangeFlag>
+	
+	if((upsw_changed)&&(upsw_act))
+     e26:	11 23       	and	r17, r17
+     e28:	49 f0       	breq	.+18     	; 0xe3c <ProcessUpDownButtons+0x32>
+     e2a:	80 91 5e 01 	lds	r24, 0x015E	; 0x80015e <upsw_act>
+     e2e:	88 23       	and	r24, r24
+     e30:	29 f0       	breq	.+10     	; 0xe3c <ProcessUpDownButtons+0x32>
+	{
+		if(force<=90) force+=10;
+     e32:	cb 35       	cpi	r28, 0x5B	; 91
+     e34:	10 f4       	brcc	.+4      	; 0xe3a <ProcessUpDownButtons+0x30>
+     e36:	c6 5f       	subi	r28, 0xF6	; 246
+     e38:	01 c0       	rjmp	.+2      	; 0xe3c <ProcessUpDownButtons+0x32>
+		else force=100;
+     e3a:	c4 e6       	ldi	r28, 0x64	; 100
+	};
+	
+	if((dnsw_changed)&&(dnsw_act))
+     e3c:	dd 23       	and	r29, r29
+     e3e:	49 f0       	breq	.+18     	; 0xe52 <ProcessUpDownButtons+0x48>
+     e40:	80 91 5d 01 	lds	r24, 0x015D	; 0x80015d <dnsw_act>
+     e44:	88 23       	and	r24, r24
+     e46:	29 f0       	breq	.+10     	; 0xe52 <ProcessUpDownButtons+0x48>
+	{
+		if(force>=10) force-=10;
+     e48:	ca 30       	cpi	r28, 0x0A	; 10
+     e4a:	10 f0       	brcs	.+4      	; 0xe50 <ProcessUpDownButtons+0x46>
+     e4c:	ca 50       	subi	r28, 0x0A	; 10
+     e4e:	01 c0       	rjmp	.+2      	; 0xe52 <ProcessUpDownButtons+0x48>
+		else force=0;
+     e50:	c0 e0       	ldi	r28, 0x00	; 0
+	};
+	
+	return force;
+}
+     e52:	8c 2f       	mov	r24, r28
+     e54:	df 91       	pop	r29
+     e56:	cf 91       	pop	r28
+     e58:	1f 91       	pop	r17
+     e5a:	08 95       	ret
+
+00000e5c <ProcessMode>:
+
+uint8_t ProcessMode(uint8_t mode)
+{
+     e5c:	cf 93       	push	r28
+     e5e:	df 93       	push	r29
+     e60:	c8 2f       	mov	r28, r24
+	uint8_t mode_changed = INDRV_GetInputChange(INPUT_CH_MODE);
+     e62:	86 e0       	ldi	r24, 0x06	; 6
+     e64:	2a dd       	rcall	.-1452   	; 0x8ba <INDRV_GetInputChange>
+     e66:	d8 2f       	mov	r29, r24
+	
+	INDRV_ResetChangeFlag(INPUT_CH_MODE);
+     e68:	86 e0       	ldi	r24, 0x06	; 6
+     e6a:	49 dd       	rcall	.-1390   	; 0x8fe <INDRV_ResetChangeFlag>
+	
+	if((mode_changed)&&(mode_act))
+     e6c:	dd 23       	and	r29, r29
+     e6e:	49 f0       	breq	.+18     	; 0xe82 <ProcessMode+0x26>
+     e70:	80 91 5c 01 	lds	r24, 0x015C	; 0x80015c <mode_act>
+     e74:	88 23       	and	r24, r24
+     e76:	29 f0       	breq	.+10     	; 0xe82 <ProcessMode+0x26>
+	{
+		if(mode<2) mode++;
+     e78:	c2 30       	cpi	r28, 0x02	; 2
+     e7a:	10 f4       	brcc	.+4      	; 0xe80 <ProcessMode+0x24>
+     e7c:	cf 5f       	subi	r28, 0xFF	; 255
+     e7e:	01 c0       	rjmp	.+2      	; 0xe82 <ProcessMode+0x26>
+		else mode=0;
+     e80:	c0 e0       	ldi	r28, 0x00	; 0
+	};
+	
+	return mode;
+}
+     e82:	8c 2f       	mov	r24, r28
+     e84:	df 91       	pop	r29
+     e86:	cf 91       	pop	r28
+     e88:	08 95       	ret
+
+00000e8a <GetNextTargetForce>:
+
+uint8_t GetNextTargetForce(void)
+{
+	uint8_t force = 0;
+	
+	if(hbrake_act)
+     e8a:	80 91 61 01 	lds	r24, 0x0161	; 0x800161 <hbrake_act>
+     e8e:	81 11       	cpse	r24, r1
+     e90:	12 c0       	rjmp	.+36     	; 0xeb6 <GetNextTargetForce+0x2c>
+	{
+		force = 0;
+	}
+	else if(brakes_act)
+     e92:	80 91 60 01 	lds	r24, 0x0160	; 0x800160 <brakes_act>
+     e96:	88 23       	and	r24, r24
+     e98:	59 f0       	breq	.+22     	; 0xeb0 <GetNextTargetForce+0x26>
+	{
+		switch(brakes_mode)
+     e9a:	80 91 59 01 	lds	r24, 0x0159	; 0x800159 <brakes_mode>
+     e9e:	81 30       	cpi	r24, 0x01	; 1
+     ea0:	21 f0       	breq	.+8      	; 0xeaa <GetNextTargetForce+0x20>
+     ea2:	82 30       	cpi	r24, 0x02	; 2
+     ea4:	51 f4       	brne	.+20     	; 0xeba <GetNextTargetForce+0x30>
+			case 1:
+			force = user_force;
+			break;
+			
+			case 2:
+			force = 100;
+     ea6:	84 e6       	ldi	r24, 0x64	; 100
+     ea8:	08 95       	ret
+	else if(brakes_act)
+	{
+		switch(brakes_mode)
+		{
+			case 1:
+			force = user_force;
+     eaa:	80 91 5a 01 	lds	r24, 0x015A	; 0x80015a <user_force>
+			break;
+     eae:	08 95       	ret
+			force = 0;
+		}
+	}
+	else
+	{
+		force = user_force;
+     eb0:	80 91 5a 01 	lds	r24, 0x015A	; 0x80015a <user_force>
+     eb4:	08 95       	ret
+{
+	uint8_t force = 0;
+	
+	if(hbrake_act)
+	{
+		force = 0;
+     eb6:	80 e0       	ldi	r24, 0x00	; 0
+     eb8:	08 95       	ret
+			case 2:
+			force = 100;
+			break;
+			
+			default:
+			force = 0;
+     eba:	80 e0       	ldi	r24, 0x00	; 0
+	{
+		force = user_force;
+	}
+	
+	return force;
+}
+     ebc:	08 95       	ret
+
+00000ebe <ForceToCurrent>:
+
+uint16_t ForceToCurrent(uint8_t force)
+{
+     ebe:	0f 93       	push	r16
+     ec0:	1f 93       	push	r17
+	if(force>=100) return COIL_MAX_SET_CURRENT;
+     ec2:	84 36       	cpi	r24, 0x64	; 100
+     ec4:	08 f0       	brcs	.+2      	; 0xec8 <ForceToCurrent+0xa>
+     ec6:	5b c0       	rjmp	.+182    	; 0xf7e <ForceToCurrent+0xc0>
+	else if(force==0) return 0;
+     ec8:	88 23       	and	r24, r24
+     eca:	09 f4       	brne	.+2      	; 0xece <ForceToCurrent+0x10>
+     ecc:	5b c0       	rjmp	.+182    	; 0xf84 <ForceToCurrent+0xc6>
+	else
+	{
+		uint32_t temp = ((uint32_t)force*COIL_MAX_SET_CURRENT)/100;
+     ece:	90 e0       	ldi	r25, 0x00	; 0
+     ed0:	a0 e0       	ldi	r26, 0x00	; 0
+     ed2:	b0 e0       	ldi	r27, 0x00	; 0
+     ed4:	8c 01       	movw	r16, r24
+     ed6:	9d 01       	movw	r18, r26
+     ed8:	00 0f       	add	r16, r16
+     eda:	11 1f       	adc	r17, r17
+     edc:	22 1f       	adc	r18, r18
+     ede:	33 1f       	adc	r19, r19
+     ee0:	00 0f       	add	r16, r16
+     ee2:	11 1f       	adc	r17, r17
+     ee4:	22 1f       	adc	r18, r18
+     ee6:	33 1f       	adc	r19, r19
+     ee8:	b9 01       	movw	r22, r18
+     eea:	a8 01       	movw	r20, r16
+     eec:	44 0f       	add	r20, r20
+     eee:	55 1f       	adc	r21, r21
+     ef0:	66 1f       	adc	r22, r22
+     ef2:	77 1f       	adc	r23, r23
+     ef4:	44 0f       	add	r20, r20
+     ef6:	55 1f       	adc	r21, r21
+     ef8:	66 1f       	adc	r22, r22
+     efa:	77 1f       	adc	r23, r23
+     efc:	40 0f       	add	r20, r16
+     efe:	51 1f       	adc	r21, r17
+     f00:	62 1f       	adc	r22, r18
+     f02:	73 1f       	adc	r23, r19
+     f04:	48 1b       	sub	r20, r24
+     f06:	59 0b       	sbc	r21, r25
+     f08:	6a 0b       	sbc	r22, r26
+     f0a:	7b 0b       	sbc	r23, r27
+     f0c:	8a 01       	movw	r16, r20
+     f0e:	9b 01       	movw	r18, r22
+     f10:	00 0f       	add	r16, r16
+     f12:	11 1f       	adc	r17, r17
+     f14:	22 1f       	adc	r18, r18
+     f16:	33 1f       	adc	r19, r19
+     f18:	00 0f       	add	r16, r16
+     f1a:	11 1f       	adc	r17, r17
+     f1c:	22 1f       	adc	r18, r18
+     f1e:	33 1f       	adc	r19, r19
+     f20:	b9 01       	movw	r22, r18
+     f22:	a8 01       	movw	r20, r16
+     f24:	48 1b       	sub	r20, r24
+     f26:	59 0b       	sbc	r21, r25
+     f28:	6a 0b       	sbc	r22, r26
+     f2a:	7b 0b       	sbc	r23, r27
+     f2c:	8a 01       	movw	r16, r20
+     f2e:	9b 01       	movw	r18, r22
+     f30:	00 0f       	add	r16, r16
+     f32:	11 1f       	adc	r17, r17
+     f34:	22 1f       	adc	r18, r18
+     f36:	33 1f       	adc	r19, r19
+     f38:	00 0f       	add	r16, r16
+     f3a:	11 1f       	adc	r17, r17
+     f3c:	22 1f       	adc	r18, r18
+     f3e:	33 1f       	adc	r19, r19
+     f40:	d9 01       	movw	r26, r18
+     f42:	c8 01       	movw	r24, r16
+     f44:	88 0f       	add	r24, r24
+     f46:	99 1f       	adc	r25, r25
+     f48:	aa 1f       	adc	r26, r26
+     f4a:	bb 1f       	adc	r27, r27
+     f4c:	88 0f       	add	r24, r24
+     f4e:	99 1f       	adc	r25, r25
+     f50:	aa 1f       	adc	r26, r26
+     f52:	bb 1f       	adc	r27, r27
+     f54:	88 0f       	add	r24, r24
+     f56:	99 1f       	adc	r25, r25
+     f58:	aa 1f       	adc	r26, r26
+     f5a:	bb 1f       	adc	r27, r27
+     f5c:	88 0f       	add	r24, r24
+     f5e:	99 1f       	adc	r25, r25
+     f60:	aa 1f       	adc	r26, r26
+     f62:	bb 1f       	adc	r27, r27
+     f64:	bc 01       	movw	r22, r24
+     f66:	cd 01       	movw	r24, r26
+     f68:	60 1b       	sub	r22, r16
+     f6a:	71 0b       	sbc	r23, r17
+     f6c:	82 0b       	sbc	r24, r18
+     f6e:	93 0b       	sbc	r25, r19
+     f70:	24 e6       	ldi	r18, 0x64	; 100
+     f72:	30 e0       	ldi	r19, 0x00	; 0
+     f74:	40 e0       	ldi	r20, 0x00	; 0
+     f76:	50 e0       	ldi	r21, 0x00	; 0
+     f78:	81 d0       	rcall	.+258    	; 0x107c <__udivmodsi4>
+		return (uint16_t)temp;
+     f7a:	c9 01       	movw	r24, r18
+     f7c:	05 c0       	rjmp	.+10     	; 0xf88 <ForceToCurrent+0xca>
+	return force;
+}
+
+uint16_t ForceToCurrent(uint8_t force)
+{
+	if(force>=100) return COIL_MAX_SET_CURRENT;
+     f7e:	84 e9       	ldi	r24, 0x94	; 148
+     f80:	91 e1       	ldi	r25, 0x11	; 17
+     f82:	02 c0       	rjmp	.+4      	; 0xf88 <ForceToCurrent+0xca>
+	else if(force==0) return 0;
+     f84:	80 e0       	ldi	r24, 0x00	; 0
+     f86:	90 e0       	ldi	r25, 0x00	; 0
+	else
+	{
+		uint32_t temp = ((uint32_t)force*COIL_MAX_SET_CURRENT)/100;
+		return (uint16_t)temp;
+	}
+     f88:	1f 91       	pop	r17
+     f8a:	0f 91       	pop	r16
+     f8c:	08 95       	ret
+
+00000f8e <main>:
+uint8_t GetNextTargetForce(void);
+uint16_t ForceToCurrent(uint8_t force);
 
 /**** Application ****/
 int main(void)
 {
-  4a:	ff cf       	rjmp	.-2      	; 0x4a <main>
+     f8e:	cf 93       	push	r28
+     f90:	df 93       	push	r29
+     f92:	cd b7       	in	r28, 0x3d	; 61
+     f94:	de b7       	in	r29, 0x3e	; 62
+     f96:	28 97       	sbiw	r28, 0x08	; 8
+     f98:	0f b6       	in	r0, 0x3f	; 63
+     f9a:	f8 94       	cli
+     f9c:	de bf       	out	0x3e, r29	; 62
+     f9e:	0f be       	out	0x3f, r0	; 63
+     fa0:	cd bf       	out	0x3d, r28	; 61
+	//System setup
+	inInitDef inpCfg;
+	
+	inpCfg.act_lvl_hbrake = INPUT_ACTIVE_LOW;
+     fa2:	1b 82       	std	Y+3, r1	; 0x03
+	inpCfg.act_lvl_brake = INPUT_ACTIVE_HIGH;
+     fa4:	81 e0       	ldi	r24, 0x01	; 1
+     fa6:	8a 83       	std	Y+2, r24	; 0x02
+	inpCfg.act_lvl_dimm = INPUT_ACTIVE_HIGH;
+     fa8:	89 83       	std	Y+1, r24	; 0x01
+	inpCfg.mode_upsw = INPUT_MODE_DIGITAL;
+     faa:	1f 82       	std	Y+7, r1	; 0x07
+	inpCfg.act_lvl_upsw = INPUT_ACTIVE_LOW;
+     fac:	1c 82       	std	Y+4, r1	; 0x04
+	inpCfg.mode_dnsw = INPUT_MODE_DIGITAL;
+     fae:	18 86       	std	Y+8, r1	; 0x08
+	inpCfg.act_lvl_dnsw = INPUT_ACTIVE_LOW;
+     fb0:	1d 82       	std	Y+5, r1	; 0x05
+	inpCfg.act_lvl_mode = INPUT_ACTIVE_LOW;
+     fb2:	1e 82       	std	Y+6, r1	; 0x06
+	
+	INDRV_Init(&inpCfg);
+     fb4:	ce 01       	movw	r24, r28
+     fb6:	01 96       	adiw	r24, 0x01	; 1
+     fb8:	b7 db       	rcall	.-2194   	; 0x728 <INDRV_Init>
+	DSPDRV_Init();
+     fba:	49 db       	rcall	.-2414   	; 0x64e <DSPDRV_Init>
+	COILDRV_Init();
+     fbc:	5f d8       	rcall	.-3906   	; 0x7c <COILDRV_Init>
+	
+	//main loop
+	while(1)
+	{
+		//Gather data
+		GatherData(1);
+     fbe:	81 e0       	ldi	r24, 0x01	; 1
+     fc0:	e8 de       	rcall	.-560    	; 0xd92 <GatherData>
+		COILDRV_UpdateMeasurments(dccd_i,dccd_u,supply_u);
+     fc2:	40 91 68 01 	lds	r20, 0x0168	; 0x800168 <supply_u>
+     fc6:	50 91 69 01 	lds	r21, 0x0169	; 0x800169 <supply_u+0x1>
+     fca:	60 91 66 01 	lds	r22, 0x0166	; 0x800166 <dccd_u>
+     fce:	70 91 67 01 	lds	r23, 0x0167	; 0x800167 <dccd_u+0x1>
+     fd2:	80 91 64 01 	lds	r24, 0x0164	; 0x800164 <dccd_i>
+     fd6:	90 91 65 01 	lds	r25, 0x0165	; 0x800165 <dccd_i+0x1>
+     fda:	a1 d8       	rcall	.-3774   	; 0x11e <COILDRV_UpdateMeasurments>
+	
+		//Process inputs
+		user_force = ProcessUpDownButtons(user_force);
+     fdc:	80 91 5a 01 	lds	r24, 0x015A	; 0x80015a <user_force>
+     fe0:	14 df       	rcall	.-472    	; 0xe0a <ProcessUpDownButtons>
+     fe2:	80 93 5a 01 	sts	0x015A, r24	; 0x80015a <user_force>
+		brakes_mode = ProcessMode(brakes_mode);
+     fe6:	80 91 59 01 	lds	r24, 0x0159	; 0x800159 <brakes_mode>
+     fea:	38 df       	rcall	.-400    	; 0xe5c <ProcessMode>
+     fec:	80 93 59 01 	sts	0x0159, r24	; 0x800159 <brakes_mode>
+		
+		//Determine next force output
+		set_force = GetNextTargetForce();
+     ff0:	4c df       	rcall	.-360    	; 0xe8a <GetNextTargetForce>
+     ff2:	80 93 5b 01 	sts	0x015B, r24	; 0x80015b <set_force>
+		
+		//Convert force to target current
+		set_current = ForceToCurrent(set_force);
+     ff6:	63 df       	rcall	.-314    	; 0xebe <ForceToCurrent>
+     ff8:	90 93 58 01 	sts	0x0158, r25	; 0x800158 <set_current+0x1>
+     ffc:	80 93 57 01 	sts	0x0157, r24	; 0x800157 <set_current>
+		COILDRV_SetTarget(set_current);
+    1000:	74 d8       	rcall	.-3864   	; 0xea <COILDRV_SetTarget>
+		
+		//Process coil HW control
+		COILDRV_Process();		
+    1002:	d9 da       	rcall	.-2638   	; 0x5b6 <COILDRV_Process>
+		
+		//Set display
+		DSPDRV_SetDisplayVal(set_force,LED_DSP_DOT10);
+    1004:	61 e0       	ldi	r22, 0x01	; 1
+    1006:	80 91 5b 01 	lds	r24, 0x015B	; 0x80015b <set_force>
+    100a:	2a db       	rcall	.-2476   	; 0x660 <DSPDRV_SetDisplayVal>
+		if(dimm_act) DSPDRV_SetDisplayBrightness(10);
+    100c:	80 91 5f 01 	lds	r24, 0x015F	; 0x80015f <dimm_act>
+    1010:	88 23       	and	r24, r24
+    1012:	19 f0       	breq	.+6      	; 0x101a <main+0x8c>
+    1014:	8a e0       	ldi	r24, 0x0A	; 10
+    1016:	84 db       	rcall	.-2296   	; 0x720 <DSPDRV_SetDisplayBrightness>
+    1018:	02 c0       	rjmp	.+4      	; 0x101e <main+0x90>
+		else DSPDRV_SetDisplayBrightness(50);
+    101a:	82 e3       	ldi	r24, 0x32	; 50
+    101c:	81 db       	rcall	.-2302   	; 0x720 <DSPDRV_SetDisplayBrightness>
+		//Process display HW control
+		DSPDRV_RefreshDisplay();
+    101e:	7c db       	rcall	.-2312   	; 0x718 <DSPDRV_RefreshDisplay>
+	}
+    1020:	ce cf       	rjmp	.-100    	; 0xfbe <main+0x30>
 
-0000004c <_exit>:
-  4c:	f8 94       	cli
+00001022 <__mulsi3>:
+    1022:	ee 27       	eor	r30, r30
+    1024:	ff 27       	eor	r31, r31
 
-0000004e <__stop_program>:
-  4e:	ff cf       	rjmp	.-2      	; 0x4e <__stop_program>
+00001026 <__mulsi3_helper>:
+    1026:	aa 27       	eor	r26, r26
+    1028:	bb 27       	eor	r27, r27
+    102a:	08 c0       	rjmp	.+16     	; 0x103c <__mulsi3_helper+0x16>
+    102c:	a2 0f       	add	r26, r18
+    102e:	b3 1f       	adc	r27, r19
+    1030:	e4 1f       	adc	r30, r20
+    1032:	f5 1f       	adc	r31, r21
+    1034:	22 0f       	add	r18, r18
+    1036:	33 1f       	adc	r19, r19
+    1038:	44 1f       	adc	r20, r20
+    103a:	55 1f       	adc	r21, r21
+    103c:	96 95       	lsr	r25
+    103e:	87 95       	ror	r24
+    1040:	77 95       	ror	r23
+    1042:	67 95       	ror	r22
+    1044:	98 f3       	brcs	.-26     	; 0x102c <__mulsi3_helper+0x6>
+    1046:	70 40       	sbci	r23, 0x00	; 0
+    1048:	a9 f7       	brne	.-22     	; 0x1034 <__mulsi3_helper+0xe>
+    104a:	00 97       	sbiw	r24, 0x00	; 0
+    104c:	99 f7       	brne	.-26     	; 0x1034 <__mulsi3_helper+0xe>
+    104e:	bd 01       	movw	r22, r26
+    1050:	cf 01       	movw	r24, r30
+    1052:	08 95       	ret
+
+00001054 <__udivmodhi4>:
+    1054:	aa 1b       	sub	r26, r26
+    1056:	bb 1b       	sub	r27, r27
+    1058:	51 e1       	ldi	r21, 0x11	; 17
+    105a:	07 c0       	rjmp	.+14     	; 0x106a <__udivmodhi4_ep>
+
+0000105c <__udivmodhi4_loop>:
+    105c:	aa 1f       	adc	r26, r26
+    105e:	bb 1f       	adc	r27, r27
+    1060:	a6 17       	cp	r26, r22
+    1062:	b7 07       	cpc	r27, r23
+    1064:	10 f0       	brcs	.+4      	; 0x106a <__udivmodhi4_ep>
+    1066:	a6 1b       	sub	r26, r22
+    1068:	b7 0b       	sbc	r27, r23
+
+0000106a <__udivmodhi4_ep>:
+    106a:	88 1f       	adc	r24, r24
+    106c:	99 1f       	adc	r25, r25
+    106e:	5a 95       	dec	r21
+    1070:	a9 f7       	brne	.-22     	; 0x105c <__udivmodhi4_loop>
+    1072:	80 95       	com	r24
+    1074:	90 95       	com	r25
+    1076:	bc 01       	movw	r22, r24
+    1078:	cd 01       	movw	r24, r26
+    107a:	08 95       	ret
+
+0000107c <__udivmodsi4>:
+    107c:	a1 e2       	ldi	r26, 0x21	; 33
+    107e:	1a 2e       	mov	r1, r26
+    1080:	aa 1b       	sub	r26, r26
+    1082:	bb 1b       	sub	r27, r27
+    1084:	fd 01       	movw	r30, r26
+    1086:	0d c0       	rjmp	.+26     	; 0x10a2 <__udivmodsi4_ep>
+
+00001088 <__udivmodsi4_loop>:
+    1088:	aa 1f       	adc	r26, r26
+    108a:	bb 1f       	adc	r27, r27
+    108c:	ee 1f       	adc	r30, r30
+    108e:	ff 1f       	adc	r31, r31
+    1090:	a2 17       	cp	r26, r18
+    1092:	b3 07       	cpc	r27, r19
+    1094:	e4 07       	cpc	r30, r20
+    1096:	f5 07       	cpc	r31, r21
+    1098:	20 f0       	brcs	.+8      	; 0x10a2 <__udivmodsi4_ep>
+    109a:	a2 1b       	sub	r26, r18
+    109c:	b3 0b       	sbc	r27, r19
+    109e:	e4 0b       	sbc	r30, r20
+    10a0:	f5 0b       	sbc	r31, r21
+
+000010a2 <__udivmodsi4_ep>:
+    10a2:	66 1f       	adc	r22, r22
+    10a4:	77 1f       	adc	r23, r23
+    10a6:	88 1f       	adc	r24, r24
+    10a8:	99 1f       	adc	r25, r25
+    10aa:	1a 94       	dec	r1
+    10ac:	69 f7       	brne	.-38     	; 0x1088 <__udivmodsi4_loop>
+    10ae:	60 95       	com	r22
+    10b0:	70 95       	com	r23
+    10b2:	80 95       	com	r24
+    10b4:	90 95       	com	r25
+    10b6:	9b 01       	movw	r18, r22
+    10b8:	ac 01       	movw	r20, r24
+    10ba:	bd 01       	movw	r22, r26
+    10bc:	cf 01       	movw	r24, r30
+    10be:	08 95       	ret
+
+000010c0 <__divmodsi4>:
+    10c0:	05 2e       	mov	r0, r21
+    10c2:	97 fb       	bst	r25, 7
+    10c4:	16 f4       	brtc	.+4      	; 0x10ca <__divmodsi4+0xa>
+    10c6:	00 94       	com	r0
+    10c8:	0f d0       	rcall	.+30     	; 0x10e8 <__negsi2>
+    10ca:	57 fd       	sbrc	r21, 7
+    10cc:	05 d0       	rcall	.+10     	; 0x10d8 <__divmodsi4_neg2>
+    10ce:	d6 df       	rcall	.-84     	; 0x107c <__udivmodsi4>
+    10d0:	07 fc       	sbrc	r0, 7
+    10d2:	02 d0       	rcall	.+4      	; 0x10d8 <__divmodsi4_neg2>
+    10d4:	46 f4       	brtc	.+16     	; 0x10e6 <__divmodsi4_exit>
+    10d6:	08 c0       	rjmp	.+16     	; 0x10e8 <__negsi2>
+
+000010d8 <__divmodsi4_neg2>:
+    10d8:	50 95       	com	r21
+    10da:	40 95       	com	r20
+    10dc:	30 95       	com	r19
+    10de:	21 95       	neg	r18
+    10e0:	3f 4f       	sbci	r19, 0xFF	; 255
+    10e2:	4f 4f       	sbci	r20, 0xFF	; 255
+    10e4:	5f 4f       	sbci	r21, 0xFF	; 255
+
+000010e6 <__divmodsi4_exit>:
+    10e6:	08 95       	ret
+
+000010e8 <__negsi2>:
+    10e8:	90 95       	com	r25
+    10ea:	80 95       	com	r24
+    10ec:	70 95       	com	r23
+    10ee:	61 95       	neg	r22
+    10f0:	7f 4f       	sbci	r23, 0xFF	; 255
+    10f2:	8f 4f       	sbci	r24, 0xFF	; 255
+    10f4:	9f 4f       	sbci	r25, 0xFF	; 255
+    10f6:	08 95       	ret
+
+000010f8 <_exit>:
+    10f8:	f8 94       	cli
+
+000010fa <__stop_program>:
+    10fa:	ff cf       	rjmp	.-2      	; 0x10fa <__stop_program>

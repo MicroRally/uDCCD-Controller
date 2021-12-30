@@ -28,7 +28,7 @@ void DSPDRV_SetDisplayVal(uint8_t value, uint8_t style);
 void DSPDRV_SetDisplayBrightness(uint8_t lvl);
 
 //Interrupt and loop functions
-void LEDDRV_RefreshDisplay(void);
+void DSPDRV_RefreshDisplay(void);
 
 //Data retrieve functions
 
