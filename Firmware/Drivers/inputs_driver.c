@@ -1,24 +1,17 @@
 /*
 uDCCD controller
-Inputs driver
+Analog and Digital inputs driver
 
 Author: Andis Jargans
 
 Revision history:
-2021-10-22: Initial version
+v0.0 - YYYY-MM-DD: Initial version
 */
 
-/**** Hardware configuration ****
-
-*/
-
-/**** Includes ****/
-#include <avr/io.h>
+/***** Includes *****/
 #include "inputs_driver.h"
-#include "hal_inputs.h"
-#include "hw_config.h"
 
-/**** Private definitions ****/
+/***** Private definitions *****/
 typedef struct inStateStruct {
 	uint8_t type;
 	uint8_t act_lvl;
@@ -36,7 +29,7 @@ typedef struct AnalogStruct {
 	uint16_t dnsw;
 }analogDef;
 
-/**** Private variables ****/
+/***** Private variables *****/
 static inStateDef dimm;
 static inStateDef brake;
 static inStateDef hbrake;
@@ -48,12 +41,12 @@ static analogDef measurments;
 
 static uint8_t bootstraps;
 
-/**** Private function declarations ****/
+/***** Private function declarations *****/
 void ReadAllAnalog(void);
 void ReadAllDigital(void);
 void DoDebounce(inStateDef* input, uint8_t level, uint8_t dbnc_limit);
 
-/**** Public function definitions ****/
+/***** Public function definitions *****/
 /**
  * @brief Initializes Inputs Driver
  * @param [in] initCfg Inputs configuration
@@ -99,19 +92,19 @@ void INDRV_Init(inInitDef* initCfg)
 	modesw.changed = 0;
 	
 	//HAL init preparation -------------
-	inHalConfigDef halCfg;
+	halInpConfigDef halCfg;
 	
 	halCfg.adc_wake = 1;
 
 	//UP switch input HAL config
-	if(upsw.type==INPUT_MODE_ANALOG) halCfg.upsw_mode = INHAL_MODE_AIN;
-	else halCfg.upsw_mode = INHAL_MODE_DIN;
+	if(upsw.type==INPUT_MODE_ANALOG) halCfg.upsw_mode = HAL_INP_MODE_AIN;
+	else halCfg.upsw_mode = HAL_INP_MODE_DIN;
 	
 	//DOWN switch input HAL config
-	if(dnsw.type==INPUT_MODE_ANALOG) halCfg.dnsw_mode = INHAL_MODE_AIN;
-	else halCfg.dnsw_mode = INHAL_MODE_DIN;
+	if(dnsw.type==INPUT_MODE_ANALOG) halCfg.dnsw_mode = HAL_INP_MODE_AIN;
+	else halCfg.dnsw_mode = HAL_INP_MODE_DIN;
 	
-	INHAL_Init(&halCfg);
+	HAL_InitInputs(&halCfg);
 }
 
 /**
@@ -265,7 +258,7 @@ void INDRV_ResetChangeFlag(uint8_t ch)
 	}
 }
 
-/**** Private function definitions ****/
+/***** Private function definitions *****/
 /**
  * @brief Read and convert all analog channels. Also does ADC mapping
  */
@@ -273,22 +266,22 @@ void ReadAllAnalog(void)
 {
 	uint16_t raw = 0;
 	
-	raw = INHAL_ADCRead(INHAL_AIN_BATMON);
+	raw = HAL_ADCRead(HAL_AIN_BATMON);
 	measurments.battery = raw*20; //mV
 	
-	raw = INHAL_ADCRead(INHAL_AIN_UMON);
+	raw = HAL_ADCRead(HAL_AIN_UMON);
 	measurments.dccd_u = raw*20;  //mV
 	
-	raw = INHAL_ADCRead(INHAL_AIN_IMON);
+	raw = HAL_ADCRead(HAL_AIN_IMON);
 	measurments.dccd_i = raw*10; //mA
 	
-	raw = INHAL_ADCRead(INHAL_AIN_POT);
+	raw = HAL_ADCRead(HAL_AIN_POT);
 	measurments.pot = (raw*64)/13;  //mV
 	
-	raw = INHAL_ADCRead(INHAL_AIN_UPSW);
+	raw = HAL_ADCRead(HAL_AIN_UPSW);
 	measurments.upsw = (raw*64)/13;  //mV
 	
-	raw = INHAL_ADCRead(INHAL_AIN_DNSW);
+	raw = HAL_ADCRead(HAL_AIN_DNSW);
 	measurments.dnsw = (raw*64)/13;	 //mV
 }
 
@@ -299,27 +292,27 @@ void ReadAllDigital(void)
 {
 	uint8_t hwlvl = 0;
 	
-	hwlvl = INHAL_GPIORead(INHAL_DIN_DIMM);
+	hwlvl = HAL_GPIORead(HAL_DIN_DIMM);
 	DoDebounce(&dimm, hwlvl, DEBOUNCE_TIME_DIMM);
 	
-	hwlvl = INHAL_GPIORead(INHAL_DIN_BRAKE);
+	hwlvl = HAL_GPIORead(HAL_DIN_BRAKE);
 	DoDebounce(&brake, hwlvl, DEBOUNCE_TIME_BRKAE);
 	
-	hwlvl = INHAL_GPIORead(INHAL_DIN_HBRAKE);
+	hwlvl = HAL_GPIORead(HAL_DIN_HBRAKE);
 	DoDebounce(&hbrake, hwlvl, DEBOUNCE_TIME_HBRAKE);
 	
-	hwlvl = INHAL_GPIORead(INHAL_DIN_MODE);
+	hwlvl = HAL_GPIORead(HAL_DIN_MODE);
 	DoDebounce(&modesw, hwlvl, DEBOUNCE_TIME_MODESW);
 	
 	if(upsw.type!=INPUT_MODE_ANALOG)
 	{
-		hwlvl = INHAL_GPIORead(INHAL_DIN_UPSW);
+		hwlvl = HAL_GPIORead(HAL_DIN_UPSW);
 		DoDebounce(&upsw, hwlvl, DEBOUNCE_TIME_UPSW);
 	};
 	
 	if(dnsw.type!=INPUT_MODE_ANALOG)
 	{
-		hwlvl = INHAL_GPIORead(INHAL_DIN_DNSW);
+		hwlvl = HAL_GPIORead(HAL_DIN_DNSW);
 		DoDebounce(&dnsw, hwlvl, DEBOUNCE_TIME_DNSW);
 	};
 }
@@ -350,7 +343,3 @@ void DoDebounce(inStateDef* input, uint8_t level, uint8_t dbnc_limit)
 	}
 	else input->dbnc_timer = 0;
 }
-
-
-
-

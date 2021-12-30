@@ -1,17 +1,20 @@
 /*
 uDCCD controller
-Inputs driver
+Analog and Digital inputs driver
 
 Author: Andis Jargans
 
 Revision history:
-2021-MM-DD: Initial version
+v0.0 - YYYY-MM-DD
 */
 
 #ifndef INPUTS_DRIVER
 #define INPUTS_DRIVER
 
 /**** Includes ****/
+#include <avr/io.h>
+#include "udccd_hal.h"
+#include "hw_config.h"
 
 /**** Public definitions ****/
 #define INPUT_ACTIVE_LOW	0

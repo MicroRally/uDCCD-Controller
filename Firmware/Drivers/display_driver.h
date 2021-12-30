@@ -16,7 +16,6 @@ v0.0 - YYYY-MM-DD
 #include "udccd_hal.h"
 #include "hw_config.h"
 
-
 /**** Public definitions ****/
 
 /**** Public function declarations ****/

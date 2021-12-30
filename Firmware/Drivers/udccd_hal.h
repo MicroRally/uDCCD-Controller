@@ -56,7 +56,7 @@ typedef struct halInpConfigStruct {
 
 /**** Public function declarations ****/
 //Init functions
-void HAL_InitInputs(inHalConfigDef* extCfg);
+void HAL_InitInputs(halInpConfigDef* extCfg);
 void HAL_InitOutputs(void);
 void HAL_InitSystick(void);
 void HAL_InitWatchdog(void);
