@@ -28,5 +28,6 @@ void COILDRV_UpdateMeasurments(uint16_t current, uint16_t voltage, uint16_t supp
 void COILDRV_Process(void);
 
 //Data retrieve functions
+uint8_t COILDRV_GetFault(void);
 
 #endif

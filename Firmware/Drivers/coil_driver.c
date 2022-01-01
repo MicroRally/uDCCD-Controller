@@ -48,6 +48,8 @@ static pidDef pidData;
 static measDef measurements;
 static warnDef warnings;
 
+static uint8_t fault = 0;
+
 /***** Private function declarations *****/
 uint8_t Process_Faults(warnDef* warn );
 void Get_Warnings(uint16_t set_i, uint16_t set_u, measDef* meas, warnDef* warn );
@@ -85,6 +87,8 @@ void COILDRV_Init(void)
 	
 	set_voltage = 0;
 	target_current = 0;
+	
+	fault= 0;
 }
 
 /**
@@ -106,7 +110,7 @@ void COILDRV_Process(void)
 	
 	//Protections
 	Get_Warnings(target_current,set_voltage,&measurements,&warnings);
-	uint8_t fault = Process_Faults(&warnings);
+	fault = Process_Faults(&warnings);
 	
 	if(fault)
 	{
@@ -142,8 +146,12 @@ void COILDRV_UpdateMeasurments(uint16_t current, uint16_t voltage, uint16_t supp
 	measurements.voltage = voltage;
 }
 
-/***** Private function definitions *****/
+uint8_t COILDRV_GetFault(void)
+{
+	return fault;
+}
 
+/***** Private function definitions *****/
 /**
  * @brief Process fault warning states
  */

@@ -83,7 +83,6 @@ One conversion = 13.5 Fadc cycles
 #define COIL_PID_KD_MUL		1
 #define COIL_PID_KD_DIV		10
 
-
 //Inputs Driver configuration
 #define DEBOUNCE_TIME_DIMM		10
 #define DEBOUNCE_TIME_BRKAE		10
@@ -91,5 +90,10 @@ One conversion = 13.5 Fadc cycles
 #define DEBOUNCE_TIME_UPSW		10
 #define DEBOUNCE_TIME_DNSW		10
 #define DEBOUNCE_TIME_MODESW	10
+
+//Application configuration
+#define DSP_FAULT_FLASH_PERIOD	500
+#define DSP_BRIGHT_PWM			50
+#define DSP_DIMM_PWM			10
 	
 #endif

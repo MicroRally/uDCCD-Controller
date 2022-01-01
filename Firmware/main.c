@@ -35,10 +35,10 @@ uint8_t upsw_act = 0;
 uint8_t dnsw_act = 0;
 uint8_t mode_act = 0;
 
-uint8_t set_force = 0;
-uint8_t user_force = 0;
 uint8_t brakes_mode = 0;
+uint8_t user_force = 0;
 
+uint8_t set_force = 0;
 uint16_t set_current = 0;
 
 /**** Private function declarations ****/
@@ -47,6 +47,7 @@ uint8_t ProcessUpDownButtons(uint8_t force);
 uint8_t ProcessMode(uint8_t mode);
 uint8_t GetNextTargetForce(void);
 uint16_t ForceToCurrent(uint8_t force);
+void ProcessDisplay(void);
 
 /**** Application ****/
 int main(void)
@@ -90,12 +91,9 @@ int main(void)
 		//Process coil HW control
 		COILDRV_Process();		
 		
-		//Set display
-		DSPDRV_SetDisplayVal(set_force,LED_DSP_DOT10);
-		if(dimm_act) DSPDRV_SetDisplayBrightness(10);
-		else DSPDRV_SetDisplayBrightness(50);
-		//Process display HW control
-		DSPDRV_RefreshDisplay();
+		//Process display
+		ProcessDisplay();
+		
 	}
 }
 
@@ -200,4 +198,44 @@ uint16_t ForceToCurrent(uint8_t force)
 		uint32_t temp = ((uint32_t)force*COIL_MAX_SET_CURRENT)/100;
 		return (uint16_t)temp;
 	}
+}
+
+void ProcessDisplay(void)
+{
+	static uint16_t timer = 0;
+	static uint8_t step = 0;
+	
+	//Display set force
+	if( COILDRV_GetFault() )
+	{
+		//Flash LOCK LED
+		if(timer) timer--;
+		else
+		{
+			if(step)
+			{
+				//Turn on LOCK LED
+				DSPDRV_SetDisplayBW(0x20);
+				step=0;
+			}
+			else
+			{
+				//Turn off all LEDs
+				DSPDRV_SetDisplayBW(0x00);
+				step=1;
+			}
+			timer = DSP_FAULT_FLASH_PERIOD;
+		}
+	}
+	else
+	{
+		DSPDRV_SetDisplayVal(set_force,LED_DSP_DOT10);
+	}
+	
+	//Brightness control
+	if(dimm_act) DSPDRV_SetDisplayBrightness(DSP_DIMM_PWM);
+	else DSPDRV_SetDisplayBrightness(DSP_BRIGHT_PWM);
+	
+	//Process display HW control
+	DSPDRV_RefreshDisplay();
 }
