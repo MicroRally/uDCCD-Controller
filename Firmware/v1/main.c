@@ -5,6 +5,9 @@ Author: Andis Jargans
 
 Revision history:
 2020-09-24: Initial version
+2021-06-16: v1.1
+* OCP too is sensitive. Coil inductance is larger than tough and current decays much slower. Need to give more time for current decay before triggering OCP.
+* inrush_counter treshold, in OCP State machine, raised from 25 to 100.
 */
 
 /**** Hardware configuration ****
@@ -65,6 +68,10 @@ Brake mode - L/O
 #define EE_LEDH_ADD		0x03
 #define EE_ITRGT_ADDH	0x04
 #define EE_ITRGT_ADDL	0x05
+
+//DCCD state
+#define DCCD_NOCAL	0
+#define DCCD_
 
 /*
 Brake lock mode, O-0x4F, L-0x4C
@@ -199,6 +206,7 @@ int main(void)
 		}
 		else
 		{
+			//No overcurrent
 			if(inrush_counter) inrush_counter--;
 			if(cooldown_counter) cooldown_counter--;
 		}
@@ -222,7 +230,7 @@ int main(void)
 		if(ocp_state==0)
 		{
 			//All is fine			
-			if(inrush_counter>25)
+			if(inrush_counter>100)
 			{
 				//too long inrush, fuse
 				OUTDRV_FuseDccd();
@@ -256,7 +264,7 @@ int main(void)
 		else if(ocp_state==2)
 		{
 			//retrying, check if fault repeats
-			if(inrush_counter>5)
+			if(inrush_counter>100)
 			{
 				//too long inrush, fuse
 				OUTDRV_FuseDccd();
