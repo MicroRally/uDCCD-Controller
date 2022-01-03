@@ -6,6 +6,9 @@ Author: Andis Jargans
 
 Revision history:
 v0.0 - YYYY-MM-DD: Initial version
+
+TO DO:
+*Add non-volatile memory Read/Write
 */
 
 /**** Hardware configuration ****
@@ -405,59 +408,6 @@ void HAL_ReducePower(void)
 void HAL_ResetWatchdog(void)
 {
 	//Do WDT reset instruction
-}
-
-/**
- * @brief Read and latch bootstraps
- */
-uint8_t HAL_LatchBootstraps(void)
-{
-	//Init HW
-	bootstraps = 0x00;
-	HAL_InitBootstraps();
-	
-	//Read value
-	uint8_t i = 0;
-	i = HAL_GPIORead(HAL_DIN_BOOT0);
-	bootstraps |= i;
-	i = HAL_GPIORead(HAL_DIN_BOOT1);
-	bootstraps |= (i<<1);
-	i = HAL_GPIORead(HAL_DIN_BOOT2);
-	bootstraps |= (i<<2);
-	
-	HAL_DeInitBootstraps();
-	
-	return bootstraps;
-}
-/**
- * @brief Read chosen bootstrap
- * @param [in] ch Channel to read
- * @return Properly converted analog value as mV or mA
- */
-uint8_t HAL_GetBootstrap(uint8_t ch)
-{
-	uint8_t i=0;
-	
-	switch(ch)
-	{
-		case HAL_BOOT0:
-			i = bootstraps&0x01;
-			break;
-			
-		case HAL_BOOT1:
-			i = bootstraps&0x02;
-			break;
-			
-		case HAL_BOOT2:
-			i = bootstraps&0x04;
-			break;
-			
-		default:
-			return bootstraps;
-	}
-	
-	if(i) return 1;
-	else return 0;
 }
 
 /**** Private function definitions ****/

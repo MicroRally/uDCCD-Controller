@@ -52,6 +52,7 @@ typedef struct inInitStruct {
 /**** Public function declarations ****/
 //Control functions
 void INDRV_Init(inInitDef* initCfg);
+uint8_t INDRV_ReadBootstraps(void);
 
 //Interrupt and loop functions
 void INDRV_ReadAll(void);
@@ -61,5 +62,6 @@ uint16_t INDRV_GetAnalog(uint8_t ch);
 uint8_t INDRV_GetInputState(uint8_t ch);
 uint8_t INDRV_GetInputChange(uint8_t ch);
 void INDRV_ResetChangeFlag(uint8_t ch);
+uint8_t INDRV_GetBootstrap(uint8_t ch);
 
 #endif

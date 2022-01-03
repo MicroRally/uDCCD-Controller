@@ -82,7 +82,4 @@ void HAL_ResetWatchdog(void);
 uint16_t HAL_ADCRead(uint8_t ch);
 uint8_t HAL_GPIORead(uint8_t ch);
 
-uint8_t HAL_LatchBootstraps(void);
-uint8_t HAL_GetBootstrap(uint8_t ch);
-
 #endif

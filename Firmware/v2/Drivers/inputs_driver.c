@@ -39,6 +39,8 @@ static inStateDef modesw;
 
 static analogDef measurments;
 
+static uint8_t bootstraps = 0x00;
+
 /***** Private function declarations *****/
 void ReadAllAnalog(void);
 void ReadAllDigital(void);
@@ -51,6 +53,9 @@ void DoDebounce(inStateDef* input, uint8_t level, uint8_t dbnc_limit);
  */
 void INDRV_Init(inInitDef* initCfg)
 {
+	//Init bootstraps
+	HAL_InitBootstraps();
+	
 	//HV input configuration
 	dimm.type = INPUT_MODE_DIGITAL;
 	dimm.act_lvl = initCfg->act_lvl_dimm;
@@ -112,6 +117,60 @@ void INDRV_ReadAll(void)
 {
 	ReadAllAnalog();
 	ReadAllDigital();
+}
+
+/**
+ * @brief Read and latch bootstraps
+ */
+uint8_t INDRV_ReadBootstraps(void)
+{
+	//Init HW
+	bootstraps = 0x00;
+	HAL_InitBootstraps();
+	
+	//Read value
+	uint8_t i = 0;
+	i = HAL_GPIORead(HAL_DIN_BOOT0);
+	bootstraps |= i;
+	i = HAL_GPIORead(HAL_DIN_BOOT1);
+	bootstraps |= (i<<1);
+	i = HAL_GPIORead(HAL_DIN_BOOT2);
+	bootstraps |= (i<<2);
+	
+	HAL_DeInitBootstraps();
+	
+	return bootstraps;
+}
+
+/**
+ * @brief Read chosen bootstrap
+ * @param [in] ch Channel to read
+ * @return Properly converted analog value as mV or mA
+ */
+uint8_t INDRV_GetBootstrap(uint8_t ch)
+{
+	uint8_t i=0;
+	
+	switch(ch)
+	{
+		case HAL_BOOT0:
+			i = bootstraps&0x01;
+			break;
+			
+		case HAL_BOOT1:
+			i = bootstraps&0x02;
+			break;
+			
+		case HAL_BOOT2:
+			i = bootstraps&0x04;
+			break;
+			
+		default:
+			return bootstraps;
+	}
+	
+	if(i) return 1;
+	else return 0;
 }
 
 /**

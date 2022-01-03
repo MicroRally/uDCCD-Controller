@@ -6,9 +6,16 @@ Author: Andis Jargans
 
 Revision history:
 v2.0 - YYYY-MM-DD: Initial version
-*/
 
-/**** Hardware configuration ****
+TO DO:
+* Add Max target current configuration
+* Add Potentiometer mode
+* Mode display at startup
+* User set force display delay
+* Add last set force saving, for button mode
+* Add 12V/5V LED display modes  - different PWMs
+* Add brake input polarity selection
+* 
 */
 
 #include <avr/io.h>
