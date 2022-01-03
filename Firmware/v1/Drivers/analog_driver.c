@@ -48,6 +48,8 @@ void ANDRV_Init(void)
 	*/
 	
 	PORTCR |= 0x04; //Pull-up disable
+	DDRA &= ~0x0F; //Set as inputs
+	PORTA &= ~0x0F; //disable pull-up
 	DIDR0 |= 0x0F; //Disable digital inputs
 	ADMUX = 0x40; //Set AVCC reference
 	ADCSRA = 0x87; //ADC Enabled, Single conversion, no IT, 125kHz @8MHz

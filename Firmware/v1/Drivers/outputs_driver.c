@@ -34,7 +34,7 @@ static volatile uint16_t leds_timer = 0x0000;
 
 
 static volatile uint16_t coil_resistance = 0;  //mR, no calibration done
-static volatile uint16_t nominal_bat = 0; //mV, no calibration done
+static volatile uint16_t nominal_bat = 12000; //mV, no calibration done
 
 static volatile uint16_t lock_pwm = 0;
 
@@ -185,7 +185,8 @@ void OUTDRV_ProcessCoil(uint16_t ubat)
 	//If nominal battery voltage is set, and actual voltage is known, the do compensation
 	if((ubat)&&(nominal_bat))
 	{
-		uint32_t a = (((uint32_t)coil_set_pwm*nominal_bat)/((uint32_t)ubat));
+		uint32_t a = (uint32_t)coil_set_pwm*nominal_bat;
+		a = a/((uint32_t)ubat);
 		if(a>0x0000FFFF) a = 0x0000FFFF;
 		temp = (uint16_t)a;
 	}
@@ -223,7 +224,7 @@ void OUTDRV_SetCoilConfig(uint16_t res, uint16_t nom_bat, uint16_t lock_current)
 	nominal_bat = nom_bat;
 		
 	//Calculate lock voltage
-	temp = ((uint32_t)coil_resistance*lock_current)/960; //target mV, add 5%
+	temp = ((uint32_t)coil_resistance*lock_current)/1000; //target mV, add 5%
 	
 	//scale to full range if necessary lock voltage is above battery voltage
 	if(temp>((uint32_t)nominal_bat)) temp = (uint32_t)nominal_bat; 

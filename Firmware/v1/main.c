@@ -10,6 +10,10 @@ Revision history:
 * inrush_counter threshold, in OCP State machine, raised from 25 to 100.
 2021-06-18: v1.2
 * Needs to save last set DCCD force. Added set force saving to EEPROM.
+2021-09-22: v1.3
+* Special version for last r6 board.
+2021-09-22: v1.31
+* Added redundant set force saving
 */
 
 /**** Hardware configuration ****
@@ -64,6 +68,7 @@ PD7 -
 #define EE_ITRGT_ADDH	0x04
 #define EE_ITRGT_ADDL	0x05
 #define EE_SETF_ADD		0x06
+#define EE_SETFB_ADD	0x07
 
 /*
 Brake lock mode, O-0x4F, L-0x4C
@@ -87,23 +92,25 @@ uint8_t pot_debounce =0;
 //DCCD logic variables
 uint8_t setforce = 0;
 uint8_t actforce = 0;
+uint8_t prev_actforce = 0;
 uint8_t brakelock = 0;
 
 //Protection logic variables
 uint8_t ocp_state = 0;
-uint16_t current_totmax = 6000; 
+uint16_t current_totmax = 8000;
 uint16_t current_actlim = 0;
 uint8_t inrush_counter = 0;
 uint16_t cooldown_counter = 0;
 uint8_t retry_counter = 0;
 uint8_t load_loss = 0;
 uint8_t load_loss_debounce = 0;
+uint16_t protection_deadtime = 0;
 
 //DCCD Operation state machine variables
 uint8_t dccd_state = 0;
 uint16_t calib_timer = 0;
 uint8_t calibration_fail = 0;
-uint16_t dccd_itarget = 3500;
+uint16_t dccd_itarget = 4400;
 
 //Display control variables
 uint8_t show_cfg = 1;
@@ -113,6 +120,7 @@ uint16_t dsp_lock_timer = 0;
 volatile uint16_t current = 0;
 volatile uint16_t volatge = 0;
 volatile uint16_t resistance = 0;
+volatile uint16_t supply = 0;
 
 /**** Private function declarations ****/
 void Init_systick(void);
@@ -137,27 +145,37 @@ int main(void)
 	if(ee_cfg=='L') brakelock=1;
 	else brakelock=0;
 	
-	ee_cfg = eeprom_read_byte((uint8_t*)EE_POTM_ADD);
-	if(ee_cfg=='P') pot_en=1;
-	else pot_en=0;
+	//ee_cfg = eeprom_read_byte((uint8_t*)EE_POTM_ADD);
+	//if(ee_cfg=='P') pot_en=1;
+	//else pot_en=0;
+	pot_en=0;
 	
-	led_dimm_pwm = eeprom_read_byte((uint8_t*)EE_LEDL_ADD);
-	if(led_dimm_pwm>100) led_dimm_pwm=100;
-	else if(led_dimm_pwm<5) led_dimm_pwm=5;
+	//led_dimm_pwm = eeprom_read_byte((uint8_t*)EE_LEDL_ADD);
+	//if(led_dimm_pwm>100) led_dimm_pwm=100;
+	//else if(led_dimm_pwm<5) led_dimm_pwm=5;
+	led_dimm_pwm=5;
 	
-	led_high_pwm = eeprom_read_byte((uint8_t*)EE_LEDH_ADD);
-	if(led_high_pwm>100) led_high_pwm=100;
-	else if(led_high_pwm<5) led_high_pwm=5;
+	//led_high_pwm = eeprom_read_byte((uint8_t*)EE_LEDH_ADD);
+	//if(led_high_pwm>100) led_high_pwm=100;
+	//else if(led_high_pwm<5) led_high_pwm=5;
+	led_high_pwm=50;
 	
-	ee_cfg = eeprom_read_byte((uint8_t*)EE_ITRGT_ADDH);
-	dccd_itarget = ((uint16_t)ee_cfg<<8);
-	ee_cfg = eeprom_read_byte((uint8_t*)EE_ITRGT_ADDL);
-	dccd_itarget += ee_cfg; 
+	//ee_cfg = eeprom_read_byte((uint8_t*)EE_ITRGT_ADDH);
+	//dccd_itarget = ((uint16_t)ee_cfg<<8);
+	//ee_cfg = eeprom_read_byte((uint8_t*)EE_ITRGT_ADDL);
+	//dccd_itarget += ee_cfg; 
 	
-	if(dccd_itarget>4000) dccd_itarget = 4000;
+	//if(dccd_itarget>4000) dccd_itarget = 4000;
+	//dccd_itarget = 4200;
 	
-	setforce = eeprom_read_byte((uint8_t*)EE_SETF_ADD);
-	if(setforce>100) setforce = 100;
+	uint8_t read_f1 = eeprom_read_byte((uint8_t*)EE_SETF_ADD);
+	uint8_t read_f2 = eeprom_read_byte((uint8_t*)EE_SETFB_ADD);
+	
+	if(read_f1>100) read_f1=100;
+	if(read_f1>100) read_f2=100;
+	
+	if(read_f1>read_f2) setforce = read_f1;
+	else setforce = read_f2;
 	
 	//Debugging
 	//dccd_itarget = 3500;
@@ -166,8 +184,13 @@ int main(void)
 	dccd_state = 0;
 	ocp_state = 0;
 
-	ANDRV_MeasureAll();
-	INDRV_ReadAllTimed();
+	//delay system
+	for(uint8_t i=0; i<50; i++)
+	{
+		ANDRV_MeasureAll();
+	}
+	
+	INDRV_ReadAllTimed();	
 	//wdt_reset();	
 
 	//main loop
@@ -181,6 +204,7 @@ int main(void)
 				
 		current = ANDRV_GetValue(AN_DCCDI);
 		volatge = ANDRV_GetValue(AN_DCCDU);
+		supply = ANDRV_GetValue(AN_BATU);
 		
 		if(current) resistance = (uint16_t)(((uint32_t)volatge*1000)/current);
 		else if(actforce) resistance = 0xFFFF;
@@ -190,12 +214,12 @@ int main(void)
 		else current_actlim = current_totmax;
 		
 		//check values
-		if(current>current_actlim)
+		if((current>current_actlim)&&(!protection_deadtime))
 		{
-			if(inrush_counter<254) inrush_counter+=5;
+			if(inrush_counter<254) inrush_counter++;
 			if(cooldown_counter) cooldown_counter = 2000;
 		}
-		else if((resistance<500)&&(current!=0))
+		else if(((resistance<500)&&(current!=0))&&(!protection_deadtime))
 		{
 			if(inrush_counter<254) inrush_counter++;
 			if(cooldown_counter) cooldown_counter = 2000;
@@ -211,7 +235,7 @@ int main(void)
 		uint16_t res_lim = OUTDRV_GetResistance();
 		res_lim *= 2;
 		
-		if(resistance>res_lim)
+		if((resistance>res_lim)&&(!protection_deadtime))
 		{
 			if(load_loss_debounce>20) load_loss = 1;
 			else load_loss_debounce++;
@@ -222,15 +246,19 @@ int main(void)
 			load_loss = 0;
 		}
 		
+		if(protection_deadtime) protection_deadtime--;
+		else if(protection_deadtime>20) protection_deadtime = 20;
+		
 		//OCP state machine
 		if(ocp_state==0)
 		{
 			//All is fine			
-			if(inrush_counter>100)
+			if(inrush_counter>10)
 			{
 				//too long inrush, fuse
 				OUTDRV_FuseDccd();
 				actforce = 0;
+				prev_actforce = 0;
 				//go to FUSED state, and start cooldown time
 				ocp_state = 1;
 				cooldown_counter = 2000;
@@ -260,7 +288,7 @@ int main(void)
 		else if(ocp_state==2)
 		{
 			//retrying, check if fault repeats
-			if(inrush_counter>100)
+			if(inrush_counter>10)
 			{
 				//too long inrush, fuse
 				OUTDRV_FuseDccd();
@@ -334,6 +362,7 @@ int main(void)
 				if(setforce>90) setforce = 100;
 				else setforce += 10;
 				eeprom_write_byte((uint8_t*)EE_SETF_ADD,setforce);
+				eeprom_write_byte((uint8_t*)EE_SETFB_ADD,setforce);
 				INDRV_ResetInputChange(IN_UPSW);
 			};
 			
@@ -343,6 +372,7 @@ int main(void)
 				if(setforce<10) setforce = 0;
 				else setforce -= 10;
 				eeprom_write_byte((uint8_t*)EE_SETF_ADD,setforce);
+				eeprom_write_byte((uint8_t*)EE_SETFB_ADD,setforce);
 				INDRV_ResetInputChange(IN_DOWN);
 			};
 		}
@@ -367,7 +397,7 @@ int main(void)
 					if(brakelock) actforce = 100;
 					else actforce = 0;
 				}
-				else actforce = setforce;
+				else actforce = setforce;                                                                                                                                                              
 			}
 		}
 		/***** End of DCCD force logic *****/
@@ -378,8 +408,10 @@ int main(void)
 			//Set up for calibration
 			//Force 20% PWM
 			OUTDRV_SetDccdPWM(20,PWM_FULL);
-			calib_timer = 500;
+			calib_timer = 1000;
 			dccd_state = 1;
+			protection_deadtime = 20;
+			prev_actforce = actforce;
 		}
 		else if(dccd_state==1)
 		{
@@ -402,6 +434,8 @@ int main(void)
 					OUTDRV_SetDccdPWM(actforce,1);
 					dccd_state = 2;
 					calibration_fail = 0;
+					protection_deadtime = 20;
+					prev_actforce = actforce;
 				}
 			}
 			else
@@ -414,9 +448,10 @@ int main(void)
 			//normal operation mode
 			// Set previously determined DCCD force
 			OUTDRV_SetDccdPWM(actforce,1);
+			if(prev_actforce!=actforce){ protection_deadtime = 20; prev_actforce = actforce;};
 		}
 		
-		OUTDRV_ProcessCoil(ANDRV_GetValue(AN_BATU));
+		OUTDRV_ProcessCoil(supply);
 				
 		/***** End of DCCD Operation state machine *****/
 		

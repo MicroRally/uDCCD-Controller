@@ -122,21 +122,21 @@ void INDRV_ReadAllTimed(void)
 	if(up_sw!=temp) up_cnt++;
 	else up_cnt=0;
 	
-	if(up_cnt>10){up_sw = temp; up_chg = 1;};
+	if(up_cnt>20){up_sw = temp; up_chg = 1;};
 	
 	//Down switch input
 	temp = ((PINC&0x20)>>5);
 	if(down_sw!=temp) down_cnt++;
 	else down_cnt=0;
 	
-	if(down_cnt>10){down_sw = temp; down_chg = 1;};
+	if(down_cnt>20){down_sw = temp; down_chg = 1;};
 	
 	//Mode switch input
 	temp = ((PINC&0x80)>>7);
 	if(mode_sw!=temp) mode_cnt++;
 	else mode_cnt=0;
 	
-	if(mode_cnt>10){mode_sw = temp; mode_chg = 1;};
+	if(mode_cnt>20){mode_sw = temp; mode_chg = 1;};
 }
 
 uint8_t INDRV_GetInput(uint8_t ch)
