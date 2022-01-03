@@ -14,7 +14,9 @@ Revision history:
 * Special version for last r6 board.
 2021-09-22: v1.31
 * Added redundant set force saving
-*/
+2021-11-27: v1.32
+* Removed Loss of Load and Too low resistance protections
+* Increased current limit
 
 /**** Hardware configuration ****
 PA0 - 
@@ -210,8 +212,10 @@ int main(void)
 		else if(actforce) resistance = 0xFFFF;
 		else resistance = 0;
 		
-		if(actforce) current_actlim = (uint16_t)(((uint32_t)actforce*current_totmax)/100);
+		if(actforce) current_actlim = (uint16_t)(((uint32_t)actforce*current_totmax)/30);
 		else current_actlim = current_totmax;
+		
+		if(current_actlim>current_totmax) current_actlim = current_totmax;
 		
 		//check values
 		if((current>current_actlim)&&(!protection_deadtime))
@@ -219,11 +223,11 @@ int main(void)
 			if(inrush_counter<254) inrush_counter++;
 			if(cooldown_counter) cooldown_counter = 2000;
 		}
-		else if(((resistance<500)&&(current!=0))&&(!protection_deadtime))
-		{
-			if(inrush_counter<254) inrush_counter++;
-			if(cooldown_counter) cooldown_counter = 2000;
-		}
+		//else if(((resistance<500)&&(current!=0))&&(!protection_deadtime))
+		//{
+		//	if(inrush_counter<254) inrush_counter++;
+		//	if(cooldown_counter) cooldown_counter = 2000;
+		//}
 		else
 		{
 			//No overcurrent
@@ -232,19 +236,19 @@ int main(void)
 		}
 		
 		//Check for under-current (load-loss)
-		uint16_t res_lim = OUTDRV_GetResistance();
-		res_lim *= 2;
+		//uint16_t res_lim = OUTDRV_GetResistance();
+		//res_lim *= 2;
 		
-		if((resistance>res_lim)&&(!protection_deadtime))
-		{
-			if(load_loss_debounce>20) load_loss = 1;
-			else load_loss_debounce++;
-		}
-		else 
-		{
+		//if((resistance>res_lim)&&(!protection_deadtime))
+		//{
+		//	if(load_loss_debounce>20) load_loss = 1;
+		//	else load_loss_debounce++;
+		//}
+		//else 
+		//{
 			load_loss_debounce = 0;
 			load_loss = 0;
-		}
+		//}
 		
 		if(protection_deadtime) protection_deadtime--;
 		else if(protection_deadtime>20) protection_deadtime = 20;
@@ -268,7 +272,7 @@ int main(void)
 		else if(ocp_state==1)
 		{
 			//Fused
-			if(retry_counter>5)
+			if(retry_counter>10)
 			{
 				//if still fused, after more that 5 retries in row, then lock forever 
 				ocp_state = 3;
@@ -410,7 +414,7 @@ int main(void)
 			OUTDRV_SetDccdPWM(20,PWM_FULL);
 			calib_timer = 1000;
 			dccd_state = 1;
-			protection_deadtime = 20;
+			protection_deadtime = 30;
 			prev_actforce = actforce;
 		}
 		else if(dccd_state==1)
@@ -420,7 +424,7 @@ int main(void)
 			{
 				//uint16_t volatge = ANDRV_GetValue(AN_DCCDU);   //5.67V -> 1.38V
 				//uint16_t current = ANDRV_GetValue(AN_DCCDI);   //1.75V -> 3.5A
-				resistance = (uint16_t)(((uint32_t)volatge*1000)/current);
+				resistance = 1500; //(uint16_t)(((uint32_t)volatge*1000)/current);
 				
 				if(resistance>10000)
 				{
@@ -434,7 +438,7 @@ int main(void)
 					OUTDRV_SetDccdPWM(actforce,1);
 					dccd_state = 2;
 					calibration_fail = 0;
-					protection_deadtime = 20;
+					protection_deadtime = 30;
 					prev_actforce = actforce;
 				}
 			}
@@ -448,7 +452,7 @@ int main(void)
 			//normal operation mode
 			// Set previously determined DCCD force
 			OUTDRV_SetDccdPWM(actforce,1);
-			if(prev_actforce!=actforce){ protection_deadtime = 20; prev_actforce = actforce;};
+			if(prev_actforce!=actforce){ protection_deadtime = 30; prev_actforce = actforce;};
 		}
 		
 		OUTDRV_ProcessCoil(supply);
