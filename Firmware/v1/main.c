@@ -14,9 +14,12 @@ Revision history:
 * Special version for last r6 board.
 2021-09-22: v1.31
 * Added redundant set force saving
-2021-11-27: v1.32
+2021-09-22: v1.32
 * Removed Loss of Load and Too low resistance protections
 * Increased current limit
+2022-01-03: v1.33
+* Even more reduced current limit - set to fiex 8000mA
+*/
 
 /**** Hardware configuration ****
 PA0 - 
@@ -212,8 +215,9 @@ int main(void)
 		else if(actforce) resistance = 0xFFFF;
 		else resistance = 0;
 		
-		if(actforce) current_actlim = (uint16_t)(((uint32_t)actforce*current_totmax)/30);
-		else current_actlim = current_totmax;
+		//if(actforce) current_actlim = (uint16_t)(((uint32_t)actforce*current_totmax)/30);
+		//else 
+		current_actlim = current_totmax;
 		
 		if(current_actlim>current_totmax) current_actlim = current_totmax;
 		
