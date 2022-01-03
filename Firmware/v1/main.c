@@ -5,9 +5,11 @@ Author: Andis Jargans
 
 Revision history:
 2020-09-24: Initial version
-2021-06-16: v1.1
+2021-02-16: v1.1
 * OCP too is sensitive. Coil inductance is larger than tough and current decays much slower. Need to give more time for current decay before triggering OCP.
-* inrush_counter treshold, in OCP State machine, raised from 25 to 100.
+* inrush_counter threshold, in OCP State machine, raised from 25 to 100.
+2021-06-18: v1.2
+* Needs to save last set DCCD force. Added set force saving to EEPROM.
 */
 
 /**** Hardware configuration ****
@@ -53,14 +55,7 @@ PD7 -
 #include "Drivers/outputs_driver.h"
 
 /**** Private definitions ****/
-/*EEPROM config
-Coil mode - V/C
-Coil resistance - Rr
-Coil voltage - Vv
-Coil current - Aa
-LED voltage - H/L
-Brake mode - L/O
-*/
+/**** EEPROM config *****/
 
 #define EE_BMODE_ADD	0x00
 #define EE_POTM_ADD		0x01
@@ -68,17 +63,15 @@ Brake mode - L/O
 #define EE_LEDH_ADD		0x03
 #define EE_ITRGT_ADDH	0x04
 #define EE_ITRGT_ADDL	0x05
-
-//DCCD state
-#define DCCD_NOCAL	0
-#define DCCD_
+#define EE_SETF_ADD		0x06
 
 /*
 Brake lock mode, O-0x4F, L-0x4C
 Potentiometer mode, B-0x42, P-0x50
-Led min PWM - dec2hex
-Led max PWM - dec2hec
+Led min PWM - uint8
+Led max PWM - uint8
 I target - dec2hex
+Set Force - uint8
 */
 
 /**** Private variables ****/
@@ -156,12 +149,15 @@ int main(void)
 	if(led_high_pwm>100) led_high_pwm=100;
 	else if(led_high_pwm<5) led_high_pwm=5;
 	
-	ee_cfg = eeprom_read_word((uint16_t*)EE_ITRGT_ADDH);
+	ee_cfg = eeprom_read_byte((uint8_t*)EE_ITRGT_ADDH);
 	dccd_itarget = ((uint16_t)ee_cfg<<8);
-	ee_cfg = eeprom_read_word((uint16_t*)EE_ITRGT_ADDL);
-	dccd_itarget += ee_cfg;  
+	ee_cfg = eeprom_read_byte((uint8_t*)EE_ITRGT_ADDL);
+	dccd_itarget += ee_cfg; 
 	
 	if(dccd_itarget>4000) dccd_itarget = 4000;
+	
+	setforce = eeprom_read_byte((uint8_t*)EE_SETF_ADD);
+	if(setforce>100) setforce = 100;
 	
 	//Debugging
 	//dccd_itarget = 3500;
@@ -246,7 +242,7 @@ int main(void)
 			//Fused
 			if(retry_counter>5)
 			{
-				//if still fused, after more that 5 retrys in row, then lock forever 
+				//if still fused, after more that 5 retries in row, then lock forever 
 				ocp_state = 3;
 			}
 			else
@@ -337,6 +333,7 @@ int main(void)
 				//do switch operations
 				if(setforce>90) setforce = 100;
 				else setforce += 10;
+				eeprom_write_byte((uint8_t*)EE_SETF_ADD,setforce);
 				INDRV_ResetInputChange(IN_UPSW);
 			};
 			
@@ -345,6 +342,7 @@ int main(void)
 				//do switch operations
 				if(setforce<10) setforce = 0;
 				else setforce -= 10;
+				eeprom_write_byte((uint8_t*)EE_SETF_ADD,setforce);
 				INDRV_ResetInputChange(IN_DOWN);
 			};
 		}
