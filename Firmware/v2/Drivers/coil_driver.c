@@ -36,7 +36,8 @@ typedef struct warnStruct{
 	uint8_t overcurrnet;
 	uint8_t uout_high;
 	uint8_t uout_low;
-	uint8_t supply;
+	uint8_t supply_ovlo;
+	uint8_t supply_uvlo;
 }warnDef;
 
 
@@ -151,6 +152,33 @@ uint8_t COILDRV_GetFault(void)
 	return fault;
 }
 
+uint8_t COILDRV_GetWarning(uint8_t warning_ch)
+{
+	switch(warning_ch)
+	{
+		case COILDRV_WARNING_LOAD_LOSS:
+			return warnings.load_loss;
+		
+		case COILDRV_WARNING_OVERCURRENT:
+		return warnings.load_loss;
+		
+		case COILDRV_WARNING_OUT_HIGH:
+		return warnings.load_loss;
+		
+		case COILDRV_WARNING_OUT_LOW:
+		return warnings.load_loss;
+		
+		case COILDRV_WARNING_SUPPLY_HIGH:
+		return warnings.load_loss;
+		
+		case COILDRV_WARNING_SUPPLY_LOW:
+		return warnings.load_loss;
+		
+		default:
+			return 0;
+	}
+}
+
 /***** Private function definitions *****/
 /**
  * @brief Process fault warning states
@@ -159,7 +187,7 @@ uint8_t Process_Faults(warnDef* warn )
 {
 	static uint16_t fault_timer = 0;
 
-	if((warn->overcurrnet)||(warn->uout_high)||(warn->uout_low))
+	if((warn->overcurrnet)||(warn->uout_high)||(warn->uout_low)||(warn->supply_uvlo))
 	{
 		//Start fault cooldown timer
 		fault_timer = COIL_FAULT_COOLDOWN_TIME;
@@ -202,17 +230,21 @@ void Get_Warnings(uint16_t set_i, uint16_t set_u, measDef* meas, warnDef* warn )
 	if(set_u!=0) ovp_limit = PercentOfValue_u16(set_u,COIL_OUT_OVP_LIMIT_PERCENT);
 	if(set_u!=0) uvp_limit = PercentOfValue_u16(set_u,COIL_OUT_UVP_LIMIT_PERCENT);
 	
-	//Check overvolatge condition
+	//Check over voltage condition
 	if((meas->voltage)>ovp_limit) warn->uout_high = 1;
 	else warn->uout_high = 0;
 	
-	//Check undervolatge condition
+	//Check under voltage condition
 	if(((meas->voltage)<uvp_limit)&&(uvp_limit!=0)) warn->uout_low = 1;
 	else warn->uout_low = 0;
 	
 	//Check supply limits
-	if(((meas->supply)<COIL_SUPPLY_MIN)||((meas->supply)>COIL_SUPPLY_MAX)) warn->supply = 1;
-	else warn->supply = 0;
+	if((meas->supply)<COIL_SUPPLY_MIN) warn->supply_uvlo = 1;
+	else warn->supply_uvlo = 0;
+	
+	//Check supply limits
+	if((meas->supply)>COIL_SUPPLY_MAX) warn->supply_ovlo = 1;
+	else warn->supply_ovlo = 0;
 }
 
 /**

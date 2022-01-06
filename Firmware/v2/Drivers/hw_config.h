@@ -71,7 +71,7 @@ One conversion = 13.5 Fadc cycles
 #define COIL_OUT_OVP_LIMIT_DEFAULT	6000
 #define COIL_OUT_OVP_LIMIT_PERCENT	120
 #define COIL_OUT_UVP_LIMIT_PERCENT	80
-#define COIL_SUPPLY_MIN				6000
+#define COIL_SUPPLY_MIN				10000
 #define COIL_SUPPLY_MAX				18000
 
 //PID unsigned 8bit coeficients
@@ -95,5 +95,8 @@ One conversion = 13.5 Fadc cycles
 #define DSP_FAULT_FLASH_PERIOD	500
 #define DSP_BRIGHT_PWM			50
 #define DSP_DIMM_PWM			10
+
+#define POT_RANGE_BOTTOM		100
+#define POT_RANGE_TOP			4900
 	
 #endif

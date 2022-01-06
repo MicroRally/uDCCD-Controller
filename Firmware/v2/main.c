@@ -9,7 +9,6 @@ v2.0 - YYYY-MM-DD: Initial version
 
 TO DO:
 * Add Max target current configuration
-* Add Potentiometer mode
 * Mode display at startup
 * User set force display delay
 * Add last set force saving, for button mode
@@ -27,6 +26,8 @@ TO DO:
 #include "Drivers/hw_config.h"
 
 /**** Private definitions ****/
+#define CTRL_MODE_BUTTONS		0
+#define	CTRL_MODE_POTENTIOMETER	1
 
 /**** Private variables ****/
 uint16_t supply_u = 0;
@@ -48,9 +49,12 @@ uint8_t user_force = 0;
 uint8_t set_force = 0;
 uint16_t set_current = 0;
 
+uint8_t ctrl_mode = CTRL_MODE_BUTTONS;
+
 /**** Private function declarations ****/
 void GatherData(uint8_t times);
 uint8_t ProcessUpDownButtons(uint8_t force);
+uint8_t VoltageToForce(uint16_t pot_volt);
 uint8_t ProcessMode(uint8_t mode);
 uint8_t GetNextTargetForce(void);
 uint16_t ForceToCurrent(uint8_t force);
@@ -85,7 +89,9 @@ int main(void)
 		COILDRV_UpdateMeasurments(dccd_i,dccd_u,supply_u);
 	
 		//Process inputs
-		user_force = ProcessUpDownButtons(user_force);
+		if(ctrl_mode==CTRL_MODE_POTENTIOMETER) user_force = VoltageToForce(pot);
+		else user_force = ProcessUpDownButtons(user_force);
+		
 		brakes_mode = ProcessMode(brakes_mode);
 		
 		//Determine next force output
@@ -149,6 +155,20 @@ uint8_t ProcessUpDownButtons(uint8_t force)
 	return force;
 }
 
+uint8_t VoltageToForce(uint16_t pot_volt)
+{
+	if(pot_volt<=POT_RANGE_BOTTOM) return 0;
+	else if(pot_volt>=POT_RANGE_TOP) return 100;
+	else
+	{
+		uint16_t range = POT_RANGE_TOP-POT_RANGE_BOTTOM;
+		pot_volt -= POT_RANGE_BOTTOM;
+		uint32_t temp = ((uint32_t)pot_volt*100)/range;
+		if(temp>100) return 100;
+		else return (uint8_t) temp;
+	}
+}
+
 uint8_t ProcessMode(uint8_t mode)
 {
 	uint8_t mode_changed = INDRV_GetInputChange(INPUT_CH_MODE);
@@ -207,22 +227,32 @@ uint16_t ForceToCurrent(uint8_t force)
 	}
 }
 
-void ProcessDisplay(void)
+void ProcessDisplay(uint8_t show_mode, uint8_t show_new_force)
 {
+	// Flash Red LED when OCP fault,
+	// Flash Green LED when UVLO fault
+	// Flash set force LED when load loss
+	// Display set force when no faults
+	
 	static uint16_t timer = 0;
 	static uint8_t step = 0;
 	
 	//Display set force
 	if( COILDRV_GetFault() )
 	{
-		//Flash LOCK LED
+		//Get specific fault
+		uint8_t fault_led;
+		if(COILDRV_GetWarning(COILDRV_WARNING_SUPPLY_LOW)) fault_led = 0;
+		else fault_led = 100;
+		
+		//Flash fault LED
 		if(timer) timer--;
 		else
 		{
 			if(step)
 			{
-				//Turn on LOCK LED
-				DSPDRV_SetDisplayBW(0x20);
+				//Turn on fault LED
+				DSPDRV_SetDisplayVal(fault_led,LED_DSP_DOT10);
 				step=0;
 			}
 			else

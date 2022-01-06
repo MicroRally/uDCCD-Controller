@@ -17,6 +17,12 @@ v0.0 - YYYY-MM-DD
 #include "hw_config.h"
 
 /**** Public definitions ****/
+#define COILDRV_WARNING_LOAD_LOSS	1
+#define COILDRV_WARNING_OVERCURRENT	2
+#define COILDRV_WARNING_OUT_HIGH	3
+#define COILDRV_WARNING_OUT_LOW		4
+#define COILDRV_WARNING_SUPPLY_HIGH	5
+#define COILDRV_WARNING_SUPPLY_LOW	6
 
 /**** Public function declarations ****/
 //Control functions
@@ -29,5 +35,6 @@ void COILDRV_Process(void);
 
 //Data retrieve functions
 uint8_t COILDRV_GetFault(void);
+uint8_t COILDRV_GetWarning(uint8_t warning_ch);
 
 #endif
